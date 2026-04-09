@@ -35,14 +35,22 @@ class SlackDelivery:
         import re
         if not bullet:
             return ''
-        # Remove HTML tags
-        clean = re.sub(r'<[^>]+>', '', bullet)
+        # Remove HTML tags completely
+        clean = re.sub(r'<[^>]*>', '', bullet)
+        # Remove any href or src content
+        clean = re.sub(r'href="[^"]*"', '', clean)
+        clean = re.sub(r'src="[^"]*"', '', clean)
         # Remove URLs
         clean = re.sub(r'https?://\S+', '', clean)
+        # Remove base64-looking strings
+        clean = re.sub(r'CBM[a-zA-Z0-9_-]+', '', clean)
+        clean = re.sub(r'AU_[a-zA-Z0-9_-]+', '', clean)
         # Remove extra whitespace
         clean = re.sub(r'\s+', ' ', clean).strip()
-        # Skip if too short or looks like garbage
-        if len(clean) < 10 or clean.startswith('CBM') or clean.startswith('AU_'):
+        # Skip if too short or still has garbage
+        if len(clean) < 15:
+            return ''
+        if any(x in clean for x in ['<', '>', 'href', 'src=', 'class=']):
             return ''
         return clean
 

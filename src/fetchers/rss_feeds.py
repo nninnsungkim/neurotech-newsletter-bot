@@ -10,21 +10,17 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
-# Known RSS feeds for neurotech and tech publications
+# RSS feeds focused on wearables, productivity, startups
 PUBLICATION_FEEDS = {
-    # Tech Publications
+    # Tech/Startup Publications
     'TechCrunch': 'https://techcrunch.com/feed/',
-    'Wired': 'https://www.wired.com/feed/rss',
-    'MIT Tech Review': 'https://www.technologyreview.com/feed/',
-    'The Verge': 'https://www.theverge.com/rss/index.xml',
-    'Ars Technica': 'https://feeds.arstechnica.com/arstechnica/technology-lab',
-    'IEEE Spectrum': 'https://spectrum.ieee.org/feeds/feed.rss',
     'VentureBeat': 'https://venturebeat.com/feed/',
+    'The Verge': 'https://www.theverge.com/rss/index.xml',
+    'Wired': 'https://www.wired.com/feed/rss',
 
-    # Neuroscience/Health Tech
-    'Neuroscience News': 'https://neurosciencenews.com/feed/',
-    'MedGadget': 'https://www.medgadget.com/feed',
+    # Health Tech / Wearables
     'MobiHealthNews': 'https://www.mobihealthnews.com/feed',
+    'Wareable': 'https://www.wareable.com/feed',
 }
 
 # Company blog RSS feeds (discovered or known)
@@ -61,17 +57,31 @@ class RSSFetcher:
             return datetime.utcnow() - timedelta(days=1)  # Default to yesterday
 
     def _is_relevant(self, title: str, summary: str, keywords: List[str]) -> bool:
-        """Check if article is relevant to neurotech/productivity."""
+        """Check if article is relevant to APEX competitive landscape."""
         text = (title + ' ' + summary).lower()
 
-        relevance_keywords = [
-            'neuro', 'brain', 'eeg', 'bci', 'neural', 'cognitive',
-            'focus', 'attention', 'meditation', 'mindfulness',
-            'wearable', 'headband', 'productivity', 'screen time',
-            'digital wellness', 'app blocker', 'distraction'
+        # Must have at least one of these
+        required = [
+            'eeg', 'headband', 'wearable', 'neurofeedback', 'brain sens',
+            'neurable', 'muse', 'opal', 'freedom app', 'neurosity', 'emotiv',
+            'screen time', 'app blocker', 'focus app', 'productivity app',
+            'digital wellness', 'phone addiction', 'attention track'
         ]
 
-        return any(kw in text for kw in relevance_keywords + [k.lower() for k in keywords])
+        # Hard exclude
+        exclude = [
+            'car', 'vehicle', 'police', 'arrest', 'fantasy', 'nintendo',
+            'video game', 'linux', 'surgery', 'implant', 'alzheimer',
+            'parkinson', 'clinical trial', 'tesla', 'crypto', 'bitcoin'
+        ]
+
+        # Check exclude first
+        for ex in exclude:
+            if ex in text:
+                return False
+
+        # Check required
+        return any(kw in text for kw in required)
 
     def fetch_feed(self, name: str, url: str, relevance_keywords: List[str] = None) -> List[Dict]:
         """Fetch articles from a single RSS feed."""

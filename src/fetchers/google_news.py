@@ -1,71 +1,93 @@
 """
-Google News RSS fetcher for neurotech and productivity news.
-Uses Google News RSS feeds which are free and don't require API keys.
+Google News fetcher focused on APEX competitive intelligence.
+Searches for specific competitors and relevant business news.
 """
 
 import feedparser
 import requests
 from datetime import datetime, timedelta
-from urllib.parse import quote, urlparse
+from urllib.parse import quote
 from typing import List, Dict
 import time
 import re
-import base64
 
 
-def decode_google_news_url(google_url: str) -> str:
-    """Decode Google News redirect URL to get actual article URL."""
+def extract_real_url(google_url: str) -> str:
+    """Extract actual article URL from Google News redirect."""
+    if not google_url or 'news.google.com' not in google_url:
+        return google_url
+
     try:
-        # Method 1: Follow the redirect with GET request
-        try:
-            response = requests.get(
-                google_url,
-                allow_redirects=True,
-                timeout=8,
-                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-            )
-            final_url = response.url
-            if final_url and 'news.google.com' not in final_url:
-                return final_url
-        except:
-            pass
+        # Follow redirect to get actual URL
+        response = requests.get(
+            google_url,
+            allow_redirects=True,
+            timeout=10,
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
+        )
+        final_url = response.url
 
-        # Method 2: Try base64 decoding
-        if '/rss/articles/' in google_url:
-            encoded_part = google_url.split('/rss/articles/')[-1].split('?')[0]
-            padding = 4 - len(encoded_part) % 4
-            if padding != 4:
-                encoded_part += '=' * padding
+        # Make sure we got a real URL, not Google
+        if final_url and 'google.com' not in final_url:
+            return final_url
+    except Exception as e:
+        pass
 
-            try:
-                decoded = base64.urlsafe_b64decode(encoded_part).decode('utf-8', errors='ignore')
-                url_match = re.search(r'https?://[^\s<>"\'\\]+', decoded)
-                if url_match:
-                    return url_match.group(0).rstrip('/')
-            except:
-                pass
-
-        return google_url
-    except:
-        return google_url
+    # Fallback: return original (will show Google URL)
+    return google_url
 
 
-class GoogleNewsFetcher:
-    """Fetches news from Google News RSS feeds."""
+class CompetitorNewsFetcher:
+    """Fetches news specifically about APEX competitors and relevant topics."""
 
     BASE_URL = "https://news.google.com/rss/search"
+
+    # Direct competitor searches - these are PRIORITY
+    COMPETITOR_QUERIES = [
+        # Primary competitors
+        '"Opal" screen time app',
+        '"Opal" app productivity',
+        '"Muse headband"',
+        '"Muse S" meditation',
+        '"Interaxon" Muse',
+        '"Neurable" headphones',
+        '"Neurable" EEG',
+        '"Freedom" app blocker',
+        # Secondary competitors
+        '"Neurosity" Crown',
+        '"EMOTIV" headset',
+        '"Apollo Neuro"',
+        '"Dreem" headband sleep',
+        '"Cold Turkey" blocker',
+        '"One Sec" app',
+    ]
+
+    # Topic searches for industry news
+    TOPIC_QUERIES = [
+        'EEG headband consumer',
+        'EEG wearable productivity',
+        'neurofeedback device launch',
+        'brain sensing wearable',
+        'focus tracking wearable',
+        'screen time app funding',
+        'digital wellness app launch',
+        'productivity wearable startup',
+        'attention tracking technology',
+    ]
 
     def __init__(self, hours_lookback: int = 12):
         self.hours_lookback = hours_lookback
         self.cutoff_time = datetime.utcnow() - timedelta(hours=hours_lookback)
 
     def _build_url(self, query: str, when: str = "12h") -> str:
-        """Build Google News RSS URL with query."""
-        encoded_query = quote(query)
-        return f"{self.BASE_URL}?q={encoded_query}+when:{when}&hl=en-US&gl=US&ceid=US:en"
+        """Build Google News RSS URL."""
+        encoded = quote(query)
+        return f"{self.BASE_URL}?q={encoded}+when:{when}&hl=en-US&gl=US&ceid=US:en"
 
     def _parse_date(self, date_str: str) -> datetime:
-        """Parse RSS date string to datetime."""
+        """Parse RSS date."""
         try:
             from dateutil import parser
             return parser.parse(date_str, ignoretz=True)
@@ -73,122 +95,108 @@ class GoogleNewsFetcher:
             return datetime.utcnow()
 
     def _clean_title(self, title: str) -> str:
-        """Remove source suffix from title (e.g., ' - TechCrunch')."""
+        """Remove source from title."""
         parts = title.rsplit(' - ', 1)
         return parts[0].strip()
 
     def _extract_source(self, title: str) -> str:
-        """Extract source name from title."""
+        """Extract source name."""
         parts = title.rsplit(' - ', 1)
-        if len(parts) > 1:
-            return parts[1].strip()
-        return "Unknown"
+        return parts[1].strip() if len(parts) > 1 else "Unknown"
 
-    def _is_within_timeframe(self, pub_date: datetime) -> bool:
-        """Check if article is within the lookback period."""
-        return pub_date >= self.cutoff_time
+    def _clean_summary(self, summary: str) -> str:
+        """Clean HTML from summary."""
+        # Remove HTML tags
+        clean = re.sub(r'<[^>]+>', '', summary)
+        # Remove extra whitespace
+        clean = re.sub(r'\s+', ' ', clean).strip()
+        return clean[:500]
 
-    def fetch_for_query(self, query: str, max_results: int = 10) -> List[Dict]:
-        """Fetch news articles for a single query."""
-        url = self._build_url(query)
+    def fetch_query(self, query: str, max_results: int = 5) -> List[Dict]:
+        """Fetch articles for a query."""
+        when = f"{self.hours_lookback}h"
+        url = self._build_url(query, when)
         articles = []
 
         try:
             feed = feedparser.parse(url)
 
-            for entry in feed.entries[:max_results * 2]:  # Fetch extra, filter later
+            for entry in feed.entries[:max_results]:
                 pub_date = self._parse_date(entry.get('published', ''))
 
-                if not self._is_within_timeframe(pub_date):
-                    continue
-
-                # Extract the actual article URL (not Google redirect)
-                google_link = entry.get('link', '')
-                actual_url = decode_google_news_url(google_link)
+                # Get actual URL
+                google_url = entry.get('link', '')
+                actual_url = extract_real_url(google_url)
 
                 article = {
                     'title': self._clean_title(entry.get('title', '')),
                     'url': actual_url,
                     'source': self._extract_source(entry.get('title', '')),
                     'published': pub_date.isoformat(),
-                    'summary': entry.get('summary', ''),
+                    'summary': self._clean_summary(entry.get('summary', '')),
                     'query': query,
                     'fetcher': 'google_news'
                 }
                 articles.append(article)
 
-                if len(articles) >= max_results:
-                    break
-
-            # Rate limiting
-            time.sleep(0.5)
+            time.sleep(0.3)  # Rate limit
 
         except Exception as e:
-            print(f"Error fetching Google News for '{query}': {e}")
+            print(f"  Error fetching '{query}': {e}")
 
         return articles
 
-    def fetch_for_queries(self, queries: List[str], max_per_query: int = 5) -> List[Dict]:
-        """Fetch news for multiple queries."""
+    def fetch_competitor_news(self) -> List[Dict]:
+        """Fetch news about direct competitors."""
+        print("Fetching competitor news...")
         all_articles = []
 
-        for query in queries:
-            articles = self.fetch_for_query(query, max_per_query)
+        for query in self.COMPETITOR_QUERIES:
+            articles = self.fetch_query(query, max_results=3)
+            if articles:
+                print(f"  {query}: {len(articles)}")
             all_articles.extend(articles)
-            print(f"  - '{query}': {len(articles)} articles")
 
         return all_articles
 
-    def fetch_for_company(self, company_name: str, max_results: int = 3) -> List[Dict]:
-        """Fetch news specifically about a company."""
-        # Try multiple query variations
-        queries = [
-            f'"{company_name}"',
-            f'{company_name} news',
-            f'{company_name} announcement'
-        ]
+    def fetch_topic_news(self) -> List[Dict]:
+        """Fetch news about relevant topics."""
+        print("Fetching topic news...")
+        all_articles = []
 
-        articles = []
-        for query in queries:
-            results = self.fetch_for_query(query, max_results=2)
-            articles.extend(results)
-            if len(articles) >= max_results:
-                break
+        for query in self.TOPIC_QUERIES:
+            articles = self.fetch_query(query, max_results=3)
+            if articles:
+                print(f"  {query}: {len(articles)}")
+            all_articles.extend(articles)
 
-        return articles[:max_results]
+        return all_articles
 
 
+def fetch_all_news(hours: int = 12) -> List[Dict]:
+    """Main function to fetch all relevant news."""
+    fetcher = CompetitorNewsFetcher(hours_lookback=hours)
+
+    # Fetch competitor news (priority)
+    competitor_articles = fetcher.fetch_competitor_news()
+
+    # Fetch topic news
+    topic_articles = fetcher.fetch_topic_news()
+
+    all_articles = competitor_articles + topic_articles
+    print(f"Total fetched: {len(all_articles)}")
+
+    return all_articles
+
+
+# Keep old function names for compatibility
 def fetch_neurotech_news(keywords_config: Dict, hours: int = 12) -> List[Dict]:
-    """Main function to fetch neurotech news."""
-    fetcher = GoogleNewsFetcher(hours_lookback=hours)
-
-    print("Fetching neurotech news from Google News...")
-
-    # Combine all neurotech keywords
-    queries = (
-        keywords_config['neurotech']['primary'][:8] +  # Top primary keywords
-        keywords_config['neurotech']['companies'][:15] +  # Top companies
-        keywords_config['neurotech']['topics'][:5]  # Top topics
-    )
-
-    articles = fetcher.fetch_for_queries(queries, max_per_query=3)
-    print(f"Total neurotech articles: {len(articles)}")
-
-    return articles
+    """Fetch neurotech news (uses new focused fetcher)."""
+    fetcher = CompetitorNewsFetcher(hours_lookback=hours)
+    return fetcher.fetch_competitor_news()
 
 
 def fetch_productivity_news(keywords_config: Dict, hours: int = 12) -> List[Dict]:
-    """Main function to fetch productivity app news."""
-    fetcher = GoogleNewsFetcher(hours_lookback=hours)
-
-    print("Fetching productivity news from Google News...")
-
-    queries = (
-        keywords_config['productivity']['primary'][:5] +
-        keywords_config['productivity']['companies']
-    )
-
-    articles = fetcher.fetch_for_queries(queries, max_per_query=3)
-    print(f"Total productivity articles: {len(articles)}")
-
-    return articles
+    """Fetch productivity news (uses new focused fetcher)."""
+    fetcher = CompetitorNewsFetcher(hours_lookback=hours)
+    return fetcher.fetch_topic_news()
