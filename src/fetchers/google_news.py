@@ -16,31 +16,34 @@ import base64
 def decode_google_news_url(google_url: str) -> str:
     """Decode Google News redirect URL to get actual article URL."""
     try:
-        # Extract the base64 encoded part from the URL
+        # Method 1: Follow the redirect with GET request
+        try:
+            response = requests.get(
+                google_url,
+                allow_redirects=True,
+                timeout=8,
+                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+            )
+            final_url = response.url
+            if final_url and 'news.google.com' not in final_url:
+                return final_url
+        except:
+            pass
+
+        # Method 2: Try base64 decoding
         if '/rss/articles/' in google_url:
             encoded_part = google_url.split('/rss/articles/')[-1].split('?')[0]
-            # Google uses a modified base64, try to decode
-            # Add padding if needed
             padding = 4 - len(encoded_part) % 4
             if padding != 4:
                 encoded_part += '=' * padding
 
             try:
                 decoded = base64.urlsafe_b64decode(encoded_part).decode('utf-8', errors='ignore')
-                # Find URL pattern in decoded string
-                url_match = re.search(r'https?://[^\s<>"\']+', decoded)
+                url_match = re.search(r'https?://[^\s<>"\'\\]+', decoded)
                 if url_match:
                     return url_match.group(0).rstrip('/')
             except:
                 pass
-
-        # Fallback: try to follow redirect
-        try:
-            response = requests.head(google_url, allow_redirects=True, timeout=5)
-            if response.url and 'google.com' not in response.url:
-                return response.url
-        except:
-            pass
 
         return google_url
     except:

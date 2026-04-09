@@ -57,7 +57,14 @@ class ArticleClassifier:
         'neurologist', 'neurology appointment', 'brain tumor', 'brain cancer',
         'alzheimer treatment', 'parkinson medication', 'epilepsy seizure',
         'stroke patient', 'brain surgery patient', 'clinical trial results',
-        'drug trial', 'pharmaceutical'
+        'drug trial', 'pharmaceutical',
+        # False positives
+        'fantasy baseball', 'fantasy football', 'fantasy sports',
+        'risc-v', 'linux kernel', 'cpu kernel', 'operating system kernel',
+        'police warrant', 'police arrest', 'crime', 'murder',
+        'mario', 'nintendo', 'video game',
+        'tesla fsd', 'self-driving car',
+        'meta ai muse', 'llama model', 'ai model muse'
     ]
 
     def __init__(self):

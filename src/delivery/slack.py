@@ -24,20 +24,47 @@ class SlackDelivery:
         now = datetime.now(self.timezone)
         return now.strftime("%B %d, %Y • %I:%M %p %Z")
 
+    def _truncate_title(self, title: str, max_len: int = 60) -> str:
+        """Truncate title to max length."""
+        if len(title) <= max_len:
+            return title
+        return title[:max_len-3].rsplit(' ', 1)[0] + '...'
+
+    def _clean_bullet(self, bullet: str) -> str:
+        """Clean HTML and garbage from bullet text."""
+        import re
+        if not bullet:
+            return ''
+        # Remove HTML tags
+        clean = re.sub(r'<[^>]+>', '', bullet)
+        # Remove URLs
+        clean = re.sub(r'https?://\S+', '', clean)
+        # Remove extra whitespace
+        clean = re.sub(r'\s+', ' ', clean).strip()
+        # Skip if too short or looks like garbage
+        if len(clean) < 10 or clean.startswith('CBM') or clean.startswith('AU_'):
+            return ''
+        return clean
+
     def _format_article(self, article: Dict, index: int) -> str:
         """Format a single article for Slack."""
-        title = article.get('title', 'Untitled')
+        title = self._truncate_title(article.get('title', 'Untitled'))
         url = article.get('url', '')
         source = article.get('source', 'Unknown')
         bullets = article.get('ai_summary', [])
 
-        # Format bullets
+        # Format bullets - only include clean, valid ones
         bullet_text = ""
         for bullet in bullets:
-            if bullet:
-                bullet_text += f"   • {bullet}\n"
+            clean = self._clean_bullet(bullet)
+            if clean:
+                bullet_text += f"    • {clean}\n"
 
-        return f"*{index}. {title}*\n{bullet_text}   _Source: {source}_ | <{url}|Read more>\n"
+        # If no valid bullets, skip bullet section
+        if not bullet_text:
+            return f"*{index}. {title}*\n    <{url}|Read more> · _{source}_\n\n"
+
+        return f"*{index}. {title}*\n{bullet_text}    <{url}|Read more> · _{source}_\n\n"
 
     def _build_message(self, neurotech: List[Dict], productivity: List[Dict]) -> Dict:
         """Build the full Slack message payload."""
@@ -112,12 +139,9 @@ _Automated newsletter • Next update in 12 hours_"""
         timestamp = self._get_timestamp()
 
         lines = [
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-            ":brain: *NEUROTECH & PRODUCTIVITY INTEL*",
-            timestamp,
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            f"*NEUROTECH INTEL* | {timestamp}",
             "",
-            f":zap: *NEUROTECH* ({len(neurotech)} items)",
+            f"*— HARDWARE & BCI ({len(neurotech)}) —*",
             ""
         ]
 
@@ -125,9 +149,7 @@ _Automated newsletter • Next update in 12 hours_"""
             lines.append(self._format_article(article, i))
 
         lines.extend([
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-            "",
-            f":iphone: *PRODUCTIVITY SOFTWARE* ({len(productivity)} items)",
+            f"*— PRODUCTIVITY APPS ({len(productivity)}) —*",
             ""
         ])
 
@@ -135,8 +157,8 @@ _Automated newsletter • Next update in 12 hours_"""
             lines.append(self._format_article(article, i))
 
         lines.extend([
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-            "_Automated newsletter • Next update in 12 hours_"
+            "---",
+            "_Next update in 12 hours_"
         ])
 
         return {"text": "\n".join(lines)}
