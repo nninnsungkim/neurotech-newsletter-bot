@@ -35,14 +35,28 @@ Format your response as exactly 3 lines starting with "• "
             raise ValueError("ANTHROPIC_API_KEY not set")
 
         self.client = Anthropic(api_key=self.api_key)
-        self.model = "claude-haiku-4-5-20251001"  # Latest Haiku
+        self.model = "claude-3-haiku-20240307"  # Claude 3 Haiku - fast and cheap
+
+    def _clean_html(self, text: str) -> str:
+        """Remove HTML tags and clean text."""
+        import re
+        # Remove HTML tags
+        clean = re.sub(r'<[^>]+>', '', text)
+        # Remove URLs that look like garbage
+        clean = re.sub(r'https?://\S+', '[link]', clean)
+        # Remove extra whitespace
+        clean = re.sub(r'\s+', ' ', clean).strip()
+        return clean
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     def _call_api(self, title: str, content: str) -> str:
         """Call Claude API with retry logic."""
+        # Clean HTML from content
+        clean_content = self._clean_html(content)
+
         prompt = f"""Article Title: {title}
 
-Article Content/Summary: {content[:1500]}
+Article Content/Summary: {clean_content[:1500]}
 
 Summarize this in exactly 3 bullet points:"""
 

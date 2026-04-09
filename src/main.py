@@ -68,12 +68,14 @@ def fetch_all_news(keywords: dict, hours: int = 12) -> list:
     except Exception as e:
         print(f"Error fetching RSS news: {e}")
 
-    # Reddit
-    try:
-        reddit_news = fetch_reddit_news(hours)
-        all_articles.extend(reddit_news)
-    except Exception as e:
-        print(f"Error fetching Reddit news: {e}")
+    # Reddit - disabled due to API restrictions on GitHub Actions
+    # Uncomment if running locally
+    # try:
+    #     reddit_news = fetch_reddit_news(hours)
+    #     all_articles.extend(reddit_news)
+    # except Exception as e:
+    #     print(f"Error fetching Reddit news: {e}")
+    print("Reddit: Skipped (API restrictions)")
 
     print(f"\nTotal raw articles: {len(all_articles)}")
     return all_articles

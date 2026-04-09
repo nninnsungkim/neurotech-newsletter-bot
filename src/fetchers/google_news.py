@@ -6,10 +6,45 @@ Uses Google News RSS feeds which are free and don't require API keys.
 import feedparser
 import requests
 from datetime import datetime, timedelta
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 from typing import List, Dict
 import time
 import re
+import base64
+
+
+def decode_google_news_url(google_url: str) -> str:
+    """Decode Google News redirect URL to get actual article URL."""
+    try:
+        # Extract the base64 encoded part from the URL
+        if '/rss/articles/' in google_url:
+            encoded_part = google_url.split('/rss/articles/')[-1].split('?')[0]
+            # Google uses a modified base64, try to decode
+            # Add padding if needed
+            padding = 4 - len(encoded_part) % 4
+            if padding != 4:
+                encoded_part += '=' * padding
+
+            try:
+                decoded = base64.urlsafe_b64decode(encoded_part).decode('utf-8', errors='ignore')
+                # Find URL pattern in decoded string
+                url_match = re.search(r'https?://[^\s<>"\']+', decoded)
+                if url_match:
+                    return url_match.group(0).rstrip('/')
+            except:
+                pass
+
+        # Fallback: try to follow redirect
+        try:
+            response = requests.head(google_url, allow_redirects=True, timeout=5)
+            if response.url and 'google.com' not in response.url:
+                return response.url
+        except:
+            pass
+
+        return google_url
+    except:
+        return google_url
 
 
 class GoogleNewsFetcher:
@@ -65,11 +100,12 @@ class GoogleNewsFetcher:
                     continue
 
                 # Extract the actual article URL (not Google redirect)
-                link = entry.get('link', '')
+                google_link = entry.get('link', '')
+                actual_url = decode_google_news_url(google_link)
 
                 article = {
                     'title': self._clean_title(entry.get('title', '')),
-                    'url': link,
+                    'url': actual_url,
                     'source': self._extract_source(entry.get('title', '')),
                     'published': pub_date.isoformat(),
                     'summary': entry.get('summary', ''),
