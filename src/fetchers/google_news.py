@@ -1,13 +1,13 @@
 """
-Company-focused fetcher using the 580 company database.
-Tracks competitors and relevant industry players.
+Exact company news search - NO generic keywords.
+Uses site-specific searches and exact company names.
 """
 
 import feedparser
 import requests
 import json
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 from urllib.parse import quote
 from typing import List, Dict
 import time
@@ -21,69 +21,45 @@ def load_companies() -> List[Dict]:
         return json.load(f)
 
 
-def get_relevant_companies() -> List[str]:
-    """Get list of companies most relevant to APEX."""
-    companies = load_companies()
-
-    # Types most relevant to APEX
-    relevant_types = [
-        'Wearable Medical Device',
-        'Wearable Consumer',
-        'Software / AI Platform',
-        'BCI Software / Platform',
-        'Productivity App',
-    ]
-
-    relevant = []
-    for c in companies:
-        ctype = c.get('type', '')
-        category = c.get('category', '')
-
-        # Include if relevant type or productivity category
-        if any(t in ctype for t in relevant_types) or category == 'productivity':
-            relevant.append(c['name'])
-
-    return relevant
-
-
-class CompanyNewsFetcher:
-    """Fetches news about specific companies + industry trends."""
+class ExactCompanySearch:
+    """Search for exact company news only."""
 
     BASE_URL = "https://news.google.com/rss/search"
 
-    # Top priority competitors (always search)
-    PRIORITY_COMPANIES = [
-        'Opal', 'Muse', 'Neurable', 'Neurosity', 'Freedom',
-        'EMOTIV', 'Apollo Neuro', 'Dreem', 'BrainCo',
-        'Arctop', 'Flow Neuroscience', 'Elemind',
-    ]
+    # Primary competitors - use EXACT company/parent names
+    PRIMARY_SEARCHES = [
+        # Opal - exact
+        '"Opal" "screen time"',
+        '"Opal" app productivity',
 
-    # Industry trend searches
-    INDUSTRY_QUERIES = [
-        'EEG wearable',
-        'EEG headband',
-        'neurofeedback device',
-        'brain wearable',
-        'brain-sensing',
-        'consumer BCI',
-        'neurotech startup',
-        'neurotech funding',
-        'screen time app',
-        'app blocker',
-        'digital wellness app',
-        'focus app',
-        'productivity app launch',
-        'phone addiction app',
-        'cognitive wearable',
-        'attention tracking',
-        'brain health wearable',
-        'mental wellness wearable',
+        # Muse - use parent company name to avoid confusion
+        '"Interaxon"',
+        '"Muse S" headband',
+        '"Muse 2" meditation',
+
+        # Neurable - exact
+        '"Neurable" headphones',
+        '"Neurable Inc"',
+
+        # Neurosity - exact
+        '"Neurosity" Crown',
+        '"Neurosity Inc"',
+
+        # Freedom - exact
+        '"Freedom.to" app',
+        '"Freedom app" blocker',
+
+        # Other specific companies
+        '"EMOTIV" EEG headset',
+        '"Apollo Neuroscience"',
+        '"Dreem" headband',
+        '"Flow Neuroscience"',
+        '"BrainCo"',
+        '"Kernel" neuroscience -popcorn -linux',
     ]
 
     def __init__(self, hours: int = 12):
         self.hours = hours
-        self.all_companies = get_relevant_companies()
-        print(f"Loaded {len(self.all_companies)} relevant companies")
 
     def _search_url(self, query: str) -> str:
         encoded = quote(query)
@@ -124,21 +100,17 @@ class CompanyNewsFetcher:
         except:
             pub_date = datetime.utcnow().isoformat()
 
-        raw_summary = entry.get('summary', '')
-        clean_summary = re.sub(r'<[^>]+>', '', raw_summary)
-        clean_summary = re.sub(r'\s+', ' ', clean_summary).strip()[:300]
-
         return {
             'title': title.strip(),
             'url': actual_url,
             'source': source.strip(),
             'published': pub_date,
-            'summary': clean_summary,
             'query': query,
-            'fetcher': 'google_news'
+            'fetcher': 'google_exact'
         }
 
-    def fetch_query(self, query: str, max_results: int = 3) -> List[Dict]:
+    def search(self, query: str, max_results: int = 3) -> List[Dict]:
+        """Search for exact query."""
         url = self._search_url(query)
         articles = []
         try:
@@ -147,75 +119,30 @@ class CompanyNewsFetcher:
                 article = self._parse_entry(entry, query)
                 if article['title']:
                     articles.append(article)
-            time.sleep(0.2)
-        except Exception as e:
+            time.sleep(0.3)
+        except:
             pass
         return articles
 
-    def fetch_priority_companies(self) -> List[Dict]:
-        """Search for priority competitors."""
-        print("Searching priority competitors...")
-        articles = []
-        for company in self.PRIORITY_COMPANIES:
-            results = self.fetch_query(f'"{company}"', max_results=3)
-            if results:
-                print(f"  {company}: {len(results)}")
-            articles.extend(results)
-        return articles
-
-    def fetch_sample_companies(self, sample_size: int = 30) -> List[Dict]:
-        """Search a rotating sample of other relevant companies."""
-        print(f"Searching {sample_size} other companies...")
-
-        # Exclude priority companies
-        other_companies = [c for c in self.all_companies if c not in self.PRIORITY_COMPANIES]
-
-        # Rotate based on hour to get different companies each run
-        hour = datetime.now().hour
-        start_idx = (hour * sample_size) % len(other_companies)
-        sample = other_companies[start_idx:start_idx + sample_size]
-
-        articles = []
-        for company in sample:
-            results = self.fetch_query(f'"{company}"', max_results=2)
-            if results:
-                print(f"  {company}: {len(results)}")
-            articles.extend(results)
-
-        return articles
-
-    def fetch_industry_trends(self) -> List[Dict]:
-        """Search industry trend keywords."""
-        print("Searching industry trends...")
-        articles = []
-        for query in self.INDUSTRY_QUERIES:
-            results = self.fetch_query(query, max_results=3)
-            if results:
-                print(f"  {query}: {len(results)}")
-            articles.extend(results)
-        return articles
-
-    def fetch_all(self) -> List[Dict]:
-        """Fetch from all sources."""
+    def search_all(self) -> List[Dict]:
+        """Search all primary companies."""
+        print("Searching exact company news...")
         all_articles = []
 
-        # Priority competitors (always)
-        all_articles.extend(self.fetch_priority_companies())
+        for query in self.PRIMARY_SEARCHES:
+            articles = self.search(query, max_results=2)
+            if articles:
+                print(f"  {query[:40]}: {len(articles)}")
+            all_articles.extend(articles)
 
-        # Sample of other companies (rotates)
-        all_articles.extend(self.fetch_sample_companies(sample_size=20))
-
-        # Industry trends
-        all_articles.extend(self.fetch_industry_trends())
-
-        print(f"Total fetched: {len(all_articles)}")
+        print(f"Total from exact search: {len(all_articles)}")
         return all_articles
 
 
 def fetch_all_news(hours: int = 12) -> List[Dict]:
-    """Main fetch function."""
-    fetcher = CompanyNewsFetcher(hours)
-    return fetcher.fetch_all()
+    """Fetch exact company news."""
+    searcher = ExactCompanySearch(hours)
+    return searcher.search_all()
 
 
 def fetch_neurotech_news(keywords_config: Dict, hours: int = 12) -> List[Dict]:

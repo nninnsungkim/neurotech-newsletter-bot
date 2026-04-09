@@ -1,6 +1,6 @@
 """
-APEX Competitive Intelligence Newsletter Bot
-Focused on tracking competitors and relevant industry news.
+APEX Competitive Intelligence - Company-focused approach.
+Scrapes actual company websites + exact Google searches.
 """
 
 import os
@@ -13,87 +13,61 @@ from dotenv import load_dotenv
 sys.path.insert(0, str(Path(__file__).parent))
 
 from fetchers.google_news import fetch_all_news
-from fetchers.rss_feeds import fetch_rss_news
+from fetchers.company_scraper import scrape_company_updates
 from processors.deduplicator import deduplicate_and_rank, ArticleDeduplicator
 from processors.classifier import classify_articles
-from processors.summarizer import summarize_articles
 from delivery.slack import send_newsletter
 
 
-def load_config():
-    """Load config files."""
-    config_dir = Path(__file__).parent / 'config'
-
-    with open(config_dir / 'keywords.json', 'r') as f:
-        keywords = json.load(f)
-
-    return keywords
-
-
-def fetch_news(hours: int = 12) -> list:
-    """Fetch news from all sources."""
+def fetch_news(hours: int = 24) -> list:
+    """Fetch from company sites + exact searches."""
     print("\n" + "=" * 50)
-    print("FETCHING COMPETITIVE INTELLIGENCE")
+    print("FETCHING COMPANY UPDATES")
     print("=" * 50)
 
     all_articles = []
 
-    # Google News - focused competitor searches
+    # 1. Scrape actual company websites/blogs
     try:
+        print("\n[1] Scraping company websites...")
+        company_articles = scrape_company_updates(hours=hours, max_companies=40)
+        all_articles.extend(company_articles)
+    except Exception as e:
+        print(f"Error scraping companies: {e}")
+
+    # 2. Exact company Google searches
+    try:
+        print("\n[2] Exact company Google searches...")
         google_articles = fetch_all_news(hours)
         all_articles.extend(google_articles)
     except Exception as e:
-        print(f"Error fetching Google News: {e}")
-
-    # RSS feeds - tech publications
-    try:
-        keywords = load_config()
-        rss_articles = fetch_rss_news(keywords, hours)
-        all_articles.extend(rss_articles)
-    except Exception as e:
-        print(f"Error fetching RSS: {e}")
+        print(f"Error with Google search: {e}")
 
     print(f"\nTotal raw articles: {len(all_articles)}")
     return all_articles
 
 
 def process_articles(articles: list, sent_path: str = None) -> dict:
-    """Process: dedupe, classify, filter."""
+    """Dedupe and classify."""
     print("\n" + "=" * 50)
-    print("FILTERING FOR RELEVANCE")
+    print("PROCESSING")
     print("=" * 50)
 
-    # Deduplicate
     unique = deduplicate_and_rank(articles, sent_path)
-
-    # Classify with strict APEX filter
     classified = classify_articles(unique)
-
     return classified
 
 
-def select_articles(classified: dict, neurotech_count: int = 11,
-                   productivity_count: int = 4) -> tuple:
-    """Select top relevant articles."""
+def select_articles(classified: dict, neurotech_count: int = 11, software_count: int = 4) -> tuple:
+    """Select top articles."""
     neurotech = classified.get('neurotech', [])[:neurotech_count]
-    productivity = classified.get('productivity', [])[:productivity_count]
+    software = classified.get('productivity', [])[:software_count]
 
-    # If we don't have enough neurotech, don't pad with garbage
-    # Better to have fewer quality articles
-
-    print(f"Selected: {len(neurotech)} neurotech, {len(productivity)} productivity")
-    return neurotech, productivity
+    print(f"Selected: {len(neurotech)} neurotech, {len(software)} software")
+    return neurotech, software
 
 
-def summarize(neurotech: list, productivity: list) -> tuple:
-    """Skip summarization - just return as-is."""
-    print("\n" + "=" * 50)
-    print("SKIPPING SUMMARIES (title + link only)")
-    print("=" * 50)
-    return neurotech, productivity
-
-
-def run_newsletter(dry_run: bool = False, hours: int = 12):
+def run_newsletter(dry_run: bool = False, hours: int = 24):
     """Main pipeline."""
     now = datetime.now(timezone.utc)
 
@@ -105,7 +79,6 @@ def run_newsletter(dry_run: bool = False, hours: int = 12):
 
     load_dotenv()
 
-    # Paths
     data_dir = Path(__file__).parent.parent / 'data'
     data_dir.mkdir(exist_ok=True)
     sent_path = str(data_dir / 'sent_articles.json')
@@ -120,15 +93,12 @@ def run_newsletter(dry_run: bool = False, hours: int = 12):
     # Process
     classified = process_articles(articles, sent_path)
 
-    # Select
-    neurotech, productivity = select_articles(classified)
+    # Select best 15
+    neurotech, software = select_articles(classified)
 
-    if not neurotech and not productivity:
-        print("\nNo relevant articles after filtering.")
+    if not neurotech and not software:
+        print("\nNo relevant articles.")
         return False
-
-    # Summarize
-    neurotech, productivity = summarize(neurotech, productivity)
 
     # Deliver
     print("\n" + "=" * 50)
@@ -142,35 +112,23 @@ def run_newsletter(dry_run: bool = False, hours: int = 12):
         for i, a in enumerate(neurotech, 1):
             print(f"  {i}. {a['title'][:70]}")
             print(f"     URL: {a['url'][:80]}")
-            print(f"     Reason: {a.get('classification_reason', 'N/A')}")
-            bullets = a.get('ai_summary', [])
-            for b in bullets:
-                if b and len(b) > 10:
-                    print(f"     • {b[:100]}")
+            print(f"     Source: {a.get('source', a.get('company', 'Unknown'))}")
             print()
 
-        print(f"PRODUCTIVITY ({len(productivity)}):")
-        for i, a in enumerate(productivity, 1):
+        print(f"SOFTWARE ({len(software)}):")
+        for i, a in enumerate(software, 1):
             print(f"  {i}. {a['title'][:70]}")
             print(f"     URL: {a['url'][:80]}")
-            print(f"     Reason: {a.get('classification_reason', 'N/A')}")
-            bullets = a.get('ai_summary', [])
-            for b in bullets:
-                if b and len(b) > 10:
-                    print(f"     • {b[:100]}")
             print()
 
         return True
 
-    # Send to Slack
-    success = send_newsletter(neurotech, productivity)
+    success = send_newsletter(neurotech, software)
 
     if success:
         deduplicator = ArticleDeduplicator(sent_path)
-        deduplicator.mark_as_sent(neurotech + productivity)
-        print("\nNewsletter sent!")
-    else:
-        print("\nFailed to send.")
+        deduplicator.mark_as_sent(neurotech + software)
+        print("Newsletter sent!")
 
     return success
 
@@ -178,9 +136,9 @@ def run_newsletter(dry_run: bool = False, hours: int = 12):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="APEX Competitive Intelligence Bot")
-    parser.add_argument('--dry-run', action='store_true', help="Don't send to Slack")
-    parser.add_argument('--hours', type=int, default=12, help="Hours lookback")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--hours', type=int, default=24)
 
     args = parser.parse_args()
     success = run_newsletter(dry_run=args.dry_run, hours=args.hours)
