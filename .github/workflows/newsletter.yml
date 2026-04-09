@@ -1,0 +1,70 @@
+name: Neurotech Newsletter
+
+on:
+  # Run at 12:00 AM and 12:00 PM EST (5:00 and 17:00 UTC)
+  schedule:
+    - cron: '0 5 * * *'   # 12:00 AM EST / 5:00 AM UTC
+    - cron: '0 17 * * *'  # 12:00 PM EST / 5:00 PM UTC
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no Slack delivery)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      hours:
+        description: 'Hours of news to fetch'
+        required: false
+        default: '12'
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytz
+
+      - name: Download sent articles cache
+        uses: actions/cache@v4
+        with:
+          path: data/sent_articles.json
+          key: sent-articles-${{ github.run_id }}
+          restore-keys: |
+            sent-articles-
+
+      - name: Run newsletter bot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          cd ${{ github.workspace }}
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python src/main.py --dry-run --hours ${{ github.event.inputs.hours || '12' }}
+          else
+            python src/main.py --hours ${{ github.event.inputs.hours || '12' }}
+          fi
+
+      - name: Upload sent articles cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: data/sent_articles.json
+          key: sent-articles-${{ github.run_id }}

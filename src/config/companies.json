@@ -1,0 +1,4642 @@
+[
+  {
+    "name": "3Brain",
+    "url": "https://www.3brain.com",
+    "linkedin": "https://www.linkedin.com/company/3brain",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "MEA (HD-MEA platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Abbott",
+    "url": "https://www.abbott.com",
+    "linkedin": "https://www.linkedin.com/company/abbott",
+    "type": "Implantable Device",
+    "tech_tags": "DBS, SCS, VNS",
+    "category": "neurotech"
+  },
+  {
+    "name": "ABILITY Neurotech",
+    "url": "https://abilityneuro.com",
+    "linkedin": "https://www.linkedin.com/company/ability-neurotech",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable, ECoG)",
+    "category": "neurotech"
+  },
+  {
+    "name": "AI Stroke",
+    "url": "https://www.ai-stroke.com",
+    "linkedin": "https://www.linkedin.com/company/ai-stroke/",
+    "type": "AI / Software",
+    "tech_tags": "AI Diagnostics / Imaging AI",
+    "category": "neurotech"
+  },
+  {
+    "name": "Aleva Neurotherapeutics",
+    "url": "https://aleva-neuro.com",
+    "linkedin": "https://www.linkedin.com/company/aleva-neurotherapeutics",
+    "type": "Implantable Device",
+    "tech_tags": "DBS (directional MEMS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Allevion Therapeutics",
+    "url": "https://www.alleviontx.com",
+    "linkedin": "https://www.linkedin.com/company/allevion-therapeutics",
+    "type": "",
+    "tech_tags": "PNS (wearable, essential tremor)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Allia Health",
+    "url": "https://allia.health/",
+    "linkedin": "https://www.linkedin.com/company/alliahealth",
+    "type": "",
+    "tech_tags": "Digital Health Platform (EHR, AI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Alpha Omega",
+    "url": "https://www.alphaomega-eng.com",
+    "linkedin": "https://www.linkedin.com/company/alpha-omega",
+    "type": "",
+    "tech_tags": "DBS (surgical navigation, intraoperative)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Altoida",
+    "url": "https://altoida.com",
+    "linkedin": "https://www.linkedin.com/company/altoida",
+    "type": "Medical Device Co.",
+    "tech_tags": "AI Diagnostics, Digital Biomarkers",
+    "category": "neurotech"
+  },
+  {
+    "name": "Amae Health",
+    "url": "https://www.amaehealth.com",
+    "linkedin": "https://www.linkedin.com/company/amae-health",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services",
+    "category": "neurotech"
+  },
+  {
+    "name": "Amber Therapeutics",
+    "url": "https://www.amber-tx.com/",
+    "linkedin": "https://www.linkedin.com/company/amber-therapeutics",
+    "type": "Implantable Device",
+    "tech_tags": "PNS (implantable, pudendal nerve)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ampa",
+    "url": "https://www.ampa.com",
+    "linkedin": "https://www.linkedin.com/company/ampa-health",
+    "type": "Medical Device Co.",
+    "tech_tags": "Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ampa Health",
+    "url": "https://www.ampahealth.com/",
+    "linkedin": "https://www.linkedin.com/company/ampahealth",
+    "type": "",
+    "tech_tags": "TMS (portable, accelerated)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ANEUVO",
+    "url": "https://www.aneuvo.com",
+    "linkedin": "https://www.linkedin.com/company/aneuvo",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ant Neuro",
+    "url": "https://www.ant-neuro.com/products/eego_sports",
+    "linkedin": "https://www.linkedin.com/company/apollo-neuroscience",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Anthriq",
+    "url": "https://www.anthriq.com",
+    "linkedin": "https://www.linkedin.com/company/anthriq",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Apollo Neuro",
+    "url": "https://apolloneuro.com",
+    "linkedin": "https://www.linkedin.com/company/apollo-neuroscience",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Neuromod (vibrotactile)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Applied Cognition",
+    "url": "https://www.appliedcognition.com/",
+    "linkedin": "https://www.linkedin.com/company/arcline-investment-management",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Araya",
+    "url": "https://www.araya.org",
+    "linkedin": "https://www.linkedin.com/company/araya-inc",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "AI Diagnostics, EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Arctop",
+    "url": "https://arctop.com",
+    "linkedin": "https://www.linkedin.com/company/arctop",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (non-invasive BCI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ata i Life Sciences",
+    "url": "https://www.atai.life",
+    "linkedin": "https://www.linkedin.com/company/ata-i-life-sciences",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Atlas",
+    "url": "https://atlaswearable.com/",
+    "linkedin": "https://www.linkedin.com/company/atlaswearable",
+    "type": "Consumer Brand",
+    "tech_tags": "Clinical Software",
+    "category": "neurotech"
+  },
+  {
+    "name": "Attune Neurosciences",
+    "url": "https://www.attuneneurosciences.com",
+    "linkedin": "https://www.linkedin.com/company/attune-neurosciences",
+    "type": "Wearable Medical Device",
+    "tech_tags": "TFUS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Audicin",
+    "url": "https://www.audicin.com",
+    "linkedin": "https://www.linkedin.com/company/audicin",
+    "type": "Consumer Brand",
+    "tech_tags": "EEG (behind-ear)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Augmedics",
+    "url": "https://augmedics.com",
+    "linkedin": "https://www.linkedin.com/company/augmedics",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical (AR navigation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Aural Analytics",
+    "url": "https://auralanalytics.com",
+    "linkedin": "https://www.linkedin.com/company/aural-analytics",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (speech biomarkers)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Australis Scientific",
+    "url": "https://australisscientific.com",
+    "linkedin": "https://www.linkedin.com/company/australis-scientific",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod (sacral nerve)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Avatar Medical",
+    "url": "https://www.avatarmedical.com",
+    "linkedin": "https://www.linkedin.com/company/avatar-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Clinical Software (surgical planning)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Avivomed",
+    "url": "https://www.avivomed.com",
+    "linkedin": "https://www.linkedin.com/company/avivomed",
+    "type": "Capital Equipment",
+    "tech_tags": "Neuromod (minimally invasive, OSA)",
+    "category": "neurotech"
+  },
+  {
+    "name": "AVRWell",
+    "url": "https://www.avrwell.com/",
+    "linkedin": "https://www.linkedin.com/company/avrwell-inc",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Axoft",
+    "url": "https://axoft.us",
+    "linkedin": "https://www.linkedin.com/company/axoft",
+    "type": "Implantable Device",
+    "tech_tags": "Neural Probes (soft polymer implants)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Axon Interfaces",
+    "url": "https://www.axoninterfaces.com",
+    "linkedin": "https://www.linkedin.com/company/axon-interfaces",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG, AI Diagnostics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Axorus",
+    "url": "https://www.axorus.com",
+    "linkedin": "https://www.linkedin.com/company/axorus",
+    "type": "Medical Device Co.",
+    "tech_tags": "FUS (photoacoustic neuromod)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Beacon Biosignals",
+    "url": "https://www.beaconbiosignals.com",
+    "linkedin": "https://www.linkedin.com/company/beacon-biosignals",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG (ambulatory)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bexorg",
+    "url": "https://www.bexorg.com",
+    "linkedin": "https://www.linkedin.com/company/bexorg",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic Medicine",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bia Neuroscience",
+    "url": "https://getbia.com",
+    "linkedin": "https://www.linkedin.com/company/bianeuroscience",
+    "type": "Wearable Consumer",
+    "tech_tags": "Sleep mask, neurofeedback, neural soundscapes",
+    "category": "neurotech"
+  },
+  {
+    "name": "Biocurrent, Inc.",
+    "url": "https://www.biocurrent.com",
+    "linkedin": "https://www.linkedin.com/company/biocurrent",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bioness Medical",
+    "url": "https://www.bioness.com",
+    "linkedin": "https://www.linkedin.com/company/bioness",
+    "type": "Medical Device Co.",
+    "tech_tags": "FES (functional electrical stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BIOS Health",
+    "url": "https://www.bios.health",
+    "linkedin": "https://www.linkedin.com/company/bios-health",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic Medicine",
+    "category": "neurotech"
+  },
+  {
+    "name": "BioSerenity",
+    "url": "https://www.bioserenity.com",
+    "linkedin": "https://www.linkedin.com/company/bioserenity",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (ambulatory), Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bioventus",
+    "url": "https://www.bioventus.com",
+    "linkedin": "https://www.linkedin.com/company/bioventus",
+    "type": "Medical Device Co.",
+    "tech_tags": "Ultrasound Therapy",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bitbrain",
+    "url": "https://www.bitbrain.com",
+    "linkedin": "https://www.linkedin.com/company/bitbrain",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable), Neurofeedback",
+    "category": "neurotech"
+  },
+  {
+    "name": "Blackrock Neurotech",
+    "url": "https://blackrockneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/blackrock-neurotech",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable), Neural Probes",
+    "category": "neurotech"
+  },
+  {
+    "name": "Blue Arbor Technologies",
+    "url": "https://bluearbortech.com",
+    "linkedin": "https://www.linkedin.com/company/blue-arbor-technologies-inc",
+    "type": "Implantable Device",
+    "tech_tags": "Neural Interface",
+    "category": "neurotech"
+  },
+  {
+    "name": "BlueWind Medical",
+    "url": "https://www.bluewindmedical.com",
+    "linkedin": "https://www.linkedin.com/company/bluewind-medical",
+    "type": "Implantable Device",
+    "tech_tags": "PNS (tibial nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Boomerang Medical",
+    "url": "https://www.boomerangmedical.com",
+    "linkedin": "https://www.linkedin.com/company/boomerang-medical",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic Medicine (vagus nerve)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Boston Scientific",
+    "url": "https://www.bostonscientific.com",
+    "linkedin": "https://www.linkedin.com/company/boston-scientific",
+    "type": "Implantable Device",
+    "tech_tags": "SCS, DBS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Bottneuro",
+    "url": "https://www.bottneuro.com",
+    "linkedin": "https://www.linkedin.com/company/bottneuro",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Brain Navi",
+    "url": "https://www.brainnavi.com",
+    "linkedin": "https://www.linkedin.com/company/brain-navi",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical (neurosurgery robot)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BRAIN.Q",
+    "url": "https://www.brainq.com",
+    "linkedin": "https://www.linkedin.com/company/brain-q-technologies",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (non-invasive neuromod)",
+    "category": "neurotech"
+  },
+  {
+    "name": "brain.space",
+    "url": "https://brain.space",
+    "linkedin": "https://www.linkedin.com/company/brain-space",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainBeams Health",
+    "url": "https://www.brainbeams.health",
+    "linkedin": "https://www.linkedin.com/company/brainbeams-health",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Neuromod (audio-visual)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainBit",
+    "url": "https://brainbit.com",
+    "linkedin": "https://www.linkedin.com/company/brainbit",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainCapture",
+    "url": "https://braincapture.com",
+    "linkedin": "https://www.linkedin.com/company/braincapture",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (ambulatory)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainCheck",
+    "url": "https://braincheck.com",
+    "linkedin": "https://www.linkedin.com/company/braincheck",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (digital cognitive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainCo",
+    "url": "https://www.brainco.tech",
+    "linkedin": "https://www.linkedin.com/company/brainco-inc",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable), BCI (non-invasive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainEye",
+    "url": "https://braineye.com/",
+    "linkedin": "https://www.linkedin.com/company/braineye",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Braingrade",
+    "url": "https://www.braingrade.io/",
+    "linkedin": "https://www.linkedin.com/company/brainscan",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Brainify.AI",
+    "url": "https://brainify.ai",
+    "linkedin": "https://www.linkedin.com/company/brainify-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainKey",
+    "url": "https://www.brainkey.ai",
+    "linkedin": "https://www.linkedin.com/company/brainkey",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (MRI analytics)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainLife",
+    "url": "https://brainlife.io",
+    "linkedin": "",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Cloud / Neuroimaging Platform",
+    "category": "neurotech"
+  },
+  {
+    "name": "Brainomix",
+    "url": "https://www.brainomix.com",
+    "linkedin": "https://www.linkedin.com/company/brainomix",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (stroke imaging)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainPatch",
+    "url": "https://www.brainpatch.ai",
+    "linkedin": "https://www.linkedin.com/company/brainpatch",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable), Neurofeedback",
+    "category": "neurotech"
+  },
+  {
+    "name": "Brainreader",
+    "url": "https://www.brainreader.net",
+    "linkedin": "https://www.linkedin.com/company/brainreader",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (MRI / neuroimaging)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainScan",
+    "url": "https://www.brainscan.io",
+    "linkedin": "https://www.linkedin.com/company/brainscan",
+    "type": "Software / AI Platform",
+    "tech_tags": "MRI / fMRI (analytics)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainScope",
+    "url": "https://www.brainscope.com",
+    "linkedin": "https://www.linkedin.com/company/brainscope",
+    "type": "Diagnostic Device",
+    "tech_tags": "AI Diagnostics, EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainSightAI",
+    "url": "https://www.brainsightai.com",
+    "linkedin": "https://www.linkedin.com/company/brainsightai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neuroimaging AI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainSpace",
+    "url": "https://www.brainspace.com",
+    "linkedin": "https://www.linkedin.com/company/brainspace",
+    "type": "Medical Device Co.",
+    "tech_tags": "Clinical Software, EEG analytics",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainsWay",
+    "url": "https://www.brainsway.com",
+    "linkedin": "https://www.linkedin.com/company/brainsway",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (deep TMS, H-coil)",
+    "category": "neurotech"
+  },
+  {
+    "name": "BrainTrip",
+    "url": "https://www.braintrip.co",
+    "linkedin": "https://www.linkedin.com/company/braintrip",
+    "type": "Software / AI Platform",
+    "tech_tags": "Psychedelics",
+    "category": "neurotech"
+  },
+  {
+    "name": "BURL Concepts",
+    "url": "https://www.burlconcepts.com",
+    "linkedin": "https://www.linkedin.com/company/burl-concepts",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cadence Neuroscience",
+    "url": "https://cadenceneuro.com",
+    "linkedin": "https://www.linkedin.com/company/cadence-neuroscience",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (closed-loop, burst stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cahira Technologies",
+    "url": "https://www.cahira.com",
+    "linkedin": "https://www.linkedin.com/company/cahira-technologies",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cala Health",
+    "url": "https://calahealth.com",
+    "linkedin": "https://www.linkedin.com/company/cala-health",
+    "type": "Wearable Medical Device",
+    "tech_tags": "PNS (wrist-worn tremor device)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cambridge NeuroTech",
+    "url": "https://www.cambridgeneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/cambridge-neurotech",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Neural Probes (silicon probes)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cambridge NeuroWorks",
+    "url": "https://www.cambridgeneuroworks.com",
+    "linkedin": "https://www.linkedin.com/company/cambridge-neuroworks",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services",
+    "category": "neurotech"
+  },
+  {
+    "name": "Capri Medical",
+    "url": "https://www.caprimedical.com",
+    "linkedin": "https://www.linkedin.com/company/capri-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "PNS (peripheral nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CARI Health",
+    "url": "https://carihealth.com/",
+    "linkedin": "https://www.linkedin.com/company/ceribell",
+    "type": "",
+    "tech_tags": "Biosensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "Carthera",
+    "url": "https://www.carthera.eu",
+    "linkedin": "https://www.linkedin.com/company/carthera",
+    "type": "Medical Device Co.",
+    "tech_tags": "FUS (focused ultrasound BBB opening)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cefaly",
+    "url": "https://www.cefaly.com",
+    "linkedin": "https://www.linkedin.com/company/cefaly-technology",
+    "type": "Wearable Medical Device",
+    "tech_tags": "e-TNS (trigeminal nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cercare Medical",
+    "url": "https://www.cercaremedical.com",
+    "linkedin": "https://www.linkedin.com/company/cercare-medical",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (brain perfusion MRI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CEREBRA",
+    "url": "https://www.cerebraai.ai",
+    "linkedin": "https://www.linkedin.com/company/cerebrai",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cerebral",
+    "url": "https://cerebral.com",
+    "linkedin": "https://www.linkedin.com/company/cerebral-inc",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics, Telehealth",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cerebriu",
+    "url": "https://cerebriu.com",
+    "linkedin": "https://www.linkedin.com/company/cerebriu",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (stroke imaging AI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cerebro NeuroTech",
+    "url": "https://cerebroneurotech.com/",
+    "linkedin": "https://www.linkedin.com/company/clee-medical",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "CereGate",
+    "url": "https://www.ceregate.com",
+    "linkedin": "https://www.linkedin.com/company/ceregate",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (closed-loop neurostim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ceretype Neuromedicine",
+    "url": "https://ceretype.com/",
+    "linkedin": "https://www.linkedin.com/company/ceretype",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cerevia Neurosciences",
+    "url": "https://cerevia.care/",
+    "linkedin": "https://www.linkedin.com/company/cerevia-neuro",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ceribell",
+    "url": "https://ceribell.com",
+    "linkedin": "https://www.linkedin.com/company/ceribell",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (rapid, point-of-care)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Charco Neurotech",
+    "url": "https://charconeurotech.com",
+    "linkedin": "https://www.linkedin.com/company/charco-neurotech",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (wearable patch)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Checkpoint Surgical",
+    "url": "https://checkpointsurgical.com",
+    "linkedin": "https://www.linkedin.com/company/checkpoint-surgical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Neural Probes (nerve monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cionic",
+    "url": "https://www.cionic.com",
+    "linkedin": "https://www.linkedin.com/company/cionic",
+    "type": "Wearable Medical Device",
+    "tech_tags": "FES (functional electrical stim, wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cirtec Medical",
+    "url": "https://www.cirtecmed.com",
+    "linkedin": "https://www.linkedin.com/company/cirtec-medical",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Contract Manufacturer / OEM",
+    "category": "neurotech"
+  },
+  {
+    "name": "Clarity",
+    "url": "https://www.clarityneuroimaging.com",
+    "linkedin": "https://www.linkedin.com/company/clarity-medical-systems",
+    "type": "Wearable Medical Device",
+    "tech_tags": "40Hz Gamma Stimulation (light & sound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Clarity-technologies.com",
+    "url": "https://Clarity-technologies.com",
+    "linkedin": "https://www.linkedin.com/company/cogstate",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "ClearPoint Neuro",
+    "url": "https://www.clearpointneuro.com",
+    "linkedin": "https://www.linkedin.com/company/clearpoint-neuro",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical (MRI-guided)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Clee Medical",
+    "url": "https://www.cleemedical.com",
+    "linkedin": "https://www.linkedin.com/company/clee-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "SCS (spinal cord stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cleveland Clinic",
+    "url": "https://www.clevelandclinic.org",
+    "linkedin": "https://www.linkedin.com/company/cleveland-clinic",
+    "type": "Service / Clinic",
+    "tech_tags": "Academic / Research Institution",
+    "category": "neurotech"
+  },
+  {
+    "name": "Clinical Laserthermia Systems",
+    "url": "https://www.clinicallaserthermia.com",
+    "linkedin": "https://www.linkedin.com/company/clinical-laserthermia-systems",
+    "type": "Medical Device Co.",
+    "tech_tags": "Laser Thermotherapy (LITT)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Coapt",
+    "url": "https://www.coaptengineering.com",
+    "linkedin": "https://www.linkedin.com/company/coapt",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI / EMG (prosthetics pattern recognition)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cogentis Therapeutics",
+    "url": "https://cogentistherapeutics.com/",
+    "linkedin": "https://www.linkedin.com/company/cordance-medical",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cogitat",
+    "url": "https://www.cogitat.io",
+    "linkedin": "https://www.linkedin.com/company/cogitat",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG AI (decoding platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cognision",
+    "url": "https://www.cognision.com",
+    "linkedin": "https://www.linkedin.com/company/cognision",
+    "type": "Diagnostic Device",
+    "tech_tags": "EEG / ERP Biomarker System",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cognitive3D",
+    "url": "https://cognitive3d.com/",
+    "linkedin": "https://www.linkedin.com/company/cognitive3d",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cognito Therapeutics",
+    "url": "https://www.cognitotx.com",
+    "linkedin": "https://www.linkedin.com/company/cognito-therapeutics",
+    "type": "Wearable Medical Device",
+    "tech_tags": "40Hz Gamma Stimulation (light & sound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cognixion",
+    "url": "https://www.cognixion.com",
+    "linkedin": "https://www.linkedin.com/company/cognixion",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI / EEG (AR headset, AAC)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cognoa",
+    "url": "https://www.cognoa.com",
+    "linkedin": "https://www.linkedin.com/company/cognoa",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cogstate",
+    "url": "https://www.cogstate.com",
+    "linkedin": "https://www.linkedin.com/company/cogstate",
+    "type": "Software / AI Platform",
+    "tech_tags": "Clinical Software (cognitive assessment)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Coherence Neuro",
+    "url": "https://www.coherenceneuro.com",
+    "linkedin": "https://www.linkedin.com/company/coherence-neuro",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable, intracranial)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CoMind",
+    "url": "https://www.comind.com",
+    "linkedin": "https://www.linkedin.com/company/comind-technologies",
+    "type": "Wearable Medical Device",
+    "tech_tags": "fNIRS (near-infrared brain monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Comphya",
+    "url": "https://www.comphya.com",
+    "linkedin": "https://www.linkedin.com/company/comphya",
+    "type": "Wearable Medical Device",
+    "tech_tags": "BCI (EMG, hand rehabilitation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Compumedics",
+    "url": "https://www.compumedics.com",
+    "linkedin": "https://www.linkedin.com/company/compumedics",
+    "type": "Capital Equipment",
+    "tech_tags": "EEG / Sleep Diagnostics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Connectome Health",
+    "url": "https://www.connectomehealth.com",
+    "linkedin": "https://www.linkedin.com/company/connectome-health",
+    "type": "Wearable Consumer",
+    "tech_tags": "fNIRS (AI brain scan, wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Control Bionics",
+    "url": "https://www.controlbionics.com",
+    "linkedin": "https://www.linkedin.com/company/control-bionics",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (assistive communication, NeuroNode)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Conversage",
+    "url": "https://www.conversage.com/",
+    "linkedin": "https://www.linkedin.com/company/deeppsy",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cordance Medical",
+    "url": "https://www.cordancemedical.com",
+    "linkedin": "https://www.linkedin.com/company/cordance-medical",
+    "type": "Implantable Device",
+    "tech_tags": "FUS (focused ultrasound BBB opening)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CorTec",
+    "url": "https://www.cortec-neuro.com",
+    "linkedin": "https://www.linkedin.com/company/cortec-neuro",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable, ARC system)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cortechs.ai",
+    "url": "https://www.cortechs.ai",
+    "linkedin": "https://www.linkedin.com/company/cortechs-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (MRI brain volumetrics)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CVRx",
+    "url": "https://www.cvrx.com",
+    "linkedin": "https://www.linkedin.com/company/cvrx",
+    "type": "Implantable Device",
+    "tech_tags": "Baroreflex Activation Therapy (BAT), Neuromodulation, Bioelectronic Medicine",
+    "category": "neurotech"
+  },
+  {
+    "name": "CortiAura",
+    "url": "https://www.cortiaura.com",
+    "linkedin": "https://www.linkedin.com/company/cortiaura",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable EEG / Seizure Detection",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cortical Labs",
+    "url": "https://www.corticallabs.com",
+    "linkedin": "https://www.linkedin.com/company/cortical-labs",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Biological Computing (DishBrain)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Corticale",
+    "url": "https://www.corticale.com",
+    "linkedin": "https://www.linkedin.com/company/corticale",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "BCI (CMOS cortical implant)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CortiVision",
+    "url": "https://www.cortivision.com",
+    "linkedin": "https://www.linkedin.com/company/cortivision",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "fNIRS (mobile, portable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cove Neuro",
+    "url": "https://www.coveneuro.com/",
+    "linkedin": "https://www.linkedin.com/company/cove-neurosciences-inc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Crainio",
+    "url": "https://www.crainio.com",
+    "linkedin": "https://www.linkedin.com/company/crainio",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (brain health platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CraniUS Therapeutics",
+    "url": "https://www.craniustherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/cranius-therapeutics",
+    "type": "Medical Device Co.",
+    "tech_tags": "Laser Thermotherapy / LITT",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cumulus Neuroscience",
+    "url": "https://www.cumulusneuro.com",
+    "linkedin": "https://www.linkedin.com/company/cumulus-neuroscience",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (digital biomarker, ambulatory)",
+    "category": "neurotech"
+  },
+  {
+    "name": "CVAid Medical",
+    "url": "https://www.cvaidmedical.com",
+    "linkedin": "https://www.linkedin.com/company/cvaid-medical",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Darmiyan",
+    "url": "https://www.darmiyan.com",
+    "linkedin": "https://www.linkedin.com/company/darmiyan",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "DEEGtal",
+    "url": "https://www.deegtal.com",
+    "linkedin": "https://www.linkedin.com/company/deegtal",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG AI (automated seizure detection)",
+    "category": "neurotech"
+  },
+  {
+    "name": "DeepPsy",
+    "url": "https://www.deeppsy.com",
+    "linkedin": "https://www.linkedin.com/company/deeppsy",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (psychiatry)",
+    "category": "neurotech"
+  },
+  {
+    "name": "DeepSpin",
+    "url": "https://www.deepspin.com",
+    "linkedin": "https://www.linkedin.com/company/deepspin",
+    "type": "Capital Equipment",
+    "tech_tags": "MRI (portable, low-field)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Deliberate AI",
+    "url": "https://deliberate.ai",
+    "linkedin": "https://www.linkedin.com/company/envoy-medical",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "DENT Neurologic Institute",
+    "url": "https://www.dentinstitute.com",
+    "linkedin": "https://www.linkedin.com/company/dent-neurologic-institute",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services",
+    "category": "neurotech"
+  },
+  {
+    "name": "DexMat",
+    "url": "https://www.dexmat.com",
+    "linkedin": "https://www.linkedin.com/company/dexmat",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Carbon Nanotube Wires / Components",
+    "category": "neurotech"
+  },
+  {
+    "name": "Diagnostic Biochips, Inc.",
+    "url": "https://www.diagnosticbiochips.com",
+    "linkedin": "https://www.linkedin.com/company/diagnostic-biochips-inc-",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "DigiLens",
+    "url": "https://www.digilens.com/",
+    "linkedin": "https://www.linkedin.com/company/digilensinc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "DIXI Medical",
+    "url": "https://www.diximedical.com",
+    "linkedin": "https://www.linkedin.com/company/dixi-medical",
+    "type": "Capital Equipment",
+    "tech_tags": "SEEG / Depth Electrodes (intracranial EEG)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Dreem",
+    "url": "https://dreem.com/",
+    "linkedin": "https://www.linkedin.com/company/eysz",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "DUSQ",
+    "url": "https://www.dusq.com/",
+    "linkedin": "https://www.linkedin.com/company/trydusq",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "e184 BAI",
+    "url": "https://www.e184.com",
+    "linkedin": "https://www.linkedin.com/company/e184-bai",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Magnetic Brain Recording (non-invasive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Earable Neuroscience",
+    "url": "https://www.earable.ai",
+    "linkedin": "https://www.linkedin.com/company/earable-neuroscience",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (in-ear wearable, FRENZ brainband)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Eight Sleep",
+    "url": "https://www.eightsleep.com",
+    "linkedin": "https://www.linkedin.com/company/eight-sleep",
+    "type": "Wearable Consumer",
+    "tech_tags": "Smart Mattress / Sleep Tech",
+    "category": "neurotech"
+  },
+  {
+    "name": "electroCore",
+    "url": "https://www.electrocore.com",
+    "linkedin": "https://www.linkedin.com/company/electrocore",
+    "type": "Wearable Medical Device",
+    "tech_tags": "VNS (non-invasive, gammaCore)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Elemind",
+    "url": "https://www.elemind.com",
+    "linkedin": "https://www.linkedin.com/company/elemind",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Neurostimulation (closed-loop sleep)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ellipsis Health",
+    "url": "https://www.ellipsishealth.com",
+    "linkedin": "https://www.linkedin.com/company/ellipsis-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (voice biomarkers)",
+    "category": "neurotech"
+  },
+  {
+    "name": "EMOTIV",
+    "url": "https://www.emotiv.com",
+    "linkedin": "https://www.linkedin.com/company/emotiv",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (wearable, research & consumer)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Empatica",
+    "url": "https://www.empatica.com",
+    "linkedin": "https://www.linkedin.com/company/empatica",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Sensing (EDA / seizure alert)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Emteq Labs",
+    "url": "https://www.emteqlabs.com",
+    "linkedin": "https://www.linkedin.com/company/emteq-labs",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Facial EMG / Consumer Neuro",
+    "category": "neurotech"
+  },
+  {
+    "name": "EMVision",
+    "url": "https://www.emvision.com.au",
+    "linkedin": "https://www.linkedin.com/company/emvision",
+    "type": "Capital Equipment",
+    "tech_tags": "Electromagnetic Brain Imaging (portable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "EnChannel Medical",
+    "url": "https://www.enchannelmedical.com",
+    "linkedin": "https://www.linkedin.com/company/enchannel-medical",
+    "type": "Software / AI Platform",
+    "tech_tags": "SCS / Epidural lead technology",
+    "category": "neurotech"
+  },
+  {
+    "name": "Encora Therapeutics",
+    "url": "https://www.encoratherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/encora-therapeutics",
+    "type": "Wearable Medical Device",
+    "tech_tags": "PNS (wearable peripheral nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Enspire DBS Therapy",
+    "url": "https://www.enspiredbs.com",
+    "linkedin": "https://www.linkedin.com/company/enspire-dbs-therapy",
+    "type": "Implantable Device",
+    "tech_tags": "DBS (deep brain stimulation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Entertech",
+    "url": "https://www.entertech.cn/en/health.html",
+    "linkedin": "https://www.linkedin.com/company/galvani-bioelectronics",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Envoy Medical",
+    "url": "https://www.envoymedical.com",
+    "linkedin": "https://www.linkedin.com/company/envoy-medical",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (cochlear implant)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Epiminder",
+    "url": "https://www.epiminder.com",
+    "linkedin": "https://www.linkedin.com/company/epiminder",
+    "type": "Implantable Device",
+    "tech_tags": "EEG (sub-scalp implant, long-term)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Epineuron",
+    "url": "https://www.epineuron.com",
+    "linkedin": "https://www.linkedin.com/company/epineuron",
+    "type": "Wearable Medical Device",
+    "tech_tags": "PNS (peripheral nerve recovery stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Epitel",
+    "url": "https://www.epitel.com",
+    "linkedin": "https://www.linkedin.com/company/epitel",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (long-term wearable, ROVE)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Samphire Neuroscience",
+    "url": "https://www.samphireneuro.com",
+    "linkedin": "https://www.linkedin.com/company/samphireneuro",
+    "type": "Medical Device / Hardware",
+    "tech_tags": "Neuromodulation / tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Et Cere",
+    "url": "https://www.etcere.ai/",
+    "linkedin": "https://www.linkedin.com/company/gilde-healthcare",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "EVOCAL Health",
+    "url": "https://www.evocalhealth.com",
+    "linkedin": "https://www.linkedin.com/company/evocal-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (voice biomarkers)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Evoke Neuroscience",
+    "url": "https://www.evokeneuroscience.com",
+    "linkedin": "https://www.linkedin.com/company/evoke-neuroscience",
+    "type": "Medical Device Co.",
+    "tech_tags": "EEG / Quantitative EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Evren Technologies",
+    "url": "https://www.evrentechnologies.com",
+    "linkedin": "https://www.linkedin.com/company/evren-technologies",
+    "type": "Wearable Medical Device",
+    "tech_tags": "VNS (transcutaneous)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Experience Onward",
+    "url": "https://www.experienceonward.com",
+    "linkedin": "https://www.linkedin.com/company/experience-onward",
+    "type": "Service / Clinic",
+    "tech_tags": "Psychedelics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Eyetronic",
+    "url": "https://www.eyetronic-therapie.de",
+    "linkedin": "https://www.linkedin.com/company/eyetronic",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Family Care Center",
+    "url": "https://www.familycarecenter.com",
+    "linkedin": "https://www.linkedin.com/company/family-care-center",
+    "type": "Service / Clinic",
+    "tech_tags": "TMS (clinical services)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Fareon",
+    "url": "https://www.fareon.com",
+    "linkedin": "https://www.linkedin.com/company/fareon",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (closed-loop neurostim platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Farow",
+    "url": "https://www.farow.com",
+    "linkedin": "https://www.linkedin.com/company/farow",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (wearable seizure detection)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Feel Therapeutics",
+    "url": "https://www.feeltherapeutics.com/",
+    "linkedin": "https://www.linkedin.com/company/feel-therapeutics",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Feelmore Labs",
+    "url": "https://www.feelmorelabs.com",
+    "linkedin": "https://www.linkedin.com/company/feelmore-labs",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable tDCS (CES, consumer)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Felix NeuroAI",
+    "url": "https://www.felixneuroai.com",
+    "linkedin": "https://www.linkedin.com/company/felix-neuroai",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Sensing (Parkinson's AI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Firefly Neuroscience",
+    "url": "https://www.fireflyneuroscience.com",
+    "linkedin": "https://www.linkedin.com/company/firefly-neuroscience",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG / Brain Network AI (qEEG)",
+    "category": "neurotech"
+  },
+  {
+    "name": "FireFly VR",
+    "url": "https://fireflyvr.com/",
+    "linkedin": "https://www.linkedin.com/company/fireflyimmersive",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "First Choice Neurology",
+    "url": "https://www.firstchoiceneurology.com",
+    "linkedin": "https://www.linkedin.com/company/first-choice-neurology",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services",
+    "category": "neurotech"
+  },
+  {
+    "name": "Fisher Wallace Labs",
+    "url": "https://www.fisherwallace.com",
+    "linkedin": "https://www.linkedin.com/company/fisher-wallace-laboratories",
+    "type": "Wearable Medical Device",
+    "tech_tags": "CES (cranial electrotherapy stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Flow Neuroscience",
+    "url": "https://www.flowneuroscience.com",
+    "linkedin": "https://www.linkedin.com/company/flow-neuroscience",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (wearable, home use)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Fluent BCI",
+    "url": "https://www.fluentbci.com",
+    "linkedin": "https://www.linkedin.com/company/fluent-bci",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (non-invasive, neural interface)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Fluent Play Technologies",
+    "url": "https://www.fluentplay.com",
+    "linkedin": "https://www.linkedin.com/company/fluent-play-technologies",
+    "type": "Software / AI Platform",
+    "tech_tags": "Neurofeedback (speech therapy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "FocusCalm",
+    "url": "https://focuscalm.com/",
+    "linkedin": "https://www.linkedin.com/company/focuscalm",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Forest Neurotech",
+    "url": "https://www.forestneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/forest-neurotech",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "BCI (ultrasound, minimally invasive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Functional Gut",
+    "url": "https://www.thefunctionalgutclinic.com",
+    "linkedin": "https://www.linkedin.com/company/functional-gut",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "FundamentalVR",
+    "url": "https://www.fundamentalvr.com/",
+    "linkedin": "https://www.linkedin.com/company/imeka",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "G.tec",
+    "url": "https://www.gtec.at",
+    "linkedin": "https://www.linkedin.com/company/g-tec-medical-engineering-gmbh",
+    "type": "Capital Equipment",
+    "tech_tags": "BCI (EEG + neurostim system)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Galea",
+    "url": "https://galea.co/",
+    "linkedin": "https://www.linkedin.com/company/insai",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Galvani Bioelectronics",
+    "url": "https://www.galvanibioelectronics.com",
+    "linkedin": "https://www.linkedin.com/company/galvani-bioelectronics",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic Medicine (implantable VNS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Galvanize Therapeutics",
+    "url": "https://www.galvanizetx.com",
+    "linkedin": "https://www.linkedin.com/company/galvanize-therapeutics",
+    "type": "Capital Equipment",
+    "tech_tags": "Pulsed Electric Fields (tumour ablation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Gestala",
+    "url": "https://www.gestala.com",
+    "linkedin": "https://www.linkedin.com/company/globus-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Neuromodulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Globus Medical",
+    "url": "https://www.globusmedical.com",
+    "linkedin": "https://www.linkedin.com/company/globus-medical",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical, Spine implants",
+    "category": "neurotech"
+  },
+  {
+    "name": "Gowerlabs",
+    "url": "https://www.gowerlabs.co.uk",
+    "linkedin": "https://www.linkedin.com/company/gowerlabs",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "fNIRS (high-density wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "GrayMatters Health",
+    "url": "https://www.graymattershealth.com",
+    "linkedin": "https://www.linkedin.com/company/graymatters-health",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG Neurofeedback (Prism)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Great Lakes NeuroTechnologies",
+    "url": "https://www.glneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/great-lakes-neurotech",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Bioinstrumentation, movement disorders, remote monitoring",
+    "category": "neurotech"
+  },
+  {
+    "name": "Grey Matter Neurosciences",
+    "url": "https://www.greymatterneuro.com",
+    "linkedin": "https://www.linkedin.com/company/grey-matter-neurosciences",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (focused ultrasound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Halo Neuroscience",
+    "url": "https://www.haloneuro.com",
+    "linkedin": "https://www.linkedin.com/company/halo-neuroscience",
+    "type": "Wearable Consumer",
+    "tech_tags": "tDCS (sports performance)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Harmoneyes",
+    "url": "https://harmoneyes.com",
+    "linkedin": "https://www.linkedin.com/company/harmoneyes",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Healios",
+    "url": "https://healios.org.uk/",
+    "linkedin": "https://www.linkedin.com/company/healios",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Healium",
+    "url": "https://www.tryhealium.com/",
+    "linkedin": "https://www.linkedin.com/company/lumithera",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Healthy Mind",
+    "url": "https://www.healthymind.com",
+    "linkedin": "https://www.linkedin.com/company/healthy-mind",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Helius Medical Technologies",
+    "url": "https://www.heliusmedical.com",
+    "linkedin": "https://www.linkedin.com/company/helius-medical-technologies",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tPNS (tongue neuromodulation, PoNS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Hemispheric",
+    "url": "https://hemispheric.ai/",
+    "linkedin": "https://www.linkedin.com/company/lyeons-neurotech",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Highland Instruments",
+    "url": "https://www.highlandinstruments.us/",
+    "linkedin": "https://www.linkedin.com/company/highland-instruments",
+    "type": "Medical Device Co.",
+    "tech_tags": "TES / tDCS / tACS (non-invasive stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "HistoSonics",
+    "url": "https://www.histosonics.com",
+    "linkedin": "https://www.linkedin.com/company/histosonics",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (histotripsy, non-thermal ablation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Holberg EEG",
+    "url": "https://www.holbergeeg.com",
+    "linkedin": "https://www.linkedin.com/company/holberg-eeg",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (ambulatory, long-term monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Hom Neuro",
+    "url": "https://www.homneuro.com",
+    "linkedin": "https://www.linkedin.com/company/hopetherapeutics",
+    "type": "BCI Software / Platform",
+    "tech_tags": "Neurofeedback / EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Hope Therapeutics",
+    "url": "https://www.hopetherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/hopetherapeutics",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Horizon Neuroscience",
+    "url": "https://horizon-neuro.com",
+    "linkedin": "https://www.linkedin.com/company/magventure",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Hume AI",
+    "url": "https://www.hume.ai",
+    "linkedin": "https://www.linkedin.com/company/hume-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (emotional intelligence)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Hyperfine",
+    "url": "https://www.hyperfine.io",
+    "linkedin": "https://www.linkedin.com/company/hyperfine",
+    "type": "Capital Equipment",
+    "tech_tags": "MRI (portable, low-field, point-of-care)",
+    "category": "neurotech"
+  },
+  {
+    "name": "h\u014dm neuro",
+    "url": "https://www.homneuro.com",
+    "linkedin": "https://www.linkedin.com/company/hom-neuro",
+    "type": "Diagnostic Services / Remote EEG",
+    "tech_tags": "EEG (in-home ambulatory monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Icometrix",
+    "url": "https://www.icometrix.com",
+    "linkedin": "https://www.linkedin.com/company/icometrix",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI MRI Neuroimaging (icobrain)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ICONEUS",
+    "url": "https://www.iconeus.com",
+    "linkedin": "https://www.linkedin.com/company/iconeus",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Functional Ultrasound Neuroimaging (fUS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "IDGX",
+    "url": "https://www.idgx.com",
+    "linkedin": "https://www.linkedin.com/company/idgx",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Neuroimaging (retinal biomarkers)",
+    "category": "neurotech"
+  },
+  {
+    "name": "IDUN Technologies",
+    "url": "https://www.iduntechnologies.com",
+    "linkedin": "https://www.linkedin.com/company/idun-technologies",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (in-ear, hearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Imeka",
+    "url": "https://www.imeka.ca",
+    "linkedin": "https://www.linkedin.com/company/imeka",
+    "type": "Software / AI Platform",
+    "tech_tags": "Quantitative MRI Neuroimaging (dMRI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "iMotions",
+    "url": "https://imotions.com/",
+    "linkedin": "https://www.linkedin.com/company/imotions",
+    "type": "",
+    "tech_tags": "Biosensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "Imperative Care",
+    "url": "https://www.imperative.care",
+    "linkedin": "https://www.linkedin.com/company/imperative-care",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention (thrombectomy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "INBRAIN Neuroelectronics",
+    "url": "https://www.inbrainneuro.com",
+    "linkedin": "https://www.linkedin.com/company/inbrain-neuroelectronics",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (graphene intracortical implants)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Inner Cosmos",
+    "url": "https://www.innercosmos.io",
+    "linkedin": "https://www.linkedin.com/company/inner-cosmos",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (minimally invasive, subdural disc)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Insai",
+    "url": "https://www.insai.com",
+    "linkedin": "https://www.linkedin.com/company/insai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neurological)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Insellar",
+    "url": "https://www.insellar.com",
+    "linkedin": "https://www.linkedin.com/company/insellar",
+    "type": "Implantable Device",
+    "tech_tags": "DBS (neuroendocrine hypothalamic)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Insightec",
+    "url": "https://www.insightec.com",
+    "linkedin": "https://www.linkedin.com/company/insightec",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (ExAblate Neuro, incisionless)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Inspire Medical Systems",
+    "url": "https://www.inspiresleep.com",
+    "linkedin": "https://www.linkedin.com/company/inspire-medical-systems",
+    "type": "Medical Device Co.",
+    "tech_tags": "HNS (hypoglossal nerve stim, Inspire)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Integra LifeSciences",
+    "url": "https://www.integralife.com",
+    "linkedin": "https://www.linkedin.com/company/integra-lifesciences",
+    "type": "Medical Device Co.",
+    "tech_tags": "Neurosurgery Instruments / ICP Monitoring",
+    "category": "neurotech"
+  },
+  {
+    "name": "Interaxon",
+    "url": "https://choosemuse.com/",
+    "linkedin": "https://www.linkedin.com/company/interaxon-inc",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG headband, meditation, sleep",
+    "category": "neurotech"
+  },
+  {
+    "name": "inTRAvent Medical",
+    "url": "https://www.intraventmedical.com",
+    "linkedin": "https://www.linkedin.com/company/intravent-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Intracranial Access Device (SOLOPASS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Invicta Medical",
+    "url": "https://www.invictamedical.com",
+    "linkedin": "https://www.linkedin.com/company/invicta-medical",
+    "type": "",
+    "tech_tags": "HNS (neurostimulation, OSA)",
+    "category": "neurotech"
+  },
+  {
+    "name": "iota Biosciences",
+    "url": "https://www.iotabiosciences.com",
+    "linkedin": "https://www.linkedin.com/company/iota-biosciences",
+    "type": "Implantable Device",
+    "tech_tags": "Wireless Neural Implants (ultrasound powered)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Journey Frame",
+    "url": "https://www.journeyframe.com",
+    "linkedin": "https://www.linkedin.com/company/journey-frame",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS / Digital Mental Health",
+    "category": "neurotech"
+  },
+  {
+    "name": "Juniper Biomedical",
+    "url": "https://www.juniperbiomedical.com",
+    "linkedin": "https://www.linkedin.com/company/juniper-biomedical",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic Medicine",
+    "category": "neurotech"
+  },
+  {
+    "name": "Kandu",
+    "url": "https://www.trykandu.com",
+    "linkedin": "https://www.linkedin.com/company/kandu-health",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (EEG rehab gaming)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Karavela AI",
+    "url": "https://www.karavela.ai",
+    "linkedin": "https://www.linkedin.com/company/karavela-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neurological)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Kernel",
+    "url": "https://www.kernel.com/",
+    "linkedin": "https://www.linkedin.com/company/kernel",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Neuroimaging, fNIRS, EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "KeyWise",
+    "url": "https://keywise.tech/",
+    "linkedin": "https://www.linkedin.com/company/national-reconstruction-fund-corporation",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Kneu Health",
+    "url": "https://www.kneuhealth.com",
+    "linkedin": "https://www.linkedin.com/company/kneu-health",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Sensing (gait / tremor)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ksana Health",
+    "url": "https://ksanahealth.com/",
+    "linkedin": "https://www.linkedin.com/company/ksanahealth",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Kurzweil Technologies",
+    "url": "https://www.kurzweiltech.com",
+    "linkedin": "https://www.linkedin.com/company/kurzweil-technologies",
+    "type": "Medical Device Co.",
+    "tech_tags": "AI Platform / Augmented Cognition",
+    "category": "neurotech"
+  },
+  {
+    "name": "LIFESCAPES Inc.",
+    "url": "https://www.lifescapes.jp",
+    "linkedin": "https://www.linkedin.com/company/lifescapes-bci",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "LivaNova",
+    "url": "https://www.livanova.com",
+    "linkedin": "https://www.linkedin.com/company/livanova",
+    "type": "Implantable Device",
+    "tech_tags": "VNS (implantable), Cardiac Surgery",
+    "category": "neurotech"
+  },
+  {
+    "name": "Longeviti",
+    "url": "https://www.longeviti.com",
+    "linkedin": "https://www.linkedin.com/company/longeviti-neuro",
+    "type": "Implantable Device",
+    "tech_tags": "Cranial Implants / Neurosurgery Devices",
+    "category": "neurotech"
+  },
+  {
+    "name": "Looxid Labs",
+    "url": "https://looxidlabs.com/",
+    "linkedin": "https://www.linkedin.com/company/neu-health",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Lotus Neuro",
+    "url": "https://www.lotusneuro.com",
+    "linkedin": "https://www.linkedin.com/company/lotus-neuro",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (focused ultrasound, cranial)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Lucid Reality Labs",
+    "url": "https://lucidrealitylabs.com/",
+    "linkedin": "https://www.linkedin.com/company/neura-health",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "LumiThera",
+    "url": "https://www.lumithera.com",
+    "linkedin": "https://www.linkedin.com/company/lumithera",
+    "type": "Medical Device Co.",
+    "tech_tags": "Photobiomodulation (low-level light)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Lumos Labs",
+    "url": "https://www.lumosity.com",
+    "linkedin": "https://www.linkedin.com/company/lumos-labs",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics (Lumosity)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Lungpacer Medical",
+    "url": "https://www.lungpacer.com",
+    "linkedin": "https://www.linkedin.com/company/lungpacer-medical",
+    "type": "Implantable Device",
+    "tech_tags": "VNS (diaphragm pacing, TPVNS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "LYEONS Neurotech",
+    "url": "https://www.lyeons.com",
+    "linkedin": "https://www.linkedin.com/company/lyeons-neurotech",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Neuromod (consumer)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Machine Medicine",
+    "url": "https://www.machinemedicine.com",
+    "linkedin": "https://www.linkedin.com/company/machine-medicine",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Clinical Assessment (Parkinson's)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MachineMD",
+    "url": "https://www.machinemd.com",
+    "linkedin": "https://www.linkedin.com/company/machinemd",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neuro-ophthalmology)",
+    "category": "neurotech"
+  },
+  {
+    "name": "macrotellect",
+    "url": "https://o.macrotellect.com/",
+    "linkedin": "https://www.linkedin.com/company/neurent-medical",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Magnetic Tides",
+    "url": "https://www.magnetictides.com",
+    "linkedin": "https://www.linkedin.com/company/magnetic-tides",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (kTMP, continuous theta burst)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Magnus Medical",
+    "url": "https://www.magnusmed.com",
+    "linkedin": "https://www.linkedin.com/company/magnus-medical",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (fMRI-guided, SAINT protocol)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Magstim",
+    "url": "https://www.magstim.com",
+    "linkedin": "https://www.linkedin.com/company/magstim",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (research & clinical systems)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MagVenture",
+    "url": "https://www.magventure.com",
+    "linkedin": "https://www.linkedin.com/company/magventure",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (clinical & research systems)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mainstay Medical",
+    "url": "https://www.mainstaymedical.com",
+    "linkedin": "https://www.linkedin.com/company/mainstay-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Restorative SCS (ReActiv8, multifidus)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Manava Plus",
+    "url": "https://www.manavaplus.com",
+    "linkedin": "https://www.linkedin.com/company/manava-plus",
+    "type": "Medical Device Co.",
+    "tech_tags": "Digital Therapeutics / Wellness",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mave Health",
+    "url": "https://www.mavehealth.com/",
+    "linkedin": "https://www.linkedin.com/company/maxwell-biosystems",
+    "type": "Wearable Consumer",
+    "tech_tags": "tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "MaxWell Biosystems",
+    "url": "https://www.maxwellbiosystems.com",
+    "linkedin": "https://www.linkedin.com/company/maxwell-biosystems",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "MEA (high-density multielectrode array)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MediView XR",
+    "url": "https://www.mediviewxr.com",
+    "linkedin": "https://www.linkedin.com/company/mediview-xr",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical (AR navigation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MedRhythms",
+    "url": "https://www.medrhythms.com",
+    "linkedin": "https://www.linkedin.com/company/medrhythms",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Rhythmic Auditory Stimulation (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Medtronic",
+    "url": "https://www.medtronic.com",
+    "linkedin": "https://www.linkedin.com/company/medtronic",
+    "type": "Implantable Device",
+    "tech_tags": "DBS, SCS, VNS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Melo",
+    "url": "https://www.melo.health",
+    "linkedin": "https://www.linkedin.com/company/melo-health",
+    "type": "Medical Device Co.",
+    "tech_tags": "Digital Therapeutics (sleep)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MemoryMD",
+    "url": "https://www.memorymd.com",
+    "linkedin": "https://www.linkedin.com/company/memorymd",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mendi",
+    "url": "https://www.mendi.io",
+    "linkedin": "https://www.linkedin.com/company/mendi",
+    "type": "Wearable Consumer",
+    "tech_tags": "fNIRS (brain training headband)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Merge Labs",
+    "url": "https://www.mergelabs.com",
+    "linkedin": "https://www.linkedin.com/company/merge-labs",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (ultrasound, non-invasive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mesmerise",
+    "url": "https://mesmerisegroup.com/",
+    "linkedin": "https://www.linkedin.com/company/mesmerise",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Meta Reality Labs",
+    "url": "https://www.meta.com/reality-labs",
+    "linkedin": "https://www.linkedin.com/company/meta",
+    "type": "Wearable Consumer",
+    "tech_tags": "BCI / AR (neural wristband, EMG)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Metaphysiks Engineering SA",
+    "url": "https://www.metaphysiks.ch",
+    "linkedin": "https://www.linkedin.com/company/metaphysiks-engineering-sa",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Methinks",
+    "url": "https://www.methinks.com",
+    "linkedin": "https://www.linkedin.com/company/methinks",
+    "type": "Software / AI Platform",
+    "tech_tags": "Eye-tracking AI (mobile neuroassessment)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Miamind",
+    "url": "https://miamind.com/en/home-2/",
+    "linkedin": "https://www.linkedin.com/company/neuroone-medical-technologies",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "MicroTransponder",
+    "url": "https://www.microtransponder.com",
+    "linkedin": "https://www.linkedin.com/company/microtransponder",
+    "type": "Implantable Device",
+    "tech_tags": "VNS (paired with rehabilitation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MieronVR",
+    "url": "https://mieronvr.com/",
+    "linkedin": "https://www.linkedin.com/company/mieronvr",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "MindAffect",
+    "url": "https://www.mindaffect.nl",
+    "linkedin": "https://www.linkedin.com/company/mindaffect",
+    "type": "Medical Device Co.",
+    "tech_tags": "EEG / BCI (auditory BCI for AAC)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MindBuddy",
+    "url": "https://www.mindbuddy.com",
+    "linkedin": "https://www.linkedin.com/company/mindbuddy",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Mental Health / tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "MindRove",
+    "url": "https://www.mindrove.com",
+    "linkedin": "https://www.linkedin.com/company/mindrove",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (wearable, gesture control)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mindset",
+    "url": "https://vandrico.com/wearables/device/mindset.html",
+    "linkedin": "https://www.linkedin.com/company/neurosom",
+    "type": "Needs review",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "MindSpire",
+    "url": "https://www.mindspire.com",
+    "linkedin": "https://www.linkedin.com/company/mindspire",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod / EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "MintNeuro",
+    "url": "https://www.mintneuro.com",
+    "linkedin": "https://www.linkedin.com/company/mintneuro",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (ambulatory monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "MJN Neuroserveis",
+    "url": "https://www.mjn-neuroserveis.com",
+    "linkedin": "https://www.linkedin.com/company/mjn-neuroserveis",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services (epilepsy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Moberg Analytics",
+    "url": "https://www.moberganalytics.com",
+    "linkedin": "https://www.linkedin.com/company/moberg-analytics",
+    "type": "Software / AI Platform",
+    "tech_tags": "Neuromonitoring Software (ICU)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Moberg ICU Solutions",
+    "url": "https://www.moberg.com",
+    "linkedin": "https://www.linkedin.com/company/moberg-research",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mobia Medical",
+    "url": "https://www.mobiamedical.com",
+    "linkedin": "https://www.linkedin.com/company/mobia-medical",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Non-invasive Neuromod (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mobio Interactive",
+    "url": "https://www.mobiointeractive.com/",
+    "linkedin": "https://www.linkedin.com/company/mobio-interactive",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital therapeutics, computer vision, psychobiometrics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Modality",
+    "url": "https://modality.ai/",
+    "linkedin": "https://www.linkedin.com/company/modality-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "Conversational AI, speech, facial and motor assessment",
+    "category": "neurotech"
+  },
+  {
+    "name": "Modulight Biotherapeutics",
+    "url": "https://www.modulight.com",
+    "linkedin": "https://www.linkedin.com/company/modulight",
+    "type": "Pharma / Biotech",
+    "tech_tags": "Photodynamic Therapy (implantable light)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Monteris Medical",
+    "url": "https://www.monteris.com",
+    "linkedin": "https://www.linkedin.com/company/monteris-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "Laser Thermotherapy / LITT",
+    "category": "neurotech"
+  },
+  {
+    "name": "Motif Neurotech",
+    "url": "https://www.motifneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/motif-neurotech",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (minimally invasive microtransponder)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mursion",
+    "url": "https://www.mursion.com/",
+    "linkedin": "https://www.linkedin.com/company/mursion",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Muse",
+    "url": "https://www.choosemuse.com",
+    "linkedin": "https://www.linkedin.com/company/interaxon",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG Meditation Headband",
+    "category": "neurotech"
+  },
+  {
+    "name": "Music Health",
+    "url": "https://www.musichealth.ai",
+    "linkedin": "https://www.linkedin.com/company/musichealth",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mynd Immersive",
+    "url": "https://www.myndimmersive.com/",
+    "linkedin": "https://www.linkedin.com/company/myndimmersive",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Mynd Therapeutics",
+    "url": "https://myndtx.com",
+    "linkedin": "https://www.linkedin.com/company/mynd-therapeutics",
+    "type": "Software / Digital Therapeutics",
+    "tech_tags": "Neurobehavioral digital therapy, AR/VR",
+    "category": "neurotech"
+  },
+  {
+    "name": "MYndspan",
+    "url": "https://www.myndspan.com",
+    "linkedin": "https://www.linkedin.com/company/myndspan",
+    "type": "Service / Clinic",
+    "tech_tags": "MRI / Neuroimaging (mental health)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nalu Medical",
+    "url": "https://www.nalumed.com",
+    "linkedin": "https://www.linkedin.com/company/nalu-medical",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (micro-IPG, rechargeable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NanoVibronix",
+    "url": "https://www.nanovibronix.com",
+    "linkedin": "https://www.linkedin.com/company/nanovibronix",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Ultrasound Therapy (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NAOX Technologies",
+    "url": "https://www.naox.tech",
+    "linkedin": "https://www.linkedin.com/company/naox-technologies",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (seizure detection)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NaqiLogix",
+    "url": "https://www.naqilogix.com",
+    "linkedin": "https://www.linkedin.com/company/naqi-logix",
+    "type": "BCI Software / Platform",
+    "tech_tags": "BCI (eye-tracking & neural gesture)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NaturalX",
+    "url": "https://www.naturalx.com",
+    "linkedin": "https://www.linkedin.com/company/naturalx",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Neuromod (consumer)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Natus Neuro",
+    "url": "https://www.natus.com",
+    "linkedin": "https://www.linkedin.com/company/natus-medical-incorporated",
+    "type": "Capital Equipment",
+    "tech_tags": "EEG / Neurodiagnostics (clinical)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neo Auvra",
+    "url": "https://neoauvra.com/",
+    "linkedin": "https://www.linkedin.com/company/nova-neuro",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "neo-bionica",
+    "url": "https://www.neo-bionica.com",
+    "linkedin": "https://www.linkedin.com/company/neo-bionica",
+    "type": "Implantable Device",
+    "tech_tags": "Neurostimulation (implantable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nerivio",
+    "url": "https://www.nerivio.com/",
+    "linkedin": "https://www.linkedin.com/company/theranica",
+    "type": "Wearable Medical Device",
+    "tech_tags": "REN (wearable arm neuromod)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nervonik",
+    "url": "https://www.nervonik.com",
+    "linkedin": "https://www.linkedin.com/company/nervonik",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neu Health",
+    "url": "https://www.neu.health",
+    "linkedin": "https://www.linkedin.com/company/neu-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "DBS / Wearable Sensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuCyber NeuroTech",
+    "url": "https://www.neucyber.com",
+    "linkedin": "https://www.linkedin.com/company/neucyber-neurotech",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (wireless minimally invasive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neura Health",
+    "url": "https://www.neura.health",
+    "linkedin": "https://www.linkedin.com/company/neura-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "Clinical Software / Telehealth",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurable",
+    "url": "https://www.neurable.com",
+    "linkedin": "https://www.linkedin.com/company/neurable",
+    "type": "Wearable Consumer",
+    "tech_tags": "BCI / EEG (headphones, consumer)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuraLight",
+    "url": "https://www.neuralight.com",
+    "linkedin": "https://www.linkedin.com/company/neuralight",
+    "type": "Software / AI Platform",
+    "tech_tags": "Eye-tracking AI (Parkinson's biomarker)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuralink",
+    "url": "https://www.neuralink.com",
+    "linkedin": "https://www.linkedin.com/company/neuralink",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (fully implantable, N1 chip)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuralPulse",
+    "url": "https://www.neuralpulse.com",
+    "linkedin": "https://www.linkedin.com/company/neuralpulse",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neurostimulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuraura",
+    "url": "https://www.neuraura.com/",
+    "linkedin": "https://www.linkedin.com/company/neuraura",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuraWorx Medical Technologies",
+    "url": "https://www.neuraworx.com",
+    "linkedin": "https://www.linkedin.com/company/neuraworx",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic Medicine (VNS-based)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeurAxis",
+    "url": "https://www.neuraxis.com",
+    "linkedin": "https://www.linkedin.com/company/neuraxis",
+    "type": "Wearable Medical Device",
+    "tech_tags": "SCS (subcutaneous, IB-Stim auricular)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurent Medical",
+    "url": "https://www.neurentmedical.com",
+    "linkedin": "https://www.linkedin.com/company/neurent-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "PNS (posterior nasal nerve ablation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurinnov",
+    "url": "https://www.neurinnov.com",
+    "linkedin": "https://www.linkedin.com/company/neurinnov",
+    "type": "Wearable Medical Device",
+    "tech_tags": "FES (hand rehabilitation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuro Event Labs",
+    "url": "https://www.neuroeventlabs.com",
+    "linkedin": "https://www.linkedin.com/company/neuro-event-labs",
+    "type": "Diagnostic Device",
+    "tech_tags": "AI Video Seizure Monitoring (ICU)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuro Management LLC",
+    "url": "https://www.getversus.com",
+    "linkedin": "https://www.linkedin.com/company/neuro-management-llc",
+    "type": "Wearable Consumer",
+    "tech_tags": "Mobile EEG, neurofeedback",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuro Mind",
+    "url": "https://www.neuromind.fr/",
+    "linkedin": "https://www.linkedin.com/company/openwater-inc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroBell",
+    "url": "https://www.neurobell.com",
+    "linkedin": "https://www.linkedin.com/company/neurobell",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroBionics",
+    "url": "https://www.neurobionics.com",
+    "linkedin": "https://www.linkedin.com/company/neurobionics",
+    "type": "Implantable Device",
+    "tech_tags": "Endovascular Neuromodulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "neurocare group",
+    "url": "https://www.neurocare-group.com",
+    "linkedin": "https://www.linkedin.com/company/neurocare-group",
+    "type": "Service / Clinic",
+    "tech_tags": "TMS (clinical network), Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurode",
+    "url": "https://www.neurodelabs.com/",
+    "linkedin": "https://www.linkedin.com/company/ortega-neurorx",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroDiscovery AI",
+    "url": "https://www.neurodiscovery.ai",
+    "linkedin": "https://www.linkedin.com/company/neurodiscovery-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neurological)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuroelectrics",
+    "url": "https://www.neuroelectrics.com",
+    "linkedin": "https://www.linkedin.com/company/neuroelectrics",
+    "type": "Capital Equipment",
+    "tech_tags": "EEG / tCS (Enobio, Starstim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroEM Therapeutics",
+    "url": "https://www.neuroem.com",
+    "linkedin": "https://www.linkedin.com/company/neuroem-therapeutics",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EM Field Therapy (transcranial)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurofenix",
+    "url": "https://www.neurofenix.com",
+    "linkedin": "https://www.linkedin.com/company/neurofenix",
+    "type": "Wearable Medical Device",
+    "tech_tags": "FES (wearable arm rehab, NeuroBall)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroFlow",
+    "url": "https://www.neuroflow.com",
+    "linkedin": "https://www.linkedin.com/company/neuroflow",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics (mental health SaaS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurolief",
+    "url": "https://www.neurolief.com",
+    "linkedin": "https://www.linkedin.com/company/neurolief",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (Relivion, multinode headset)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroLight",
+    "url": "https://www.neurolight.co",
+    "linkedin": "https://www.linkedin.com/company/neurolight",
+    "type": "Medical Device Co.",
+    "tech_tags": "Photobiomodulation (light therapy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurolutions",
+    "url": "https://www.neurolutions.com",
+    "linkedin": "https://www.linkedin.com/company/neurolutions",
+    "type": "Wearable Medical Device",
+    "tech_tags": "BCI FES (EEG-triggered stroke rehab)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuromod Devices",
+    "url": "https://www.neuromoddevices.com",
+    "linkedin": "https://www.linkedin.com/company/neuromod-devices",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Bimodal Stimulation (Lenire, tongue+sound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuronetics",
+    "url": "https://www.neuronetics.com",
+    "linkedin": "https://www.linkedin.com/company/neuronetics",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (NeuroStar clinical systems)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuronic",
+    "url": "https://www.neuronic.se",
+    "linkedin": "https://www.linkedin.com/company/neuronic-ab",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable EEG / fNIRS (research device)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuronoff",
+    "url": "https://www.neuronoff.com",
+    "linkedin": "https://www.linkedin.com/company/neuronoff",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Injectable Electrode (Injectrode, PNS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuronostics",
+    "url": "https://www.neuronostics.com",
+    "linkedin": "https://www.linkedin.com/company/neuronostics",
+    "type": "Diagnostic Device",
+    "tech_tags": "EEG AI (automated seizure classification)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroOne",
+    "url": "https://www.neuro-one.com",
+    "linkedin": "https://www.linkedin.com/company/neuroone-medical-technologies",
+    "type": "Diagnostic Device",
+    "tech_tags": "Neural Probes / Thin-film Electrodes",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroPace",
+    "url": "https://www.neuropace.com",
+    "linkedin": "https://www.linkedin.com/company/neuropace",
+    "type": "Implantable Device",
+    "tech_tags": "Closed-loop RNS (DBS, cortical sensing)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroRehabVR",
+    "url": "https://neurorehabvr.com/",
+    "linkedin": "https://www.linkedin.com/company/neuro-rehab-vr",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroRestore",
+    "url": "https://www.neurorestore.eu",
+    "linkedin": "https://www.linkedin.com/company/neurorestore",
+    "type": "Medical Device Co.",
+    "tech_tags": "Epidural Electrical Stimulation (EES)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuros Medical",
+    "url": "https://www.neurosmedical.com",
+    "linkedin": "https://www.linkedin.com/company/neuros-medical",
+    "type": "Implantable Device",
+    "tech_tags": "SCS / PNS (high-freq nerve block)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroServo",
+    "url": "https://www.neuroservo.com",
+    "linkedin": "https://www.linkedin.com/company/neuroservo",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroSigma",
+    "url": "https://www.neurosigma.com",
+    "linkedin": "https://www.linkedin.com/company/neurosigma",
+    "type": "Wearable Medical Device",
+    "tech_tags": "e-TNS (trigeminal nerve stim, Monarch)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosity",
+    "url": "https://neurosity.co/",
+    "linkedin": "https://www.linkedin.com/company/prima-mente",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosky",
+    "url": "https://neurosky.com/",
+    "linkedin": "https://www.linkedin.com/company/neurosky",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosmart",
+    "url": "https://www.neurosmartinc.com/",
+    "linkedin": "https://www.linkedin.com/company/neurosmart",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosoft Bioelectronics",
+    "url": "https://www.neurosoftbio.com",
+    "linkedin": "https://www.linkedin.com/company/neurosoft-bioelectronics",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Soft Neural Implants (bioelectronic)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosom",
+    "url": "https://www.neurosom.com",
+    "linkedin": "https://www.linkedin.com/company/neurosom",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Neuromod (sleep + dementia prevention)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosteer",
+    "url": "https://neurosteer.com/",
+    "linkedin": "https://www.linkedin.com/company/neurosteerinc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurostellar",
+    "url": "https://www.neuro-stellar.com/",
+    "linkedin": "https://www.linkedin.com/company/neurostellar",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroStim Solutions",
+    "url": "https://www.neurostimsolutions.com",
+    "linkedin": "https://www.linkedin.com/company/neurostim-solutions",
+    "type": "Medical Device Co.",
+    "tech_tags": "TMS (clinical services)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroStim TMS",
+    "url": "https://www.neurostimtms.com",
+    "linkedin": "https://www.linkedin.com/company/neurostim-tms",
+    "type": "Service / Clinic",
+    "tech_tags": "TMS (clinical centre network)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurosync",
+    "url": "https://www.neurosync.health/",
+    "linkedin": "https://www.linkedin.com/company/neuro-sync",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroSync Technologies",
+    "url": "https://www.neurosynctechnologies.com",
+    "linkedin": "https://www.linkedin.com/company/neurosync-technologies",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (EEG synchronisation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurotrack",
+    "url": "https://www.neurotrack.com",
+    "linkedin": "https://www.linkedin.com/company/neurotrack-technologies",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (eye-tracking cognitive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurotype",
+    "url": "https://www.neurotype.com",
+    "linkedin": "https://www.linkedin.com/company/neurotype",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (biomarker diagnostics)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neurovalens",
+    "url": "https://www.neurovalens.com",
+    "linkedin": "https://www.linkedin.com/company/neurovalens",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable VNS (Modius, ear-worn)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuroverse",
+    "url": "https://www.neuroverseinc.com/",
+    "linkedin": "https://www.linkedin.com/company/reshape-lifesciences",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuroview Technology",
+    "url": "https://www.neuroviewtech.com",
+    "linkedin": "https://www.linkedin.com/company/neuroview-technology",
+    "type": "Medical Device Co.",
+    "tech_tags": "SEEG / Depth Electrodes",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroVirt",
+    "url": "https://www.neurovirt.com",
+    "linkedin": "https://www.linkedin.com/company/neurovirt",
+    "type": "Wearable Medical Device",
+    "tech_tags": "VR + Neuromod (rehabilitation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NeuroX",
+    "url": "https://www.neurox.com",
+    "linkedin": "https://www.linkedin.com/company/neurox",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (consumer wellness device)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuspera Medical",
+    "url": "https://www.neuspera.com",
+    "linkedin": "https://www.linkedin.com/company/neuspera-medical",
+    "type": "Implantable Device",
+    "tech_tags": "SNM (sacral neuromodulation, iSNM)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Neuvotion, Inc.",
+    "url": "https://www.neuvotion-inc.com",
+    "linkedin": "https://www.linkedin.com/company/neuvotion-inc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nevro",
+    "url": "https://www.nevro.com",
+    "linkedin": "https://www.linkedin.com/company/nevro",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (HF10 high-frequency therapy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Newronika",
+    "url": "https://www.newronika.com",
+    "linkedin": "https://www.linkedin.com/company/newronika",
+    "type": "Implantable Device",
+    "tech_tags": "DBS (closed-loop, AlphaDBS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Newrotex",
+    "url": "https://www.newrotex.com",
+    "linkedin": "https://www.linkedin.com/company/newrotex",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Nerve Repair / Regeneration Materials",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nexalin",
+    "url": "https://www.nexalin.com",
+    "linkedin": "https://www.linkedin.com/company/nexalin-technology",
+    "type": "Wearable Medical Device",
+    "tech_tags": "CES / AES (auricular electrostim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nexstem",
+    "url": "https://www.nexstem.com",
+    "linkedin": "https://www.linkedin.com/company/nexstem",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG (consumer BCI platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nexstim",
+    "url": "https://www.nexstim.com",
+    "linkedin": "https://www.linkedin.com/company/nexstim",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (navigated, nTMS mapping)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NextMind (Snap AR)",
+    "url": "https://www.snap.com",
+    "linkedin": "https://www.linkedin.com/company/snap",
+    "type": "Wearable Consumer",
+    "tech_tags": "BCI EEG (AR visual neural input)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NextSense",
+    "url": "https://www.nextsense.io",
+    "linkedin": "https://www.linkedin.com/company/nextsense-inc",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (earbuds, in-ear continuous)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ni2o",
+    "url": "https://www.ni2o.com",
+    "linkedin": "https://www.linkedin.com/company/ni2o",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nia Therapeutics",
+    "url": "https://www.niatherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/nia-therapeutics",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS / Wearable Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "NightWatch+",
+    "url": "https://www.nightwatch.nl",
+    "linkedin": "https://www.linkedin.com/company/nightwatch",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Seizure Detection (night)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nike",
+    "url": "https://www.nike.com",
+    "linkedin": "https://www.linkedin.com/company/nike",
+    "type": "Wearable Consumer",
+    "tech_tags": "Consumer Wearable / Sports Tech",
+    "category": "neurotech"
+  },
+  {
+    "name": "NIL Technology (NILT)",
+    "url": "https://www.nilt.com",
+    "linkedin": "https://www.linkedin.com/company/nil-technology",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Nanofabrication / Microelectrodes",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nimbus",
+    "url": "https://www.nimbusneuro.com",
+    "linkedin": "https://www.linkedin.com/company/nimbus-neuroscience",
+    "type": "Implantable Device",
+    "tech_tags": "BCI / Neurostim (closed-loop)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nocira",
+    "url": "https://www.nocira.com",
+    "linkedin": "https://www.linkedin.com/company/nocirausa",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Noctrix Health",
+    "url": "https://www.noctrixhealth.com",
+    "linkedin": "https://www.linkedin.com/company/noctrix-health",
+    "type": "Wearable Medical Device",
+    "tech_tags": "TOMAC Neuromod (leg wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NOVA Neuro",
+    "url": "https://www.novaneuro.com",
+    "linkedin": "https://www.linkedin.com/company/nova-neuro",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS / CES (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nu Eyne",
+    "url": "https://www.nueyne.com",
+    "linkedin": "https://www.linkedin.com/company/nueyne",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "NuBrain",
+    "url": "https://www.nubrain.com",
+    "linkedin": "https://www.linkedin.com/company/nudge-ai",
+    "type": "BCI Software / Platform",
+    "tech_tags": "BCI (non-invasive / BCIs)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nudge",
+    "url": "https://www.nudge.ai",
+    "linkedin": "https://www.linkedin.com/company/nudge-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "BCI / Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "NXTSTIM",
+    "url": "https://www.nxtstim.com",
+    "linkedin": "https://www.linkedin.com/company/nxtstim",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neurostimulation (EMS/FES)",
+    "category": "neurotech"
+  },
+  {
+    "name": "NYU Langone Health",
+    "url": "https://www.nyulangone.org",
+    "linkedin": "https://www.linkedin.com/company/nyu-langone-health",
+    "type": "Service / Clinic",
+    "tech_tags": "Academic / Research Institution",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nyxoah",
+    "url": "https://www.nyxoah.com",
+    "linkedin": "https://www.linkedin.com/company/nyxoah",
+    "type": "Implantable Device",
+    "tech_tags": "HNS (hypoglossal, Genio bilateral)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Octave Bioscience",
+    "url": "https://www.octavebio.com",
+    "linkedin": "https://www.linkedin.com/company/octave-bioscience",
+    "type": "Pharma / Biotech",
+    "tech_tags": "MS Biomarker Diagnostics (pNfL)",
+    "category": "neurotech"
+  },
+  {
+    "name": "OhmBody",
+    "url": "https://www.ohmbody.com",
+    "linkedin": "https://www.linkedin.com/company/ohmbody",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Neurostimulation (TENS/EMS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Okinme",
+    "url": "https://www.okinme.com",
+    "linkedin": "https://www.linkedin.com/company/okinme",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Omnipemf",
+    "url": "https://omnipemf.com/",
+    "linkedin": "https://www.linkedin.com/company/omnipemf",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Omniscient Neurotechnology",
+    "url": "https://www.omniscientneurotechnology.com",
+    "linkedin": "https://www.linkedin.com/company/omniscient-neurotechnology",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (connectome mapping)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Onward Medical",
+    "url": "https://www.onwd.com",
+    "linkedin": "https://www.linkedin.com/company/onward-medical",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (ARC-EX / ARC-IM transcutaneous)",
+    "category": "neurotech"
+  },
+  {
+    "name": "OpenBCI",
+    "url": "https://www.openbci.com",
+    "linkedin": "https://www.linkedin.com/company/openbci",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "EEG / Open-source BCI hardware",
+    "category": "neurotech"
+  },
+  {
+    "name": "OpenNeuro",
+    "url": "https://www.openneuro.org",
+    "linkedin": "https://www.linkedin.com/company/openneuro",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Research Data Platform (neuroimaging)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Openwater",
+    "url": "https://www.openwater.health",
+    "linkedin": "https://www.linkedin.com/company/openwater-inc",
+    "type": "Pharma / Biotech",
+    "tech_tags": "fNIRS / Holographic Neuroimaging",
+    "category": "neurotech"
+  },
+  {
+    "name": "Optohive",
+    "url": "https://www.optohive.com",
+    "linkedin": "https://www.linkedin.com/company/optohive",
+    "type": "Implantable Device",
+    "tech_tags": "Optogenetics (photonic neural probes)",
+    "category": "neurotech"
+  },
+  {
+    "name": "OramaVR",
+    "url": "https://oramavr.com/",
+    "linkedin": "https://www.linkedin.com/company/oramavr",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Orbit",
+    "url": "https://www.orbitneuro.com",
+    "linkedin": "https://www.linkedin.com/company/orbit-neuro",
+    "type": "Software / AI Platform",
+    "tech_tags": "Clinical Software (neuromonitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Orfeo Health",
+    "url": "https://orfeohealth.com",
+    "linkedin": "https://www.linkedin.com/company/spryte-medical",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ortega NeuroRx",
+    "url": "https://www.orteganeurorx.com",
+    "linkedin": "https://www.linkedin.com/company/ortega-neurorx",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "Oura",
+    "url": "https://www.ouraring.com",
+    "linkedin": "https://www.linkedin.com/company/oura",
+    "type": "Wearable Consumer",
+    "tech_tags": "Wearable Sensing (ring, HRV/sleep)",
+    "category": "neurotech"
+  },
+  {
+    "name": "OVR technology",
+    "url": "https://ovrtechnology.com",
+    "linkedin": "https://www.linkedin.com/company/ovr-technology",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "PainQx",
+    "url": "https://www.painqx.com",
+    "linkedin": "https://www.linkedin.com/company/painqx",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "PainTEQ",
+    "url": "https://www.painteq.com/",
+    "linkedin": "https://www.linkedin.com/company/painteq",
+    "type": "Medical Device Co.",
+    "tech_tags": "Sacroiliac Joint Fusion (LinQ)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Panaxium",
+    "url": "https://www.panaxium.com",
+    "linkedin": "https://www.linkedin.com/company/panaxium",
+    "type": "Implantable Device",
+    "tech_tags": "DBS / Neuromodulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Paradromics",
+    "url": "https://www.paradromics.com",
+    "linkedin": "https://www.linkedin.com/company/paradromics",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable, high-bandwidth)",
+    "category": "neurotech"
+  },
+  {
+    "name": "PathMaker Neurosystems",
+    "url": "https://www.pathmakerneuro.com",
+    "linkedin": "https://www.linkedin.com/company/pathmaker-neurosystems",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Non-invasive Neurostim (transcutaneous)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Peak Brain Institute",
+    "url": "https://www.peakbraininstitute.com",
+    "linkedin": "https://www.linkedin.com/company/peak-brain-institute",
+    "type": "Service / Clinic",
+    "tech_tags": "EEG Neurofeedback (clinical)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Penumbra",
+    "url": "https://www.penumbrainc.com",
+    "linkedin": "https://www.linkedin.com/company/penumbra-inc",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention (thrombectomy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Perfuze",
+    "url": "https://www.perfuze.com",
+    "linkedin": "https://www.linkedin.com/company/perfuze",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention",
+    "category": "neurotech"
+  },
+  {
+    "name": "Phantom Neuro",
+    "url": "https://www.phantomneuro.com",
+    "linkedin": "https://www.linkedin.com/company/phantom-neuro",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (implantable, peripheral nerve)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Phantom Neuro",
+    "url": "https://phantomneuro.com/",
+    "linkedin": "https://www.linkedin.com/company/phantomneuro",
+    "type": "BCI Software / Platform",
+    "tech_tags": "Neural Interface",
+    "category": "neurotech"
+  },
+  {
+    "name": "Pharaoh Neuro",
+    "url": "https://www.pharaohneuro.com",
+    "linkedin": "https://www.linkedin.com/company/pharaoh-neuro",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS / Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "Philips SmartSleep",
+    "url": "https://www.usa.philips.com/c-e/smartsleep.html",
+    "linkedin": "https://www.linkedin.com/company/philips",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Physio.ai",
+    "url": "https://physio.ai/",
+    "linkedin": "https://www.linkedin.com/company/syntropic-medical",
+    "type": "",
+    "tech_tags": "Biosensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "PigPug Health",
+    "url": "https://www.pigpughealth.com",
+    "linkedin": "https://www.linkedin.com/company/pigpug-health",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Digital Mental Health / tDCS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Piramidal",
+    "url": "https://Piramidal.ai",
+    "linkedin": "https://www.linkedin.com/company/piramidalai",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "PIXYL",
+    "url": "https://www.pixyl.ai",
+    "linkedin": "https://www.linkedin.com/company/pixyl",
+    "type": "Medical Device Co.",
+    "tech_tags": "AI MRI Neuroimaging (lesion analysis)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Positrigo",
+    "url": "https://www.positrigo.com",
+    "linkedin": "https://www.linkedin.com/company/positrigo",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Brain PET Imaging (NeuroLF, wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Precision Neuroscience",
+    "url": "https://www.precisionneuro.com",
+    "linkedin": "https://www.linkedin.com/company/precision-neuroscience",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (cortical surface array, Layer 7)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Precisis",
+    "url": "https://www.precisis.de",
+    "linkedin": "https://www.linkedin.com/company/precisis",
+    "type": "Implantable Device",
+    "tech_tags": "Neurostimulation (EASEE, epicortical)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Presidio Medical",
+    "url": "https://www.presidiomedical.com",
+    "linkedin": "https://www.linkedin.com/company/presidio-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "SCS (ultrasonic dorsal root ganglion)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Proprio",
+    "url": "https://www.proprio.com",
+    "linkedin": "https://www.linkedin.com/company/proprio",
+    "type": "Software / AI Platform",
+    "tech_tags": "Robotics / Surgical (intraoperative AI)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Proto Lase",
+    "url": "https://www.protolase.com",
+    "linkedin": "https://www.linkedin.com/company/proto-lase",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Psycurio",
+    "url": "https://psycurio.de/en/",
+    "linkedin": "https://www.linkedin.com/company/psycurio",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Pulsetto",
+    "url": "https://www.pulsetto.com",
+    "linkedin": "https://www.linkedin.com/company/pulsetto",
+    "type": "Wearable Consumer",
+    "tech_tags": "VNS (non-invasive, neck wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Pupil Labs",
+    "url": "https://www.pupil-labs.com",
+    "linkedin": "https://www.linkedin.com/company/pupil-labs",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "Eye-tracking (research hardware)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Purple Gaze",
+    "url": "https://www.purplegaze.net",
+    "linkedin": "https://www.linkedin.com/company/purple-gaze",
+    "type": "Medical Device Co.",
+    "tech_tags": "EEG / Eye-tracking BCI",
+    "category": "neurotech"
+  },
+  {
+    "name": "PurpleAI Inc.",
+    "url": "https://www.purple-ai.co",
+    "linkedin": "https://www.linkedin.com/company/purple-ai-inc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "QuantalX Neuroscience",
+    "url": "https://www.quantalx.com",
+    "linkedin": "https://www.linkedin.com/company/quantalx-neuroscience",
+    "type": "Medical Device Co.",
+    "tech_tags": "Functional Neuroimaging (Delphys)",
+    "category": "neurotech"
+  },
+  {
+    "name": "QV Bioelectronics",
+    "url": "https://www.qvbio.co.uk/",
+    "linkedin": "https://www.linkedin.com/company/qv-bioelectronics",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic Medicine (tumour field)",
+    "category": "neurotech"
+  },
+  {
+    "name": "QVITI",
+    "url": "https://www.qviti.com",
+    "linkedin": "https://www.linkedin.com/company/qviti",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod / EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Qynapse",
+    "url": "https://www.qynapse.com",
+    "linkedin": "https://www.linkedin.com/company/qynapse",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI MRI Brain Volumetrics (QyScore)",
+    "category": "neurotech"
+  },
+  {
+    "name": "REACT Neuro",
+    "url": "https://reactneuro.com/",
+    "linkedin": "https://www.linkedin.com/company/us-department-of-veterans-affairs",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Rebion",
+    "url": "https://www.rebion.com",
+    "linkedin": "https://www.linkedin.com/company/rebion",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (transcranial focused ultrasound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Reccy Neuro",
+    "url": "https://www.reccy.co",
+    "linkedin": "https://www.linkedin.com/company/reccy-neuro",
+    "type": "Software / AI Platform",
+    "tech_tags": "Neurotech Job Board / Market Intelligence",
+    "category": "neurotech"
+  },
+  {
+    "name": "Regelife",
+    "url": "https://regelife.bio/",
+    "linkedin": "https://www.linkedin.com/company/vitrea",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "ReShape Lifesciences",
+    "url": "https://www.reshapelifesciences.com",
+    "linkedin": "https://www.linkedin.com/company/reshape-lifesciences",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic / Vagal Nerve Block (VBLOC)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Resilience Lab",
+    "url": "https://www.resiliencelab.us",
+    "linkedin": "https://www.linkedin.com/company/resilience-lab",
+    "type": "Service / Clinic",
+    "tech_tags": "Digital Mental Health (workplace)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Resolution Medical",
+    "url": "https://www.resolutionmedical.com",
+    "linkedin": "https://www.linkedin.com/company/resolution-medical",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Contract Manufacturer / Engineering",
+    "category": "neurotech"
+  },
+  {
+    "name": "Resolve Stroke",
+    "url": "https://www.resolvestroke.com",
+    "linkedin": "https://www.linkedin.com/company/resolve-stroke",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention",
+    "category": "neurotech"
+  },
+  {
+    "name": "Resonant Link Medical",
+    "url": "https://www.resonantlink.com",
+    "linkedin": "https://www.linkedin.com/company/resonant-link",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Wireless Power Transfer (implants)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Resonetics",
+    "url": "https://www.resonetics.com",
+    "linkedin": "https://www.linkedin.com/company/resonetics",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Laser Cutting / Micro-manufacturing",
+    "category": "neurotech"
+  },
+  {
+    "name": "Restorative Neurotechnologies",
+    "url": "https://www.restorativeneurotechnologies.com",
+    "linkedin": "https://www.linkedin.com/company/restorative-neurotechnologies",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Revalesio",
+    "url": "https://www.revalesio.com",
+    "linkedin": "https://www.linkedin.com/company/revalesio",
+    "type": "Medical Device Co.",
+    "tech_tags": "Nanobubble Therapy (RNS60)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Revelation Neuro",
+    "url": "https://www.revelationneuro.com",
+    "linkedin": "https://www.linkedin.com/company/revelation-neuro",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (neural interface platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ReVision Implant",
+    "url": "https://www.revision-implant.com",
+    "linkedin": "https://www.linkedin.com/company/revision-implant-nv",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (retinal prosthesis)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Rhovica Neuroimaging AG",
+    "url": "https://www.rhovica.com",
+    "linkedin": "https://www.linkedin.com/company/rhovica-neuroimaging-ag",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "RL Medical",
+    "url": "https://www.rlmedical.com",
+    "linkedin": "https://www.linkedin.com/company/rl-medical",
+    "type": "Implantable Device",
+    "tech_tags": "PNS / Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "Route 92 Medical",
+    "url": "https://www.route92medical.com",
+    "linkedin": "https://www.linkedin.com/company/route-92-medical",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention (thrombectomy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Rune Labs",
+    "url": "https://www.runelabs.io",
+    "linkedin": "https://www.linkedin.com/company/rune-labs",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics (Strive PD)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ruten Inc",
+    "url": "https://www.ruten.com",
+    "linkedin": "https://www.linkedin.com/company/ruten-inc",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "Salma Health",
+    "url": "https://www.salmahealth.com",
+    "linkedin": "https://www.linkedin.com/company/salma-health",
+    "type": "Medical Device Co.",
+    "tech_tags": "Digital Mental Health",
+    "category": "neurotech"
+  },
+  {
+    "name": "Saluda Medical",
+    "url": "https://www.saludamedical.com",
+    "linkedin": "https://www.linkedin.com/company/saluda-medical",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (closed-loop, Evoke feedback)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Salvia BioElectronics",
+    "url": "https://www.salviabioelectronics.com",
+    "linkedin": "https://www.linkedin.com/company/salvia-bioelectronics",
+    "type": "Implantable Device",
+    "tech_tags": "VNS (implantable bioelectronic)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Samphire Neuroscience",
+    "url": "https://www.samphireneuro.com",
+    "linkedin": "https://www.linkedin.com/company/samphire-neuroscience",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (wearable, women's health)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sana Health",
+    "url": "https://www.sana.io/",
+    "linkedin": "https://www.linkedin.com/company/sana-health",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sanmai Technologies",
+    "url": "https://www.sanmai.tech",
+    "linkedin": "https://www.linkedin.com/company/sanmai-technologies",
+    "type": "Medical Device Co.",
+    "tech_tags": "BCI (EEG research platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sava",
+    "url": "https://www.savahealth.com",
+    "linkedin": "https://www.linkedin.com/company/sava-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics / Telehealth",
+    "category": "neurotech"
+  },
+  {
+    "name": "Science Corp",
+    "url": "https://science.xyz/",
+    "linkedin": "https://www.linkedin.com/company/science-corp",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (retinal implant, Orion)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Scottish Brain Sciences",
+    "url": "https://www.scottishbrainsciences.com",
+    "linkedin": "https://www.linkedin.com/company/scottish-brain-sciences",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG / Neurofeedback (performance)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SecondWave Systems",
+    "url": "https://www.secondwavesystems.com",
+    "linkedin": "https://www.linkedin.com/company/secondwave-systems",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Ultrasound (anti-inflammatory, focused)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sens.ai",
+    "url": "https://www.sens.ai",
+    "linkedin": "https://www.linkedin.com/company/sens-ai",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG Neurofeedback (wearable headset)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sense Diagnostics",
+    "url": "https://www.sensedx.com",
+    "linkedin": "https://www.linkedin.com/company/sense-diagnostics",
+    "type": "Diagnostic Device",
+    "tech_tags": "AI Brain Scanner (portable ultrasound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sense Neuro Diagnostics",
+    "url": "https://www.senseneurodiagnostics.com",
+    "linkedin": "https://www.linkedin.com/company/sense-neuro-diagnostics",
+    "type": "Diagnostic Device",
+    "tech_tags": "AI Brain Scanner (NeuroHawk, ultrasound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sensome",
+    "url": "https://www.sensome.com",
+    "linkedin": "https://www.linkedin.com/company/sensome",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Sensing (guidewire)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Senstream",
+    "url": "https://www.senstream.com/",
+    "linkedin": "https://www.linkedin.com/company/wisear",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sentante",
+    "url": "https://www.sentante.com",
+    "linkedin": "https://www.linkedin.com/company/sentante",
+    "type": "Software / AI Platform",
+    "tech_tags": "Clinical Software (neurology EMR)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SetPoint Medical",
+    "url": "https://www.setpointmedical.com",
+    "linkedin": "https://www.linkedin.com/company/setpoint-medical",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic VNS (implantable, IBD)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sevaro",
+    "url": "https://www.sevaro.com",
+    "linkedin": "https://www.linkedin.com/company/sevaro-health",
+    "type": "Software / AI Platform",
+    "tech_tags": "Telehealth / Telestroke Platform",
+    "category": "neurotech"
+  },
+  {
+    "name": "ShiraTronics",
+    "url": "https://www.shiratronics.com",
+    "linkedin": "https://www.linkedin.com/company/shiratronics",
+    "type": "Implantable Device",
+    "tech_tags": "PNS (occipital nerve stim, implantable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sinaptica",
+    "url": "https://www.sinaptica.eu",
+    "linkedin": "https://www.linkedin.com/company/sinaptica",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS (personalised, EEG-guided)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sinaptica Therapeutics",
+    "url": "https://www.sinapticatherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/sinaptica-therapeutics",
+    "type": "Capital Equipment",
+    "tech_tags": "rTMS-EEG (personalised Alzheimer's)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Smartlens",
+    "url": "https://www.smartlens.com",
+    "linkedin": "https://www.linkedin.com/company/smartlens",
+    "type": "Diagnostic Device",
+    "tech_tags": "Contact Lens IOP Monitor",
+    "category": "neurotech"
+  },
+  {
+    "name": "Soin Neuroscience",
+    "url": "https://www.soinneuroscience.com",
+    "linkedin": "https://www.linkedin.com/company/soin-neuroscience",
+    "type": "Implantable Device",
+    "tech_tags": "SCS (personalised waveform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Solid Health Ai",
+    "url": "https://solidhealth.ai/#hero",
+    "linkedin": "https://www.linkedin.com/company/xrhealth",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "SOMAREALITY",
+    "url": "https://www.somareality.com",
+    "linkedin": "https://www.linkedin.com/company/somareality",
+    "type": "Medical Device Co.",
+    "tech_tags": "VR + Neuromod (embodiment therapy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Somnair",
+    "url": "https://www.somnairsleep.com",
+    "linkedin": "https://www.linkedin.com/company/somnair",
+    "type": "",
+    "tech_tags": "Neurostim (non-invasive oral appliance, OSA)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Somnee",
+    "url": "https://www.somneesleep.com",
+    "linkedin": "https://www.linkedin.com/company/somnee",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sonera",
+    "url": "https://www.soneramedical.com",
+    "linkedin": "https://www.linkedin.com/company/sonera-magnetics",
+    "type": "Capital Equipment",
+    "tech_tags": "Biomagnetic Sensing (non-invasive MEG-like)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SoniVie",
+    "url": "https://www.sonivie.com",
+    "linkedin": "https://www.linkedin.com/company/sonivie",
+    "type": "Medical Device Co.",
+    "tech_tags": "Ultrasound Renal Denervation",
+    "category": "neurotech"
+  },
+  {
+    "name": "SonoMind",
+    "url": "https://www.sonomind.com",
+    "linkedin": "https://www.linkedin.com/company/sonomind",
+    "type": "Capital Equipment",
+    "tech_tags": "FUS (transcranial focused ultrasound)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SonoMotion",
+    "url": "https://www.sonomotion.com",
+    "linkedin": "https://www.linkedin.com/company/sonomotion",
+    "type": "Medical Device Co.",
+    "tech_tags": "FUS (focused ultrasound, kidney stone)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Soof Solutions",
+    "url": "https://www.soofsolutions.com",
+    "linkedin": "https://www.linkedin.com/company/soof-solutions-inc",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sooma Medical",
+    "url": "https://www.soomamedical.com",
+    "linkedin": "https://www.linkedin.com/company/sooma-oy",
+    "type": "Wearable Medical Device",
+    "tech_tags": "tDCS (at-home depression)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Sora Neuroscience",
+    "url": "https://www.soraneuro.com",
+    "linkedin": "https://www.linkedin.com/company/sora-neuroscience",
+    "type": "Implantable Device",
+    "tech_tags": "Closed-loop Neurostimulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Soranusmed",
+    "url": "https://www.soranusmed.com",
+    "linkedin": "https://www.linkedin.com/company/soranusmed",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Soterix Medical",
+    "url": "https://www.soterixmedical.com",
+    "linkedin": "https://www.linkedin.com/company/soterix-medical",
+    "type": "Capital Equipment",
+    "tech_tags": "tDCS / tACS (research & clinical)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Spark Biomedical",
+    "url": "https://www.sparkbiomedical.com",
+    "linkedin": "https://www.linkedin.com/company/spark-biomedical",
+    "type": "Wearable Medical Device",
+    "tech_tags": "VNS (transcutaneous, Sparrow therapy)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SpeechVive",
+    "url": "https://www.speechvive.com",
+    "linkedin": "https://www.linkedin.com/company/speechvive",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Spinal Simplicity",
+    "url": "https://www.spinalsimplicity.com",
+    "linkedin": "https://www.linkedin.com/company/spinal-simplicity",
+    "type": "Capital Equipment",
+    "tech_tags": "Robotics / Surgical (spine navigation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Spinally",
+    "url": "https://www.spinally.com",
+    "linkedin": "https://www.linkedin.com/company/spinally",
+    "type": "Software / AI Platform",
+    "tech_tags": "Clinical Software (SCS management)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SpineX",
+    "url": "https://www.spinex.io",
+    "linkedin": "https://www.linkedin.com/company/spinex",
+    "type": "Wearable Medical Device",
+    "tech_tags": "SCS (transcutaneous, TSCS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Spiro Medical",
+    "url": "https://www.spiromedical.com",
+    "linkedin": "https://www.linkedin.com/company/spiro-medical",
+    "type": "Implantable Device",
+    "tech_tags": "Pulmonary VNS / Vagal Neuromod",
+    "category": "neurotech"
+  },
+  {
+    "name": "SPR Therapeutics",
+    "url": "https://www.sprtherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/spr-therapeutics",
+    "type": "Wearable Medical Device",
+    "tech_tags": "PNS (Sprint peripheral nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Spryte Medical",
+    "url": "https://www.sprytemedical.com",
+    "linkedin": "https://www.linkedin.com/company/spryte-medical",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neuro OCT Imaging (intravascular)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Starlab",
+    "url": "https://www.starlab.es",
+    "linkedin": "https://www.linkedin.com/company/starlab",
+    "type": "Research Tool / Instruments",
+    "tech_tags": "EEG / tCS Research Systems",
+    "category": "neurotech"
+  },
+  {
+    "name": "Steadiwear",
+    "url": "https://www.steadiwear.com",
+    "linkedin": "https://www.linkedin.com/company/steadiwear",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Anti-tremor Wearable (Steadi-Two glove)",
+    "category": "neurotech"
+  },
+  {
+    "name": "StimAire",
+    "url": "https://www.stimaire.com",
+    "linkedin": "https://www.linkedin.com/company/stimaire",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "StimCardio Medical",
+    "url": "https://www.stimcardio.com",
+    "linkedin": "https://www.linkedin.com/company/stimcardio-medical",
+    "type": "Implantable Device",
+    "tech_tags": "VNS / Cardiac Neurostim",
+    "category": "neurotech"
+  },
+  {
+    "name": "Stimdia Medical",
+    "url": "https://www.stimdia.com",
+    "linkedin": "https://www.linkedin.com/company/stimdia-medical",
+    "type": "Implantable Device",
+    "tech_tags": "Sacral Nerve Stimulation (eStim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Stimvia",
+    "url": "https://www.stimvia.com",
+    "linkedin": "https://www.linkedin.com/company/stimvia",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod (Parkinson's)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Stratus",
+    "url": "https://www.stratus.md",
+    "linkedin": "https://www.linkedin.com/company/stratus-neuro",
+    "type": "Medical Device Co.",
+    "tech_tags": "EEG (cloud diagnostics platform)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Subsense",
+    "url": "https://www.subsense.com",
+    "linkedin": "https://www.linkedin.com/company/subsense",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (magnetic nanoparticle injection)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Supermind",
+    "url": "https://www.supermind.us/",
+    "linkedin": "https://www.linkedin.com/company/surf-therapeutics",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Surf Therapeutics",
+    "url": "https://www.surftherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/surf-therapeutics",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Ultrasound (anti-inflammatory neuromod)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synapse Biomedical",
+    "url": "https://www.synapsebiomedical.com",
+    "linkedin": "https://www.linkedin.com/company/synapse-biomedical",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synapse TBI",
+    "url": "https://www.synapsetbi.com",
+    "linkedin": "https://www.linkedin.com/company/synapse-tbi",
+    "type": "Wearable Medical Device",
+    "tech_tags": "TBI Monitoring (wearable)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synaptrix Labs",
+    "url": "https://www.synaptrix-labs.com",
+    "linkedin": "https://www.linkedin.com/company/synaptrix-labs",
+    "type": "BCI Software / Platform",
+    "tech_tags": "BCI (non-invasive / BCIs)",
+    "category": "neurotech"
+  },
+  {
+    "name": "SynchNeuro",
+    "url": "https://www.synchneurocorp.com",
+    "linkedin": "https://www.linkedin.com/company/synchneurocorp",
+    "type": "Diagnostic Device",
+    "tech_tags": "EEG-based Glucose Monitor",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synchron",
+    "url": "https://www.synchron.com",
+    "linkedin": "https://www.linkedin.com/company/synchron",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (endovascular, Stentrode)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synchroni",
+    "url": "https://www.synchroni.io",
+    "linkedin": "https://www.linkedin.com/company/synchroni",
+    "type": "Software / AI Platform",
+    "tech_tags": "BCI Infrastructure / SDK Platform",
+    "category": "neurotech"
+  },
+  {
+    "name": "Syndeio Biosciences",
+    "url": "https://www.syndeio.com",
+    "linkedin": "https://www.linkedin.com/company/syndeio-biosciences",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic Medicine",
+    "category": "neurotech"
+  },
+  {
+    "name": "SynerFuse\u00ae",
+    "url": "https://www.synerfuse.com",
+    "linkedin": "https://www.linkedin.com/company/synerfuse",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synergia Medical",
+    "url": "https://www.synergiamedical.com",
+    "linkedin": "https://www.linkedin.com/company/synergia-medical",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic Medicine (light-activated VNS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Syntropic",
+    "url": "https://www.syntropic.com",
+    "linkedin": "https://www.linkedin.com/company/syntropic",
+    "type": "Medical Device Co.",
+    "tech_tags": "40Hz Gamma Light Therapy",
+    "category": "neurotech"
+  },
+  {
+    "name": "Syntropic Medical",
+    "url": "https://www.syntropicmedical.com",
+    "linkedin": "https://www.linkedin.com/company/syntropic-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "40Hz Gamma Light Therapy",
+    "category": "neurotech"
+  },
+  {
+    "name": "T-NeuroDx",
+    "url": "https://www.tneurodx.com",
+    "linkedin": "https://www.linkedin.com/company/t-neurodx",
+    "type": "Software / AI Platform",
+    "tech_tags": "AI Diagnostics (neurological triage)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Take Pause",
+    "url": "https://take-pause.com/",
+    "linkedin": "https://www.linkedin.com/company/teitur-trophics",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Teitur Trophics",
+    "url": "https://www.teiturtrophics.com",
+    "linkedin": "https://www.linkedin.com/company/teitur-trophics",
+    "type": "Medical Device Co.",
+    "tech_tags": "Bioelectronic / Neuromodulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Temple",
+    "url": "https://www.temple.com/",
+    "linkedin": "https://www.linkedin.com/company/weartemple",
+    "type": "Wearable Consumer",
+    "tech_tags": "fNIRS / CBF Monitoring",
+    "category": "neurotech"
+  },
+  {
+    "name": "Terumo Neuro",
+    "url": "https://www.terumoneuro.com",
+    "linkedin": "https://www.linkedin.com/company/terumo-neurovascular",
+    "type": "Neurovascular Intervention",
+    "tech_tags": "Neurovascular Intervention (EVOH)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Texas Neurology",
+    "url": "https://www.texasneurology.com",
+    "linkedin": "https://www.linkedin.com/company/texas-neurology",
+    "type": "Service / Clinic",
+    "tech_tags": "Clinical Services (neurology)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Theta Neurotech",
+    "url": "https://www.thetaneurotech.com",
+    "linkedin": "https://www.linkedin.com/company/theta-neurotech",
+    "type": "Wearable Medical Device",
+    "tech_tags": "BCI (EEG seizure prediction)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Thynk Inc",
+    "url": "https://www.thynkinc.com",
+    "linkedin": "https://www.linkedin.com/company/thynk-inc",
+    "type": "Software / AI Platform",
+    "tech_tags": "Digital Therapeutics (cognitive)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Tivic Health",
+    "url": "https://www.tivichealth.com",
+    "linkedin": "https://www.linkedin.com/company/tivic-health",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic (ClearUP sinus stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "TRAINFES",
+    "url": "https://www.trainfes.cl",
+    "linkedin": "https://www.linkedin.com/company/trainfes",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "TrilliumBiO",
+    "url": "https://www.trilliumbio.com",
+    "linkedin": "https://www.linkedin.com/company/trilliumbio",
+    "type": "Bioelectronic Medicine",
+    "tech_tags": "Bioelectronic / Neuromodulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "Tripp",
+    "url": "https://trippinc.com/",
+    "linkedin": "https://www.linkedin.com/company/trippinc",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Tulavi Therapeutics",
+    "url": "https://www.tulavitherapeutics.com",
+    "linkedin": "https://www.linkedin.com/company/tulavi-therapeutics",
+    "type": "Implantable Device",
+    "tech_tags": "Bioelectronic / VNS",
+    "category": "neurotech"
+  },
+  {
+    "name": "Turing Medical",
+    "url": "https://www.turingmedical.com",
+    "linkedin": "https://www.linkedin.com/company/turingmedical",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "UB Neurosurgery",
+    "url": "https://www.ubns.com",
+    "linkedin": "https://www.linkedin.com/company/ub-neurosurgery",
+    "type": "Service / Clinic",
+    "tech_tags": "Academic / Research Institution",
+    "category": "neurotech"
+  },
+  {
+    "name": "Ubiquity VX",
+    "url": "https://www.ubiquityvx.com/",
+    "linkedin": "https://www.linkedin.com/company/ucat-ai",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "uCat",
+    "url": "https://www.ucat.ai",
+    "linkedin": "https://www.linkedin.com/company/ucat-ai",
+    "type": "Software / AI Platform",
+    "tech_tags": "BCI Speech Interface / AAC Software",
+    "category": "neurotech"
+  },
+  {
+    "name": "UNEEG Medical",
+    "url": "https://www.uneeg.com",
+    "linkedin": "https://www.linkedin.com/company/uneeg-medical",
+    "type": "Wearable Medical Device",
+    "tech_tags": "EEG (ambulatory, 24-hour monitoring)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Universal Brain",
+    "url": "https://www.universal-brain.com",
+    "linkedin": "https://www.linkedin.com/company/universal-brain",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "UroMems",
+    "url": "https://www.uromems.com",
+    "linkedin": "https://www.linkedin.com/company/uromems",
+    "type": "Implantable Device",
+    "tech_tags": "BCI (smart bladder implant, e-Tivita)",
+    "category": "neurotech"
+  },
+  {
+    "name": "UW Medicine",
+    "url": "https://www.uwmedicine.org",
+    "linkedin": "https://www.linkedin.com/company/uw-medicine",
+    "type": "Service / Clinic",
+    "tech_tags": "Academic / Research Institution",
+    "category": "neurotech"
+  },
+  {
+    "name": "VA Northeast Ohio Healthcare System",
+    "url": "https://www.va.gov/cleveland-health-care",
+    "linkedin": "https://www.linkedin.com/company/va-northeast-ohio-healthcare-system",
+    "type": "Service / Clinic",
+    "tech_tags": "Academic / Research Institution",
+    "category": "neurotech"
+  },
+  {
+    "name": "Vagustim",
+    "url": "https://www.vagustim.com",
+    "linkedin": "https://www.linkedin.com/company/vagustim",
+    "type": "Wearable Medical Device",
+    "tech_tags": "VNS (transcutaneous auricular)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Valencia Technologies",
+    "url": "https://www.valenciatechnologies.com",
+    "linkedin": "https://www.linkedin.com/company/valencia-technologies",
+    "type": "Implantable Device",
+    "tech_tags": "BCI / Bioelectronic (eCoin tibial nerve)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Velentium Medical",
+    "url": "https://www.velentium.com",
+    "linkedin": "https://www.linkedin.com/company/velentium",
+    "type": "Contract Mfr / Supplier",
+    "tech_tags": "Contract Manufacturer / Engineering",
+    "category": "neurotech"
+  },
+  {
+    "name": "Vielight",
+    "url": "https://www.vielight.com",
+    "linkedin": "https://www.linkedin.com/company/vielight",
+    "type": "Medical Device Co.",
+    "tech_tags": "Photobiomodulation (transcranial / intranasal)",
+    "category": "neurotech"
+  },
+  {
+    "name": "ViewMind",
+    "url": "https://www.viewmind.com",
+    "linkedin": "https://www.linkedin.com/company/viewmind",
+    "type": "Software / AI Platform",
+    "tech_tags": "Eye-tracking AI (Alzheimer's biomarker)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Virtual Therapeutics",
+    "url": "https://www.vthera.com/",
+    "linkedin": "https://www.linkedin.com/company/virtual-therapeutics",
+    "type": "Software / Digital Therapeutics",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Virtuleap",
+    "url": "https://virtuleap.com",
+    "linkedin": "https://www.linkedin.com/company/virtuleap",
+    "type": "Software / Digital Therapeutics",
+    "tech_tags": "VR cognitive assessment and training",
+    "category": "neurotech"
+  },
+  {
+    "name": "Vital connect",
+    "url": "https://vitalconnect.com/",
+    "linkedin": "https://www.linkedin.com/company/vitalconnect",
+    "type": "",
+    "tech_tags": "Biosensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "Vital Start Health",
+    "url": "https://vitalstarthealth.com/",
+    "linkedin": "https://www.linkedin.com/company/vitalstarthealth",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "VITREA",
+    "url": "https://www.vitrea.com",
+    "linkedin": "https://www.linkedin.com/company/vitrea",
+    "type": "Service / Clinic",
+    "tech_tags": "SCS / Rehabilitation Clinic Network",
+    "category": "neurotech"
+  },
+  {
+    "name": "VIVATRONIX",
+    "url": "https://www.vivatronix.com",
+    "linkedin": "https://www.linkedin.com/company/vivatronix",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod (UNWIND, VNS-based)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Wave Neuroscience",
+    "url": "https://www.waveneuro.com/",
+    "linkedin": "https://www.linkedin.com/company/wavepaths",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Wavepaths",
+    "url": "https://www.wavepaths.com",
+    "linkedin": "https://www.linkedin.com/company/wavepaths",
+    "type": "Medical Device Co.",
+    "tech_tags": "Psychedelics-assisted Therapy Platform",
+    "category": "neurotech"
+  },
+  {
+    "name": "WAYA Health",
+    "url": "https://www.wayahealth.com",
+    "linkedin": "https://www.linkedin.com/company/wearable-devices-ltd",
+    "type": "",
+    "tech_tags": "VR/AR/XR",
+    "category": "neurotech"
+  },
+  {
+    "name": "Wearable Devices Ltd.",
+    "url": "https://www.wearable-devices.com",
+    "linkedin": "https://www.linkedin.com/company/wearable-devices-ltd",
+    "type": "Wearable Consumer",
+    "tech_tags": "Neural Gesture Control (Mudra band, EMG)",
+    "category": "neurotech"
+  },
+  {
+    "name": "WISE",
+    "url": "https://www.wise-s.it",
+    "linkedin": "https://www.linkedin.com/company/wise-spa",
+    "type": "Medical Device Co.",
+    "tech_tags": "Neural Probes (high-density CMOS)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Wisear",
+    "url": "https://www.wisear.io",
+    "linkedin": "https://www.linkedin.com/company/wisear",
+    "type": "Wearable Consumer",
+    "tech_tags": "EEG / Neural Audio Interface (in-ear)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Xana, Smart Neurostimulation",
+    "url": "https://www.xanastim.com",
+    "linkedin": "https://www.linkedin.com/company/xananeurostimulation",
+    "type": "Medical Device Co.",
+    "tech_tags": "Non-invasive neurostimulation, vagus nerve stimulation",
+    "category": "neurotech"
+  },
+  {
+    "name": "XII Medical",
+    "url": "https://www.xiimedical.com",
+    "linkedin": "https://www.linkedin.com/company/xii-medical",
+    "type": "Medical Device Co.",
+    "tech_tags": "FNS (facial nerve stim)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Xpanceo",
+    "url": "https://www.xpanceo.com",
+    "linkedin": "https://www.linkedin.com/company/xpanceo",
+    "type": "Software / AI Platform",
+    "tech_tags": "Smart Contact Lens (neural / AR)",
+    "category": "neurotech"
+  },
+  {
+    "name": "XRHealth",
+    "url": "https://www.xr.health",
+    "linkedin": "https://www.linkedin.com/company/xrhealth",
+    "type": "Medical Device Co.",
+    "tech_tags": "VR Digital Therapeutics",
+    "category": "neurotech"
+  },
+  {
+    "name": "Xsensio",
+    "url": "https://xsensio.com/",
+    "linkedin": "https://www.linkedin.com/company/xylo-bio",
+    "type": "",
+    "tech_tags": "Biosensing",
+    "category": "neurotech"
+  },
+  {
+    "name": "Xylo Bio",
+    "url": "https://www.xylobio.com",
+    "linkedin": "https://www.linkedin.com/company/xylo-bio",
+    "type": "Wearable Medical Device",
+    "tech_tags": "Wearable Neuromod (plant-based electrodes)",
+    "category": "neurotech"
+  },
+  {
+    "name": "YBRAIN",
+    "url": "https://www.ybrain.com",
+    "linkedin": "https://www.linkedin.com/company/ybrain",
+    "type": "",
+    "tech_tags": "",
+    "category": "neurotech"
+  },
+  {
+    "name": "Yneuro",
+    "url": "https://www.yneuro.com",
+    "linkedin": "https://www.linkedin.com/company/yneuro",
+    "type": "Medical Device Co.",
+    "tech_tags": "EEG / BCI Platform",
+    "category": "neurotech"
+  },
+  {
+    "name": "Zander Labs",
+    "url": "https://www.zanderlabs.com",
+    "linkedin": "https://www.linkedin.com/company/zander-labs",
+    "type": "Implantable Device",
+    "tech_tags": "DBS / Neuromod (waveform optimisation)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Zeta Surgical",
+    "url": "https://www.zetasurgical.com",
+    "linkedin": "https://www.linkedin.com/company/zeta-surgical",
+    "type": "Capital Equipment",
+    "tech_tags": "TMS Navigation AI (AR-guided)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Zeto Inc.",
+    "url": "https://zeto-inc.com/",
+    "linkedin": "https://www.linkedin.com/company/zeto-incorporated",
+    "type": "",
+    "tech_tags": "EEG",
+    "category": "neurotech"
+  },
+  {
+    "name": "Zyphra",
+    "url": "https://www.zyphra.com",
+    "linkedin": "https://www.linkedin.com/company/zyphra",
+    "type": "Software / AI Platform",
+    "tech_tags": "EEG (AI biomarker analytics)",
+    "category": "neurotech"
+  },
+  {
+    "name": "Cortica",
+    "url": "https://www.corticacare.com",
+    "linkedin": "https://www.linkedin.com/company/corticacare",
+    "type": "Clinic / Care Platform",
+    "tech_tags": "Autism Care Platform, Neurodevelopmental Care, Telehealth / Clinics",
+    "category": "neurotech"
+  },
+  {
+    "name": "EarliPoint Health",
+    "url": "https://earlipointhealth.com",
+    "linkedin": "https://www.linkedin.com/company/earlitec",
+    "type": "Medical Device / Diagnostics",
+    "tech_tags": "Eye Tracking, Autism Diagnostics, FDA-cleared Diagnostic Aid",
+    "category": "neurotech"
+  },
+  {
+    "name": "Nobi",
+    "url": "https://www.nobi.life/en",
+    "linkedin": "https://www.linkedin.com/company/nobilights",
+    "type": "Ambient Monitoring / Care Technology",
+    "tech_tags": "AI Monitoring, Smart Lighting, Fall Detection / Prevention",
+    "category": "neurotech"
+  },
+  {
+    "name": "Synapticure",
+    "url": "https://www.synapticure.com",
+    "linkedin": "https://www.linkedin.com/company/synapticure-inc",
+    "type": "Clinic / Care Platform",
+    "tech_tags": "Virtual Neurology Care, Neurodegenerative Care, Telehealth",
+    "category": "neurotech"
+  },
+  {
+    "name": "Willo",
+    "url": "https://willo.com",
+    "linkedin": "",
+    "type": "Consumer Device / Accessibility",
+    "tech_tags": "Automated Oral Care, Assistive Device, Consumer Neurotech",
+    "category": "neurotech"
+  },
+  {
+    "name": "Opal",
+    "url": "https://www.opal.so",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Screen time, Focus",
+    "category": "productivity"
+  },
+  {
+    "name": "Freedom",
+    "url": "https://freedom.to",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "App blocker, Focus",
+    "category": "productivity"
+  },
+  {
+    "name": "Cold Turkey",
+    "url": "https://getcoldturkey.com",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Website blocker",
+    "category": "productivity"
+  },
+  {
+    "name": "Forest",
+    "url": "https://www.forestapp.cc",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Focus timer, Gamification",
+    "category": "productivity"
+  },
+  {
+    "name": "Clearspace",
+    "url": "https://www.clearspace.app",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "App launcher, Mindful usage",
+    "category": "productivity"
+  },
+  {
+    "name": "One Sec",
+    "url": "https://one-sec.app",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Habit breaking, Friction",
+    "category": "productivity"
+  },
+  {
+    "name": "ScreenZen",
+    "url": "https://www.screenzen.co",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Screen time, Digital wellness",
+    "category": "productivity"
+  },
+  {
+    "name": "BeReal",
+    "url": "https://bereal.com",
+    "linkedin": "",
+    "type": "Social App",
+    "tech_tags": "Authentic social, Anti-addiction",
+    "category": "productivity"
+  },
+  {
+    "name": "Brick",
+    "url": "https://www.gobrick.app",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Physical blocker, Focus",
+    "category": "productivity"
+  },
+  {
+    "name": "Unpluq",
+    "url": "https://www.unpluq.com",
+    "linkedin": "",
+    "type": "Productivity App",
+    "tech_tags": "Physical key, Phone addiction",
+    "category": "productivity"
+  }
+]

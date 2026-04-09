@@ -1,0 +1,88 @@
+{
+  "neurotech": {
+    "primary": [
+      "neurotech",
+      "neurotechnology",
+      "brain computer interface",
+      "BCI",
+      "EEG headband",
+      "neural interface",
+      "brain wearable",
+      "neurofeedback",
+      "brain sensing",
+      "cognitive enhancement device",
+      "focus headband",
+      "meditation headband",
+      "brain stimulation",
+      "tDCS",
+      "TMS transcranial",
+      "neural wearable"
+    ],
+    "companies": [
+      "Muse headband",
+      "Neurable",
+      "Neurosity Crown",
+      "EMOTIV",
+      "OpenBCI",
+      "Kernel",
+      "Synchron",
+      "Neuralink",
+      "Paradromics",
+      "Precision Neuroscience",
+      "Apollo Neuro",
+      "Arctop",
+      "NextMind",
+      "Cognixion",
+      "BrainCo",
+      "Dreem",
+      "Elemind",
+      "Halo Neuroscience",
+      "Humm",
+      "Intheon",
+      "Mindset",
+      "Neurosity",
+      "Flow Neuroscience"
+    ],
+    "topics": [
+      "focus tracking EEG",
+      "productivity neuroscience",
+      "attention monitoring",
+      "cognitive performance wearable",
+      "brain state detection",
+      "mental workload sensing",
+      "neural productivity",
+      "brain optimization"
+    ]
+  },
+  "productivity": {
+    "primary": [
+      "digital wellness app",
+      "screen time app",
+      "phone addiction app",
+      "focus app",
+      "app blocker",
+      "website blocker",
+      "distraction blocker",
+      "digital detox"
+    ],
+    "companies": [
+      "Opal app",
+      "Freedom app",
+      "Cold Turkey",
+      "Forest app",
+      "Clearspace",
+      "One Sec app",
+      "ScreenZen",
+      "Brick phone",
+      "Unpluq"
+    ]
+  },
+  "exclude_terms": [
+    "neurology clinic",
+    "neurologist appointment",
+    "brain tumor",
+    "alzheimer treatment",
+    "parkinson medication",
+    "epilepsy seizure"
+  ]
+}
