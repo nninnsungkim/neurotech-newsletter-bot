@@ -1,136 +1,127 @@
 """
-APEX Industry Classifier
-BROAD coverage - only excludes obviously irrelevant content.
+Business-only classifier for APEX.
+REJECT: Academic research, medical news, general neuroscience.
+ACCEPT: Products, funding, partnerships, launches.
 """
 
 from typing import List, Dict, Tuple
-import re
 
 
-class IndustryClassifier:
-    """Broad industry filter - exclude garbage, keep everything else."""
+class BusinessOnlyClassifier:
+    """Only passes business/product news about companies."""
 
-    # ONLY exclude if title contains these (clearly irrelevant)
-    EXCLUDE_FROM_TITLE = [
-        # Automotive
-        'car feature', 'car repair', 'vehicle', 'automotive', 'motor trend',
-        'tesla model', 'toyota', 'ford', 'honda', 'bmw', 'mercedes',
-        'driving', 'highway', 'traffic',
+    # Auto-reject if title contains these
+    REJECT = [
+        # Academic/research
+        'study finds', 'research shows', 'scientists', 'researchers',
+        'neural code', 'brain activity', 'neurons', 'synapses',
+        'mental images', 'cognitive science', 'neuroscience news',
+        'brain replays', 'new insights', 'discovery',
 
-        # Sports
-        'baseball', 'football', 'basketball', 'soccer', 'hockey',
-        'nfl', 'mlb', 'nba', 'nhl', 'fifa',
-        'game score', 'final score', 'gameday', 'playoffs', 'championship',
-        'fantasy sports', 'fantasy baseball', 'fantasy football',
+        # Medical/clinical
+        'treatment', 'therapy', 'disease', 'disorder', 'patient',
+        'alzheimer', 'parkinson', 'stroke', 'epilepsy', 'autism',
+        'surgery', 'clinical', 'hospital', 'diagnosis',
 
-        # Crime/Police
-        'police', 'arrest', 'warrant', 'murder', 'crime', 'criminal',
-        'prison', 'inmate', 'jail', 'court case',
-
-        # Politics/News
-        'nra', 'gun rights', 'firearm', 'election', 'vote', 'congress',
-        'senate', 'republican', 'democrat', 'trump', 'biden',
-
-        # Nature/Environment (not relevant)
-        'forest legacy', 'forest program', 'conservation', 'wildlife',
-        'national park', 'hiking trail',
-
-        # Finance (not startup funding)
-        'commodities', 'stock price', 'stock market', 'trading', 'forex',
-        'bitcoin', 'crypto', 'blockchain', 'nft',
-        'real estate', 'housing market', 'mortgage',
-
-        # Food/Lifestyle
-        'recipe', 'cooking', 'restaurant', 'chef', 'food',
-        'weather', 'forecast',
-
-        # Gaming (not brain gaming)
-        'nintendo', 'mario', 'xbox', 'playstation', 'video game',
-        'fortnite', 'minecraft', 'call of duty',
-
-        # Medical (too clinical, not consumer)
-        'surgery', 'surgical', 'hospital', 'patient dies',
-        'tumor', 'cancer treatment', 'chemotherapy',
-        'clinical trial results', 'drug trial', 'fda approval drug',
+        # Irrelevant
+        'car', 'vehicle', 'baseball', 'football', 'police', 'arrest',
+        'nra', 'gun', 'election', 'recipe', 'weather', 'game score',
+        'forest', 'wildlife', 'bitcoin', 'crypto', 'stock price',
     ]
 
-    # Neurotech-related terms for categorization
-    NEUROTECH_TERMS = [
-        'eeg', 'brain', 'neural', 'neuro', 'cognitive', 'bci',
-        'headband', 'neurofeedback', 'brainwave', 'meditation device',
-        'muse', 'neurable', 'neurosity', 'emotiv', 'dreem', 'apollo neuro',
-        'kernel', 'synchron', 'neuralink', 'openBCI',
-        'brain-computer', 'brain computer', 'brain sensing', 'brain-sensing',
-        'mental wellness', 'brain health', 'cognitive enhancement',
+    # Must have at least ONE of these (business signals)
+    BUSINESS_SIGNALS = [
+        'launch', 'launches', 'release', 'releases', 'announce',
+        'funding', 'raises', 'raised', 'series', 'seed', 'investment',
+        'partnership', 'partners', 'partner with', 'collaboration',
+        'acquisition', 'acquires', 'acquired', 'merger',
+        'new product', 'new feature', 'update', 'version',
+        'expands', 'expansion', 'opens', 'available',
+        'ceo', 'hires', 'appoints', 'joins',
+        'fda', 'approval', 'clearance', 'patent',
     ]
 
-    # Productivity-related terms
-    PRODUCTIVITY_TERMS = [
-        'screen time', 'app blocker', 'digital wellness', 'phone addiction',
-        'focus app', 'productivity app', 'distraction', 'attention',
-        'opal', 'freedom app', 'cold turkey', 'one sec', 'screenzen',
-        'dopamine', 'social media addiction', 'digital detox',
-        'smartphone addiction', 'notification', 'mindfulness app',
+    # Company/product terms (industry relevance)
+    RELEVANT_TERMS = [
+        # Neurotech
+        'eeg', 'headband', 'wearable', 'neurofeedback', 'bci',
+        'brain-computer', 'brain sensing', 'neurotech',
+        'muse', 'neurable', 'neurosity', 'emotiv', 'dreem',
+        'apollo neuro', 'opal', 'freedom',
+
+        # Productivity
+        'screen time', 'app blocker', 'digital wellness',
+        'focus app', 'productivity app', 'phone addiction',
+        'distraction', 'attention app',
     ]
 
-    def _should_exclude(self, title: str) -> Tuple[bool, str]:
-        """Check if title should be excluded."""
+    def _should_reject(self, title: str) -> bool:
+        """Check if title should be rejected."""
         title_lower = title.lower()
-
-        for term in self.EXCLUDE_FROM_TITLE:
+        for term in self.REJECT:
             if term in title_lower:
-                return True, f'excluded: {term}'
+                return True
+        return False
 
-        return False, ''
-
-    def _categorize(self, title: str) -> str:
-        """Categorize as neurotech or productivity."""
+    def _has_business_signal(self, title: str) -> bool:
+        """Check if has business news signal."""
         title_lower = title.lower()
+        for signal in self.BUSINESS_SIGNALS:
+            if signal in title_lower:
+                return True
+        return False
 
-        for term in self.NEUROTECH_TERMS:
+    def _is_relevant(self, title: str) -> bool:
+        """Check if industry-relevant."""
+        title_lower = title.lower()
+        for term in self.RELEVANT_TERMS:
             if term in title_lower:
-                return 'neurotech'
-
-        for term in self.PRODUCTIVITY_TERMS:
-            if term in title_lower:
-                return 'productivity'
-
-        # Default to neurotech (broader category)
-        return 'neurotech'
+                return True
+        return False
 
     def classify(self, article: Dict) -> Tuple[str, float, str]:
         """Classify article."""
         title = article.get('title', '')
 
-        excluded, reason = self._should_exclude(title)
-        if excluded:
-            return ('excluded', 0.0, reason)
+        # Reject research/medical/irrelevant
+        if self._should_reject(title):
+            return ('excluded', 0.0, 'rejected')
 
-        category = self._categorize(title)
-        return (category, 1.0, 'relevant')
+        # Must be relevant AND have business signal
+        has_signal = self._has_business_signal(title)
+        is_relevant = self._is_relevant(title)
+
+        if not (has_signal or is_relevant):
+            return ('excluded', 0.0, 'not business news')
+
+        # Categorize
+        title_lower = title.lower()
+        neurotech_terms = ['eeg', 'headband', 'brain', 'neuro', 'wearable', 'muse', 'neurable', 'emotiv', 'dreem']
+
+        for term in neurotech_terms:
+            if term in title_lower:
+                return ('neurotech', 1.0, 'relevant business')
+
+        return ('productivity', 1.0, 'relevant business')
 
     def classify_batch(self, articles: List[Dict]) -> Dict[str, List[Dict]]:
-        """Classify all articles."""
-        results = {
-            'neurotech': [],
-            'productivity': [],
-            'excluded': []
-        }
+        """Classify all."""
+        results = {'neurotech': [], 'productivity': [], 'excluded': []}
 
         for article in articles:
             category, score, reason = self.classify(article)
             article['category'] = category
             article['relevance_score'] = score
-            article['classification_reason'] = reason
             results[category].append(article)
 
-        print(f"Classified: {len(results['neurotech'])} neurotech, "
-              f"{len(results['productivity'])} productivity, "
+        print(f"Business filter: {len(results['neurotech'])} neurotech, "
+              f"{len(results['productivity'])} software, "
               f"{len(results['excluded'])} excluded")
 
         return results
 
 
 def classify_articles(articles: List[Dict]) -> Dict[str, List[Dict]]:
-    classifier = IndustryClassifier()
+    """Classify articles."""
+    classifier = BusinessOnlyClassifier()
     return classifier.classify_batch(articles)

@@ -72,7 +72,7 @@ def process_articles(articles: list, sent_path: str = None) -> dict:
     return classified
 
 
-def select_articles(classified: dict, neurotech_count: int = 16,
+def select_articles(classified: dict, neurotech_count: int = 11,
                    productivity_count: int = 4) -> tuple:
     """Select top relevant articles."""
     neurotech = classified.get('neurotech', [])[:neurotech_count]
@@ -86,22 +86,11 @@ def select_articles(classified: dict, neurotech_count: int = 16,
 
 
 def summarize(neurotech: list, productivity: list) -> tuple:
-    """Generate AI summaries."""
+    """Skip summarization - just return as-is."""
     print("\n" + "=" * 50)
-    print("GENERATING SUMMARIES")
+    print("SKIPPING SUMMARIES (title + link only)")
     print("=" * 50)
-
-    all_articles = neurotech + productivity
-
-    if not all_articles:
-        return [], []
-
-    summarized = summarize_articles(all_articles)
-
-    neurotech_out = summarized[:len(neurotech)]
-    productivity_out = summarized[len(neurotech):]
-
-    return neurotech_out, productivity_out
+    return neurotech, productivity
 
 
 def run_newsletter(dry_run: bool = False, hours: int = 12):
