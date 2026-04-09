@@ -33,6 +33,12 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Show current commit
+        run: |
+          echo "Current commit: $(git rev-parse HEAD)"
+          echo "Latest commit should be: 707ad68 or newer"
+          git log --oneline -3
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
