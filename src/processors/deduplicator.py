@@ -1,6 +1,6 @@
 """
-Deduplication and ranking for collected articles.
-Uses fuzzy matching to identify similar articles.
+Deduplication with source quality ranking.
+When similar articles exist, picks the more trustworthy source.
 """
 
 from typing import List, Dict, Set
@@ -12,223 +12,181 @@ import os
 from datetime import datetime, timedelta
 
 
-class ArticleDeduplicator:
-    """Removes duplicate articles and ranks by relevance."""
+# Source trustworthiness ranking (higher = better)
+SOURCE_QUALITY = {
+    # Tier 1: Major tech publications
+    'techcrunch': 10,
+    'wired': 10,
+    'the verge': 10,
+    'mit technology review': 10,
+    'ieee spectrum': 10,
+    'venturebeat': 9,
+    'ars technica': 9,
+    'bloomberg': 10,
+    'reuters': 10,
+    'forbes': 8,
 
-    def __init__(self, sent_articles_path: str = None):
-        self.sent_articles_path = sent_articles_path or 'data/sent_articles.json'
+    # Tier 2: Health tech / industry specific
+    'mobihealthnews': 8,
+    'medgadget': 8,
+    'fiercebiotech': 8,
+    'medical device network': 8,
+    'neuroscience news': 7,
+
+    # Tier 3: Company blogs (direct source)
+    'blog': 7,
+    'rss': 7,
+    'linkedin': 6,
+
+    # Tier 4: Default
+    'default': 5,
+}
+
+
+def get_source_score(source: str) -> int:
+    """Get quality score for a source."""
+    source_lower = source.lower()
+    for name, score in SOURCE_QUALITY.items():
+        if name in source_lower:
+            return score
+    return SOURCE_QUALITY['default']
+
+
+class ArticleDeduplicator:
+    """Deduplicates and picks best sources."""
+
+    def __init__(self, sent_path: str = None):
+        self.sent_path = sent_path or 'data/sent_articles.json'
         self.sent_urls: Set[str] = set()
         self.sent_hashes: Set[str] = set()
-        self._load_sent_articles()
+        self._load_sent()
 
-    def _load_sent_articles(self):
-        """Load previously sent articles to avoid repeats."""
+    def _load_sent(self):
+        """Load previously sent articles."""
         try:
-            if os.path.exists(self.sent_articles_path):
-                with open(self.sent_articles_path, 'r') as f:
+            if os.path.exists(self.sent_path):
+                with open(self.sent_path, 'r') as f:
                     data = json.load(f)
-
-                # Only keep articles from last 7 days
-                cutoff = (datetime.utcnow() - timedelta(days=7)).isoformat()
+                cutoff = (datetime.utcnow() - timedelta(days=3)).isoformat()
                 recent = [a for a in data if a.get('sent_at', '') > cutoff]
-
                 self.sent_urls = {a['url'] for a in recent}
-                self.sent_hashes = {a.get('title_hash', '') for a in recent}
+                self.sent_hashes = {a.get('hash', '') for a in recent}
+        except:
+            pass
 
-                print(f"Loaded {len(self.sent_urls)} previously sent articles")
-        except Exception as e:
-            print(f"Could not load sent articles: {e}")
+    def _hash_title(self, title: str) -> str:
+        """Hash title for comparison."""
+        clean = title.lower().strip()
+        return hashlib.md5(clean.encode()).hexdigest()[:12]
 
-    def _save_sent_articles(self, new_articles: List[Dict]):
-        """Save newly sent articles."""
+    def _normalize_url(self, url: str) -> str:
+        """Normalize URL."""
+        parsed = urlparse(url)
+        return f"{parsed.netloc}{parsed.path}".lower().rstrip('/')
+
+    def _is_similar(self, t1: str, t2: str, threshold: int = 70) -> bool:
+        """Check if titles are similar."""
+        return fuzz.ratio(t1.lower(), t2.lower()) >= threshold
+
+    def _was_sent(self, article: Dict) -> bool:
+        """Check if already sent."""
+        url = self._normalize_url(article.get('url', ''))
+        title_hash = self._hash_title(article.get('title', ''))
+        return url in self.sent_urls or title_hash in self.sent_hashes
+
+    def deduplicate(self, articles: List[Dict]) -> List[Dict]:
+        """Remove duplicates, keeping best source for similar content."""
+        # First, remove exact URL duplicates
+        seen_urls: Set[str] = set()
+        unique = []
+
+        for article in articles:
+            url = self._normalize_url(article.get('url', ''))
+            if url in seen_urls:
+                continue
+            if self._was_sent(article):
+                continue
+            seen_urls.add(url)
+            unique.append(article)
+
+        # Now handle similar titles - keep the better source
+        final = []
+        used_indices = set()
+
+        for i, article in enumerate(unique):
+            if i in used_indices:
+                continue
+
+            title = article.get('title', '')
+            best = article
+            best_score = get_source_score(article.get('source', ''))
+
+            # Check remaining articles for similarity
+            for j in range(i + 1, len(unique)):
+                if j in used_indices:
+                    continue
+
+                other = unique[j]
+                other_title = other.get('title', '')
+
+                if self._is_similar(title, other_title):
+                    other_score = get_source_score(other.get('source', ''))
+                    if other_score > best_score:
+                        best = other
+                        best_score = other_score
+                    used_indices.add(j)
+
+            final.append(best)
+            used_indices.add(i)
+
+        print(f"Deduplication: {len(articles)} -> {len(final)} articles")
+        return final
+
+    def mark_as_sent(self, articles: List[Dict]):
+        """Mark articles as sent."""
         try:
             existing = []
-            if os.path.exists(self.sent_articles_path):
-                with open(self.sent_articles_path, 'r') as f:
+            if os.path.exists(self.sent_path):
+                with open(self.sent_path, 'r') as f:
                     existing = json.load(f)
 
-            # Add new articles
             now = datetime.utcnow().isoformat()
-            for article in new_articles:
+            for article in articles:
                 existing.append({
-                    'url': article['url'],
-                    'title_hash': self._hash_title(article['title']),
+                    'url': self._normalize_url(article.get('url', '')),
+                    'hash': self._hash_title(article.get('title', '')),
                     'sent_at': now
                 })
 
-            # Keep only last 7 days
-            cutoff = (datetime.utcnow() - timedelta(days=7)).isoformat()
+            # Keep last 3 days
+            cutoff = (datetime.utcnow() - timedelta(days=3)).isoformat()
             existing = [a for a in existing if a.get('sent_at', '') > cutoff]
 
-            os.makedirs(os.path.dirname(self.sent_articles_path), exist_ok=True)
-            with open(self.sent_articles_path, 'w') as f:
-                json.dump(existing, f, indent=2)
-
+            os.makedirs(os.path.dirname(self.sent_path), exist_ok=True)
+            with open(self.sent_path, 'w') as f:
+                json.dump(existing, f)
         except Exception as e:
-            print(f"Could not save sent articles: {e}")
-
-    def _hash_title(self, title: str) -> str:
-        """Create a hash of the title for comparison."""
-        normalized = title.lower().strip()
-        return hashlib.md5(normalized.encode()).hexdigest()[:12]
-
-    def _normalize_url(self, url: str) -> str:
-        """Normalize URL for comparison."""
-        parsed = urlparse(url)
-        # Remove tracking parameters
-        path = parsed.path.rstrip('/')
-        return f"{parsed.netloc}{path}".lower()
-
-    def _is_similar(self, title1: str, title2: str, threshold: int = 80) -> bool:
-        """Check if two titles are similar using fuzzy matching."""
-        return fuzz.ratio(title1.lower(), title2.lower()) >= threshold
-
-    def _is_previously_sent(self, article: Dict) -> bool:
-        """Check if article was already sent."""
-        url = article.get('url', '')
-        title_hash = self._hash_title(article.get('title', ''))
-
-        if url in self.sent_urls:
-            return True
-        if title_hash in self.sent_hashes:
-            return True
-
-        return False
-
-    def deduplicate(self, articles: List[Dict]) -> List[Dict]:
-        """Remove duplicate articles from the list."""
-        seen_urls: Set[str] = set()
-        seen_titles: List[str] = []
-        unique_articles = []
-
-        for article in articles:
-            url = article.get('url', '')
-            title = article.get('title', '')
-
-            if not url or not title:
-                continue
-
-            # Skip previously sent
-            if self._is_previously_sent(article):
-                continue
-
-            # Check URL duplicate
-            normalized_url = self._normalize_url(url)
-            if normalized_url in seen_urls:
-                continue
-
-            # Check title similarity
-            is_similar = False
-            for seen_title in seen_titles:
-                if self._is_similar(title, seen_title):
-                    is_similar = True
-                    break
-
-            if is_similar:
-                continue
-
-            # Article is unique
-            seen_urls.add(normalized_url)
-            seen_titles.append(title)
-            unique_articles.append(article)
-
-        print(f"Deduplicated: {len(articles)} -> {len(unique_articles)} articles")
-        return unique_articles
-
-    def mark_as_sent(self, articles: List[Dict]):
-        """Mark articles as sent to avoid repeating them."""
-        self._save_sent_articles(articles)
+            print(f"Error saving sent: {e}")
 
 
 class ArticleRanker:
     """Ranks articles by relevance and quality."""
 
-    # Source quality scores
-    SOURCE_SCORES = {
-        'techcrunch': 10,
-        'wired': 10,
-        'mit technology review': 10,
-        'the verge': 9,
-        'ars technica': 9,
-        'ieee spectrum': 10,
-        'venturebeat': 8,
-        'neuroscience news': 9,
-        'bloomberg': 10,
-        'reuters': 10,
-        'forbes': 7,
-        'business insider': 6,
-    }
-
-    # Keywords that boost relevance
-    BOOST_KEYWORDS = [
-        'announces', 'launches', 'raises', 'funding', 'series',
-        'partnership', 'acquisition', 'fda', 'approved', 'clinical',
-        'breakthrough', 'first', 'new', 'release', 'update'
-    ]
-
-    def _get_source_score(self, source: str) -> int:
-        """Get quality score for a source."""
-        source_lower = source.lower()
-        for name, score in self.SOURCE_SCORES.items():
-            if name in source_lower:
-                return score
-        return 5  # Default score
-
-    def _get_keyword_boost(self, title: str) -> int:
-        """Get boost score based on keywords in title."""
-        title_lower = title.lower()
-        boost = 0
-        for keyword in self.BOOST_KEYWORDS:
-            if keyword in title_lower:
-                boost += 2
-        return min(boost, 10)  # Cap at 10
-
-    def _get_recency_score(self, published: str) -> int:
-        """Score based on how recent the article is."""
-        try:
-            from dateutil import parser
-            pub_date = parser.parse(published)
-            hours_ago = (datetime.utcnow() - pub_date.replace(tzinfo=None)).total_seconds() / 3600
-
-            if hours_ago < 2:
-                return 10
-            elif hours_ago < 6:
-                return 8
-            elif hours_ago < 12:
-                return 5
-            else:
-                return 2
-        except:
-            return 3
-
     def rank(self, articles: List[Dict]) -> List[Dict]:
-        """Rank articles by relevance score."""
+        """Rank articles."""
         for article in articles:
-            source_score = self._get_source_score(article.get('source', ''))
-            keyword_boost = self._get_keyword_boost(article.get('title', ''))
-            recency_score = self._get_recency_score(article.get('published', ''))
+            source_score = get_source_score(article.get('source', ''))
+            article['quality_score'] = source_score
 
-            # Reddit posts have upvote scores
-            reddit_score = min(article.get('score', 0) / 10, 10)
-
-            article['relevance_score'] = (
-                source_score * 2 +
-                keyword_boost +
-                recency_score +
-                reddit_score
-            )
-
-        # Sort by relevance score
-        ranked = sorted(articles, key=lambda x: x.get('relevance_score', 0), reverse=True)
-        return ranked
+        return sorted(articles, key=lambda x: x.get('quality_score', 0), reverse=True)
 
 
 def deduplicate_and_rank(articles: List[Dict], sent_path: str = None) -> List[Dict]:
-    """Main function to deduplicate and rank articles."""
-    deduplicator = ArticleDeduplicator(sent_path)
+    """Main function."""
+    dedup = ArticleDeduplicator(sent_path)
     ranker = ArticleRanker()
 
-    unique = deduplicator.deduplicate(articles)
+    unique = dedup.deduplicate(articles)
     ranked = ranker.rank(unique)
 
     return ranked

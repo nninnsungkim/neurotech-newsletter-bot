@@ -1,6 +1,6 @@
 """
-Direct company website/blog scraper.
-Actually visits company sites to find real updates.
+Company blog/LinkedIn scraper.
+Only scrapes actual blog POSTS, not navigation/shop links.
 """
 
 import requests
@@ -22,204 +22,288 @@ def load_companies() -> List[Dict]:
         return json.load(f)
 
 
-class CompanyScraper:
-    """Scrapes actual company websites for news/updates."""
+class BlogScraper:
+    """Scrapes actual blog POSTS only."""
 
     HEADERS = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0'
     }
 
-    # Known blog/news paths to check
-    BLOG_PATHS = [
-        '/blog', '/blog/', '/news', '/news/', '/updates', '/updates/',
-        '/press', '/press/', '/newsroom', '/newsroom/',
-        '/articles', '/articles/', '/insights', '/insights/',
+    # URLs to SKIP (not blog posts)
+    SKIP_PATTERNS = [
+        '/shop', '/store', '/cart', '/checkout', '/account', '/login',
+        '/contact', '/about', '/team', '/careers', '/jobs', '/privacy',
+        '/terms', '/faq', '/help', '/support', '/pricing', '/demo',
+        '/subscribe', '/signup', '/sign-up', '/register',
+        '#', 'javascript:', 'mailto:', 'tel:',
+        '/tag/', '/category/', '/author/', '/page/',
+        '.pdf', '.jpg', '.png', '.gif', '.mp4',
     ]
 
-    # Known RSS feed paths
-    RSS_PATHS = [
-        '/blog/feed', '/blog/rss', '/feed', '/rss', '/feed.xml', '/rss.xml',
-        '/blog/feed/', '/blog/rss/', '/feed/', '/atom.xml',
-        '/news/feed', '/news/rss',
-    ]
+    # Blog paths
+    BLOG_PATHS = ['/blog', '/news', '/updates', '/press', '/newsroom', '/insights', '/articles']
 
-    def __init__(self, hours_lookback: int = 24):
-        self.hours = hours_lookback
-        self.cutoff = datetime.utcnow() - timedelta(hours=hours_lookback)
+    # RSS paths
+    RSS_PATHS = ['/blog/feed', '/feed', '/rss', '/feed.xml', '/blog/rss.xml', '/atom.xml']
 
-    def _fetch_page(self, url: str, timeout: int = 10) -> Optional[str]:
-        """Fetch page content."""
-        try:
-            resp = requests.get(url, headers=self.HEADERS, timeout=timeout)
-            if resp.status_code == 200:
-                return resp.text
-        except:
-            pass
-        return None
+    def __init__(self, hours: int = 48):
+        self.hours = hours
+        self.cutoff = datetime.utcnow() - timedelta(hours=hours)
 
-    def _find_blog_url(self, base_url: str) -> Optional[str]:
-        """Find the blog/news page URL."""
-        for path in self.BLOG_PATHS:
-            url = urljoin(base_url, path)
-            try:
-                resp = requests.head(url, headers=self.HEADERS, timeout=5, allow_redirects=True)
-                if resp.status_code == 200:
-                    return resp.url
-            except:
-                continue
-        return None
+    def _is_valid_post_url(self, url: str) -> bool:
+        """Check if URL looks like a blog post (not nav/shop)."""
+        url_lower = url.lower()
 
-    def _find_rss_feed(self, base_url: str) -> Optional[str]:
-        """Find RSS feed URL."""
-        for path in self.RSS_PATHS:
-            url = urljoin(base_url, path)
-            try:
-                resp = requests.head(url, headers=self.HEADERS, timeout=5)
-                if resp.status_code == 200:
-                    return url
-            except:
-                continue
-        return None
+        # Skip obvious non-posts
+        for pattern in self.SKIP_PATTERNS:
+            if pattern in url_lower:
+                return False
 
-    def _extract_articles_from_html(self, html: str, base_url: str, company_name: str) -> List[Dict]:
-        """Extract article links from HTML page."""
-        articles = []
-        soup = BeautifulSoup(html, 'html.parser')
+        # Must have a path (not just homepage)
+        parsed = urlparse(url)
+        if not parsed.path or parsed.path == '/':
+            return False
 
-        # Look for article-like elements
-        for tag in ['article', 'div', 'li']:
-            for elem in soup.find_all(tag, class_=re.compile(r'post|article|news|blog|item', re.I)):
-                # Find link
-                link = elem.find('a', href=True)
-                if not link:
-                    continue
+        # Should have multiple path segments (like /blog/my-post-title)
+        segments = [s for s in parsed.path.split('/') if s]
+        if len(segments) < 2:
+            return False
 
-                href = link.get('href', '')
-                if not href or href.startswith('#'):
-                    continue
+        return True
 
-                full_url = urljoin(base_url, href)
-
-                # Find title
-                title_elem = elem.find(['h1', 'h2', 'h3', 'h4', 'a'])
-                title = title_elem.get_text(strip=True) if title_elem else ''
-
-                if not title or len(title) < 10:
-                    continue
-
-                # Find date if available
-                date_elem = elem.find(['time', 'span', 'div'], class_=re.compile(r'date|time|posted', re.I))
-                date_str = date_elem.get_text(strip=True) if date_elem else ''
-
-                articles.append({
-                    'title': title[:150],
-                    'url': full_url,
-                    'source': company_name,
-                    'published': date_str,
-                    'company': company_name,
-                    'fetcher': 'company_blog'
-                })
-
-                if len(articles) >= 5:
-                    break
-
-        return articles[:3]  # Max 3 per company
-
-    def _extract_from_rss(self, rss_url: str, company_name: str) -> List[Dict]:
-        """Extract articles from RSS feed."""
-        articles = []
+    def _extract_posts_from_rss(self, rss_url: str, company: str) -> List[Dict]:
+        """Extract posts from RSS feed."""
+        posts = []
         try:
             feed = feedparser.parse(rss_url)
-            for entry in feed.entries[:5]:
-                title = entry.get('title', '')
+            for entry in feed.entries[:10]:
+                title = entry.get('title', '').strip()
                 link = entry.get('link', '')
 
-                if not title or not link:
+                if not title or not link or len(title) < 15:
                     continue
 
-                # Parse date
-                pub_date = ''
-                if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                    pub_date = datetime(*entry.published_parsed[:6]).isoformat()
+                if not self._is_valid_post_url(link):
+                    continue
 
-                articles.append({
+                # Get date
+                pub_date = None
+                if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                    pub_date = datetime(*entry.published_parsed[:6])
+
+                posts.append({
                     'title': title[:150],
                     'url': link,
-                    'source': company_name,
-                    'published': pub_date,
-                    'company': company_name,
+                    'source': company,
+                    'published': pub_date.isoformat() if pub_date else '',
                     'fetcher': 'rss'
                 })
-        except:
+
+        except Exception as e:
             pass
 
-        return articles[:3]
+        return posts[:5]
 
-    def scrape_company(self, company: Dict) -> List[Dict]:
-        """Scrape a single company's website for updates."""
-        name = company.get('name', '')
-        url = company.get('url', '')
+    def _extract_posts_from_html(self, html: str, base_url: str, company: str) -> List[Dict]:
+        """Extract blog posts from HTML - strict filtering."""
+        posts = []
+        soup = BeautifulSoup(html, 'html.parser')
 
-        if not url:
-            return []
+        # Look for article elements with dates (more likely to be real posts)
+        for article in soup.find_all(['article', 'div'], class_=re.compile(r'post|article|entry|blog-item|news-item', re.I)):
+            # Must have a link
+            link_elem = article.find('a', href=True)
+            if not link_elem:
+                continue
 
-        articles = []
+            href = link_elem.get('href', '')
+            full_url = urljoin(base_url, href)
 
-        # Try RSS first (faster, more reliable)
-        rss_url = self._find_rss_feed(url)
-        if rss_url:
-            articles = self._extract_from_rss(rss_url, name)
-            if articles:
-                return articles
+            if not self._is_valid_post_url(full_url):
+                continue
 
-        # Try blog page
-        blog_url = self._find_blog_url(url)
-        if blog_url:
-            html = self._fetch_page(blog_url)
-            if html:
-                articles = self._extract_articles_from_html(html, blog_url, name)
+            # Must have a title (h1, h2, h3, or link text)
+            title_elem = article.find(['h1', 'h2', 'h3', 'h4'])
+            if title_elem:
+                title = title_elem.get_text(strip=True)
+            else:
+                title = link_elem.get_text(strip=True)
 
-        return articles
+            if not title or len(title) < 15 or len(title) > 200:
+                continue
 
-    def scrape_companies(self, companies: List[Dict], max_companies: int = 50) -> List[Dict]:
-        """Scrape multiple companies."""
-        all_articles = []
+            # Skip if title looks like navigation
+            skip_titles = ['read more', 'learn more', 'view all', 'see all', 'shop', 'buy', 'contact']
+            if any(skip in title.lower() for skip in skip_titles):
+                continue
 
-        # Prioritize wearable/consumer companies
-        priority_types = ['Wearable Consumer', 'Wearable Medical Device', 'Productivity App']
+            # Look for date
+            date_elem = article.find(['time', 'span', 'div'], class_=re.compile(r'date|time|posted|published', re.I))
+            date_str = date_elem.get('datetime', date_elem.get_text(strip=True)) if date_elem else ''
 
-        # Sort by priority
-        def priority_sort(c):
-            ctype = c.get('type', '')
+            posts.append({
+                'title': title[:150],
+                'url': full_url,
+                'source': company,
+                'published': date_str,
+                'fetcher': 'blog'
+            })
+
+            if len(posts) >= 5:
+                break
+
+        return posts
+
+    def _find_and_scrape_blog(self, base_url: str, company: str) -> List[Dict]:
+        """Find and scrape blog page."""
+        # Try RSS first
+        for rss_path in self.RSS_PATHS:
+            rss_url = urljoin(base_url, rss_path)
+            try:
+                resp = requests.head(rss_url, headers=self.HEADERS, timeout=5)
+                if resp.status_code == 200:
+                    posts = self._extract_posts_from_rss(rss_url, company)
+                    if posts:
+                        return posts
+            except:
+                continue
+
+        # Try blog pages
+        for blog_path in self.BLOG_PATHS:
+            blog_url = urljoin(base_url, blog_path)
+            try:
+                resp = requests.get(blog_url, headers=self.HEADERS, timeout=10)
+                if resp.status_code == 200:
+                    posts = self._extract_posts_from_html(resp.text, blog_url, company)
+                    if posts:
+                        return posts
+            except:
+                continue
+
+        return []
+
+    def scrape_companies(self, companies: List[Dict], max_companies: int = 60) -> List[Dict]:
+        """Scrape blog posts from companies."""
+        all_posts = []
+
+        # Prioritize relevant company types
+        priority_types = ['Wearable Consumer', 'Wearable Medical', 'Software', 'Productivity']
+
+        def sort_key(c):
             for i, pt in enumerate(priority_types):
-                if pt in ctype:
+                if pt in c.get('type', ''):
                     return i
             return 99
 
-        sorted_companies = sorted(companies, key=priority_sort)
+        sorted_companies = sorted(companies, key=sort_key)
 
-        count = 0
         for company in sorted_companies[:max_companies]:
-            articles = self.scrape_company(company)
-            if articles:
-                print(f"  {company['name']}: {len(articles)} articles")
-                all_articles.extend(articles)
-                count += 1
+            name = company.get('name', '')
+            url = company.get('url', '')
+
+            if not url:
+                continue
+
+            posts = self._find_and_scrape_blog(url, name)
+            if posts:
+                print(f"  {name}: {len(posts)} posts")
+                all_posts.extend(posts)
+
             time.sleep(0.3)
 
-        print(f"Scraped {count} companies, found {len(all_articles)} articles")
-        return all_articles
+        print(f"Total blog posts: {len(all_posts)}")
+        return all_posts
 
 
-def scrape_company_updates(hours: int = 24, max_companies: int = 50) -> List[Dict]:
-    """Main function to scrape company updates."""
+class LinkedInScraper:
+    """Scrapes LinkedIn company posts."""
+
+    HEADERS = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0'
+    }
+
+    def scrape_company_posts(self, linkedin_url: str, company: str) -> List[Dict]:
+        """Try to get LinkedIn posts (limited without auth)."""
+        posts = []
+
+        if not linkedin_url or 'linkedin.com' not in linkedin_url:
+            return []
+
+        # LinkedIn's public posts feed (limited)
+        try:
+            # Try the company's posts page
+            posts_url = linkedin_url.rstrip('/') + '/posts/'
+
+            resp = requests.get(posts_url, headers=self.HEADERS, timeout=10)
+            if resp.status_code != 200:
+                return []
+
+            soup = BeautifulSoup(resp.text, 'html.parser')
+
+            # Look for post content
+            for post in soup.find_all('div', class_=re.compile(r'update|post|activity', re.I))[:5]:
+                text_elem = post.find(['p', 'span', 'div'], class_=re.compile(r'content|text|body', re.I))
+                if not text_elem:
+                    continue
+
+                text = text_elem.get_text(strip=True)[:150]
+                if len(text) < 20:
+                    continue
+
+                posts.append({
+                    'title': f"{company}: {text}",
+                    'url': posts_url,
+                    'source': f"{company} LinkedIn",
+                    'published': '',
+                    'fetcher': 'linkedin'
+                })
+
+        except Exception as e:
+            pass
+
+        return posts[:3]
+
+    def scrape_companies(self, companies: List[Dict], max_companies: int = 20) -> List[Dict]:
+        """Scrape LinkedIn posts."""
+        all_posts = []
+
+        for company in companies[:max_companies]:
+            name = company.get('name', '')
+            linkedin = company.get('linkedin', '')
+
+            if linkedin:
+                posts = self.scrape_company_posts(linkedin, name)
+                if posts:
+                    print(f"  {name} LinkedIn: {len(posts)} posts")
+                    all_posts.extend(posts)
+
+            time.sleep(0.5)
+
+        print(f"Total LinkedIn posts: {len(all_posts)}")
+        return all_posts
+
+
+def scrape_company_updates(hours: int = 48, max_companies: int = 60) -> List[Dict]:
+    """Main function: scrape blogs + LinkedIn."""
     companies = load_companies()
 
     # Filter to relevant types
-    relevant_types = ['Wearable', 'Consumer', 'Software', 'Productivity', 'BCI']
-    filtered = [c for c in companies if any(t in c.get('type', '') for t in relevant_types) or c.get('category') == 'productivity']
+    relevant = [c for c in companies if
+                any(t in c.get('type', '') for t in ['Wearable', 'Consumer', 'Software', 'BCI']) or
+                c.get('category') == 'productivity']
 
-    print(f"Scraping {min(len(filtered), max_companies)} relevant companies...")
+    print(f"Scraping {min(len(relevant), max_companies)} companies...")
 
-    scraper = CompanyScraper(hours_lookback=hours)
-    return scraper.scrape_companies(filtered, max_companies)
+    all_posts = []
+
+    # Blog scraping
+    print("\n[Blog scraping]")
+    blog_scraper = BlogScraper(hours)
+    all_posts.extend(blog_scraper.scrape_companies(relevant, max_companies))
+
+    # LinkedIn scraping
+    print("\n[LinkedIn scraping]")
+    linkedin_scraper = LinkedInScraper()
+    all_posts.extend(linkedin_scraper.scrape_companies(relevant[:20], 20))
+
+    return all_posts

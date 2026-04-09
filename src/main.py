@@ -19,7 +19,7 @@ from processors.classifier import classify_articles
 from delivery.slack import send_newsletter
 
 
-def fetch_news(hours: int = 24) -> list:
+def fetch_news(hours: int = 48) -> list:
     """Fetch from company sites + exact searches."""
     print("\n" + "=" * 50)
     print("FETCHING COMPANY UPDATES")
@@ -30,7 +30,7 @@ def fetch_news(hours: int = 24) -> list:
     # 1. Scrape actual company websites/blogs
     try:
         print("\n[1] Scraping company websites...")
-        company_articles = scrape_company_updates(hours=hours, max_companies=40)
+        company_articles = scrape_company_updates(hours=hours, max_companies=80)
         all_articles.extend(company_articles)
     except Exception as e:
         print(f"Error scraping companies: {e}")
@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dry-run', action='store_true')
-    parser.add_argument('--hours', type=int, default=24)
+    parser.add_argument('--hours', type=int, default=48)
 
     args = parser.parse_args()
     success = run_newsletter(dry_run=args.dry_run, hours=args.hours)
