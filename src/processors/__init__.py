@@ -1,5 +1,5 @@
 from .deduplicator import deduplicate_and_rank, ArticleDeduplicator, ArticleRanker
-from .classifier import classify_articles, ArticleClassifier
+from .classifier import classify_articles, BusinessOnlyClassifier
 from .summarizer import summarize_articles, ArticleSummarizer
 
 __all__ = [
@@ -8,6 +8,6 @@ __all__ = [
     'summarize_articles',
     'ArticleDeduplicator',
     'ArticleRanker',
-    'ArticleClassifier',
+    'BusinessOnlyClassifier',
     'ArticleSummarizer'
 ]
