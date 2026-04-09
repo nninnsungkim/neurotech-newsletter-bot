@@ -1,5 +1,5 @@
 """
-Ultra-clean Slack delivery - ONLY title + link.
+Clean Slack delivery - Neurotech only.
 """
 
 import os
@@ -38,12 +38,11 @@ class SlackDelivery:
         """Format: number. title | Read more"""
         title = clean_title(article.get('title', 'Untitled'))
         url = article.get('url', '')
-        source = article.get('source', '')
 
         # Just title + link, nothing else
         return f"{index}. {title} | <{url}|Read more>"
 
-    def _build_message(self, neurotech: List[Dict], software: List[Dict]) -> str:
+    def _build_message(self, articles: List[Dict]) -> str:
         """Build message."""
         now = datetime.now(pytz.timezone("America/New_York"))
         timestamp = now.strftime("%b %d, %I:%M %p %Z")
@@ -51,16 +50,10 @@ class SlackDelivery:
         lines = [
             f"*APEX COMPETITIVE INTEL* | {timestamp}",
             "",
-            f"*NEUROTECH ({len(neurotech)})*"
+            f"*NEUROTECH ({len(articles)})*"
         ]
 
-        for i, article in enumerate(neurotech, 1):
-            lines.append(self._format_article(article, i))
-
-        lines.append("")
-        lines.append(f"*SOFTWARE ({len(software)})*")
-
-        for i, article in enumerate(software, 1):
+        for i, article in enumerate(articles, 1):
             lines.append(self._format_article(article, i))
 
         lines.append("")
@@ -68,9 +61,9 @@ class SlackDelivery:
 
         return "\n".join(lines)
 
-    def send(self, neurotech: List[Dict], software: List[Dict]) -> bool:
+    def send(self, articles: List[Dict]) -> bool:
         """Send to Slack."""
-        message = self._build_message(neurotech, software)
+        message = self._build_message(articles)
 
         try:
             response = requests.post(
@@ -79,14 +72,14 @@ class SlackDelivery:
                 timeout=30
             )
             response.raise_for_status()
-            print("✓ Sent to Slack")
+            print("Sent to Slack")
             return True
         except Exception as e:
-            print(f"✗ Failed: {e}")
+            print(f"Failed: {e}")
             return False
 
 
-def send_newsletter(neurotech: List[Dict], productivity: List[Dict], webhook_url: str = None) -> bool:
+def send_newsletter(articles: List[Dict], webhook_url: str = None) -> bool:
     """Send newsletter."""
     delivery = SlackDelivery(webhook_url)
-    return delivery.send(neurotech, productivity)
+    return delivery.send(articles)
