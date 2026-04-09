@@ -1,5 +1,6 @@
 """
-Focused Google News fetcher - ONLY competitor-specific searches.
+Broad industry news fetcher for APEX competitive intelligence.
+Searches across the neurotech and productivity app landscape.
 """
 
 import feedparser
@@ -11,42 +12,73 @@ import time
 import re
 
 
-class CompetitorFetcher:
-    """Fetches news ONLY about specific competitors and products."""
+class IndustryNewsFetcher:
+    """Fetches broad industry news - neurotech + productivity."""
 
     BASE_URL = "https://news.google.com/rss/search"
 
-    # EXACT search queries for competitors
+    # BROAD industry searches
     QUERIES = [
-        # Primary competitors - EXACT MATCH
-        '"Opal app" OR "Opal screen time"',
-        '"Muse headband" OR "Muse S headband" OR "Muse 2 headband"',
-        '"Interaxon" muse',
-        '"Neurable" headphones OR "Neurable" EEG',
-        '"Freedom app" blocker',
+        # Neurotech hardware - broad
+        'EEG wearable',
+        'EEG headband',
+        'EEG consumer',
+        'brain wearable',
+        'brain-sensing',
+        'neurofeedback device',
+        'neurofeedback',
+        'brain computer interface consumer',
+        'BCI wearable',
+        'neural wearable',
+        'cognitive wearable',
+        'brain monitoring device',
+        'brainwave headband',
+        'meditation headband',
+        'focus headband',
+        'attention tracking device',
+        'neurotech startup',
+        'neurotech funding',
+        'neurotech launch',
 
-        # Secondary competitors
-        '"Neurosity Crown" OR "Neurosity" brain',
-        '"EMOTIV" headset OR "EMOTIV" EEG',
-        '"Apollo Neuro" wearable',
-        '"Dreem" headband sleep',
-        '"Flow Neuroscience" depression',
-        '"Cold Turkey" blocker',
-        '"One Sec" app addiction',
+        # Specific competitors
+        'Muse headband',
+        'Neurable',
+        'Neurosity',
+        'EMOTIV',
+        'Apollo Neuro',
+        'Dreem sleep',
+        'Opal app',
+        'Freedom app',
 
-        # Product category searches
-        '"EEG headband" launch OR funding OR release',
-        '"neurofeedback headband" OR "neurofeedback device"',
-        '"screen time app" launch OR funding',
-        '"focus wearable" OR "productivity wearable"',
-        '"digital wellness" app launch',
+        # Productivity / digital wellness - broad
+        'screen time app',
+        'app blocker',
+        'digital wellness app',
+        'digital wellness startup',
+        'phone addiction',
+        'smartphone addiction solution',
+        'focus app',
+        'productivity app launch',
+        'distraction blocker',
+        'attention economy',
+        'digital detox app',
+        'dopamine detox',
+        'social media addiction',
+        'screen addiction',
+
+        # Industry trends
+        'wearable productivity',
+        'cognitive enhancement technology',
+        'brain health wearable',
+        'mental wellness wearable',
+        'focus technology',
+        'attention technology startup',
     ]
 
     def __init__(self, hours: int = 12):
         self.hours = hours
 
     def _search_url(self, query: str) -> str:
-        """Build search URL."""
         encoded = quote(query)
         return f"{self.BASE_URL}?q={encoded}+when:{self.hours}h&hl=en-US&gl=US&ceid=US:en"
 
@@ -54,7 +86,6 @@ class CompetitorFetcher:
         """Follow redirect to get actual URL."""
         if 'news.google.com' not in google_url:
             return google_url
-
         try:
             resp = requests.get(
                 google_url,
@@ -66,13 +97,10 @@ class CompetitorFetcher:
                 return resp.url
         except:
             pass
-
         return google_url
 
     def _parse_entry(self, entry, query: str) -> Dict:
-        """Parse RSS entry to article dict."""
         title = entry.get('title', '')
-        # Remove source suffix
         if ' - ' in title:
             parts = title.rsplit(' - ', 1)
             title = parts[0]
@@ -83,14 +111,12 @@ class CompetitorFetcher:
         google_url = entry.get('link', '')
         actual_url = self._get_real_url(google_url)
 
-        # Get publish date
         try:
             from dateutil import parser
             pub_date = parser.parse(entry.get('published', '')).isoformat()
         except:
             pub_date = datetime.utcnow().isoformat()
 
-        # Clean summary - just extract text, no HTML
         raw_summary = entry.get('summary', '')
         clean_summary = re.sub(r'<[^>]+>', '', raw_summary)
         clean_summary = re.sub(r'\s+', ' ', clean_summary).strip()[:300]
@@ -105,31 +131,27 @@ class CompetitorFetcher:
         }
 
     def fetch_query(self, query: str, max_results: int = 5) -> List[Dict]:
-        """Fetch results for one query."""
         url = self._search_url(query)
         articles = []
-
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries[:max_results]:
                 article = self._parse_entry(entry, query)
                 if article['title']:
                     articles.append(article)
-            time.sleep(0.5)
+            time.sleep(0.3)
         except Exception as e:
-            print(f"  Error: {query[:40]}... - {e}")
-
+            print(f"  Error: {query[:30]}... - {e}")
         return articles
 
     def fetch_all(self) -> List[Dict]:
-        """Fetch from all queries."""
-        print("Fetching competitor news...")
+        print("Fetching industry news (broad)...")
         all_articles = []
 
         for query in self.QUERIES:
             articles = self.fetch_query(query, max_results=3)
             if articles:
-                print(f"  {query[:50]}...: {len(articles)}")
+                print(f"  {query}: {len(articles)}")
             all_articles.extend(articles)
 
         print(f"Total fetched: {len(all_articles)}")
@@ -137,15 +159,11 @@ class CompetitorFetcher:
 
 
 def fetch_all_news(hours: int = 12) -> List[Dict]:
-    """Main fetch function."""
-    fetcher = CompetitorFetcher(hours)
+    fetcher = IndustryNewsFetcher(hours)
     return fetcher.fetch_all()
 
-
-# Compatibility
 def fetch_neurotech_news(keywords_config: Dict, hours: int = 12) -> List[Dict]:
     return fetch_all_news(hours)
 
-
 def fetch_productivity_news(keywords_config: Dict, hours: int = 12) -> List[Dict]:
-    return []  # Already included in fetch_all_news
+    return []

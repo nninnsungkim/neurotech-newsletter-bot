@@ -1,113 +1,116 @@
 """
-APEX Competitive Intelligence Classifier
-STRICT: Only passes articles with competitor/product names IN THE TITLE.
+APEX Industry Classifier
+BROAD coverage - only excludes obviously irrelevant content.
 """
 
 from typing import List, Dict, Tuple
 import re
 
 
-class APEXClassifier:
-    """Only passes articles directly relevant to APEX competitors."""
+class IndustryClassifier:
+    """Broad industry filter - exclude garbage, keep everything else."""
 
-    # ONLY these terms in TITLE will pass
-    MUST_MATCH_IN_TITLE = [
-        # Primary competitors (exact)
-        'opal',
-        'muse headband', 'muse s', 'muse 2', 'interaxon',
-        'neurable',
-        'neurode',
-        'freedom app',
+    # ONLY exclude if title contains these (clearly irrelevant)
+    EXCLUDE_FROM_TITLE = [
+        # Automotive
+        'car feature', 'car repair', 'vehicle', 'automotive', 'motor trend',
+        'tesla model', 'toyota', 'ford', 'honda', 'bmw', 'mercedes',
+        'driving', 'highway', 'traffic',
 
-        # Secondary competitors
-        'neurosity', 'neurosity crown',
-        'emotiv',
-        'apollo neuro',
-        'dreem',
-        'flow neuroscience',
-        'cold turkey',
-        'one sec app',
-        'clearspace',
-        'screenzen',
+        # Sports
+        'baseball', 'football', 'basketball', 'soccer', 'hockey',
+        'nfl', 'mlb', 'nba', 'nhl', 'fifa',
+        'game score', 'final score', 'gameday', 'playoffs', 'championship',
+        'fantasy sports', 'fantasy baseball', 'fantasy football',
 
-        # Product terms (must be specific)
-        'eeg headband',
-        'eeg wearable',
-        'brain-sensing headband',
-        'neurofeedback headband',
-        'focus headband',
-        'meditation headband',
-        'screen time app',
-        'app blocker',
-        'phone addiction app',
-        'digital wellness app',
-        'focus app launch',
-        'productivity wearable',
-    ]
+        # Crime/Police
+        'police', 'arrest', 'warrant', 'murder', 'crime', 'criminal',
+        'prison', 'inmate', 'jail', 'court case',
 
-    # If title contains these, auto-reject
-    TITLE_REJECT = [
-        'car', 'vehicle', 'motor', 'driving', 'tesla', 'toyota', 'ford',
-        'police', 'arrest', 'warrant', 'crime', 'murder', 'prison', 'inmate',
-        'baseball', 'football', 'basketball', 'soccer', 'nfl', 'mlb', 'nba',
-        'game score', 'final score', 'gameday',
-        'recipe', 'cooking', 'restaurant', 'food',
+        # Politics/News
+        'nra', 'gun rights', 'firearm', 'election', 'vote', 'congress',
+        'senate', 'republican', 'democrat', 'trump', 'biden',
+
+        # Nature/Environment (not relevant)
+        'forest legacy', 'forest program', 'conservation', 'wildlife',
+        'national park', 'hiking trail',
+
+        # Finance (not startup funding)
+        'commodities', 'stock price', 'stock market', 'trading', 'forex',
+        'bitcoin', 'crypto', 'blockchain', 'nft',
+        'real estate', 'housing market', 'mortgage',
+
+        # Food/Lifestyle
+        'recipe', 'cooking', 'restaurant', 'chef', 'food',
         'weather', 'forecast',
-        'nra', 'gun', 'firearm',
-        'forest legacy', 'forest program', 'conservation',
-        'commodities', 'stock', 'trading', 'investor',
-        'alzheimer', 'parkinson', 'diabetes', 'cancer', 'tumor',
-        'surgery', 'surgical', 'implant', 'patient',
-        'linux', 'kernel', 'risc-v', 'cpu',
-        'nintendo', 'mario', 'xbox', 'playstation',
-        'crypto', 'bitcoin', 'blockchain',
-        'ipo', 'hong kong',
+
+        # Gaming (not brain gaming)
+        'nintendo', 'mario', 'xbox', 'playstation', 'video game',
+        'fortnite', 'minecraft', 'call of duty',
+
+        # Medical (too clinical, not consumer)
+        'surgery', 'surgical', 'hospital', 'patient dies',
+        'tumor', 'cancer treatment', 'chemotherapy',
+        'clinical trial results', 'drug trial', 'fda approval drug',
     ]
 
-    def _title_matches(self, title: str) -> Tuple[bool, str]:
-        """Check if title contains required keywords."""
+    # Neurotech-related terms for categorization
+    NEUROTECH_TERMS = [
+        'eeg', 'brain', 'neural', 'neuro', 'cognitive', 'bci',
+        'headband', 'neurofeedback', 'brainwave', 'meditation device',
+        'muse', 'neurable', 'neurosity', 'emotiv', 'dreem', 'apollo neuro',
+        'kernel', 'synchron', 'neuralink', 'openBCI',
+        'brain-computer', 'brain computer', 'brain sensing', 'brain-sensing',
+        'mental wellness', 'brain health', 'cognitive enhancement',
+    ]
+
+    # Productivity-related terms
+    PRODUCTIVITY_TERMS = [
+        'screen time', 'app blocker', 'digital wellness', 'phone addiction',
+        'focus app', 'productivity app', 'distraction', 'attention',
+        'opal', 'freedom app', 'cold turkey', 'one sec', 'screenzen',
+        'dopamine', 'social media addiction', 'digital detox',
+        'smartphone addiction', 'notification', 'mindfulness app',
+    ]
+
+    def _should_exclude(self, title: str) -> Tuple[bool, str]:
+        """Check if title should be excluded."""
         title_lower = title.lower()
 
-        # First check rejections
-        for reject in self.TITLE_REJECT:
-            if reject in title_lower:
-                return False, f'rejected: {reject}'
+        for term in self.EXCLUDE_FROM_TITLE:
+            if term in title_lower:
+                return True, f'excluded: {term}'
 
-        # Then check for required matches
-        for match in self.MUST_MATCH_IN_TITLE:
-            if match in title_lower:
-                return True, f'matched: {match}'
+        return False, ''
 
-        return False, 'no match'
+    def _categorize(self, title: str) -> str:
+        """Categorize as neurotech or productivity."""
+        title_lower = title.lower()
+
+        for term in self.NEUROTECH_TERMS:
+            if term in title_lower:
+                return 'neurotech'
+
+        for term in self.PRODUCTIVITY_TERMS:
+            if term in title_lower:
+                return 'productivity'
+
+        # Default to neurotech (broader category)
+        return 'neurotech'
 
     def classify(self, article: Dict) -> Tuple[str, float, str]:
-        """Classify based on TITLE ONLY."""
+        """Classify article."""
         title = article.get('title', '')
 
-        matched, reason = self._title_matches(title)
-
-        if not matched:
+        excluded, reason = self._should_exclude(title)
+        if excluded:
             return ('excluded', 0.0, reason)
 
-        # Categorize
-        title_lower = title.lower()
-
-        # Hardware/neurotech keywords
-        neurotech_terms = [
-            'eeg', 'headband', 'wearable', 'neurofeedback', 'brain',
-            'muse', 'neurable', 'neurode', 'neurosity', 'emotiv',
-            'apollo neuro', 'dreem', 'flow neuroscience'
-        ]
-
-        for term in neurotech_terms:
-            if term in title_lower:
-                return ('neurotech', 1.0, reason)
-
-        # Default to productivity
-        return ('productivity', 1.0, reason)
+        category = self._categorize(title)
+        return (category, 1.0, 'relevant')
 
     def classify_batch(self, articles: List[Dict]) -> Dict[str, List[Dict]]:
-        """Classify batch - STRICT filtering."""
+        """Classify all articles."""
         results = {
             'neurotech': [],
             'productivity': [],
@@ -119,10 +122,9 @@ class APEXClassifier:
             article['category'] = category
             article['relevance_score'] = score
             article['classification_reason'] = reason
-
             results[category].append(article)
 
-        print(f"STRICT Filter: {len(results['neurotech'])} neurotech, "
+        print(f"Classified: {len(results['neurotech'])} neurotech, "
               f"{len(results['productivity'])} productivity, "
               f"{len(results['excluded'])} excluded")
 
@@ -130,6 +132,5 @@ class APEXClassifier:
 
 
 def classify_articles(articles: List[Dict]) -> Dict[str, List[Dict]]:
-    """Main classification function."""
-    classifier = APEXClassifier()
+    classifier = IndustryClassifier()
     return classifier.classify_batch(articles)
