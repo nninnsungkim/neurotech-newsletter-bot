@@ -1,216 +1,138 @@
 """
-Slack delivery module using incoming webhooks.
+Clean Slack delivery - NO HTML, NO emojis.
 """
 
 import os
+import re
 import requests
 from typing import List, Dict, Optional
 from datetime import datetime
 import pytz
 
 
-class SlackDelivery:
-    """Delivers formatted newsletter to Slack."""
+def clean_text(text: str) -> str:
+    """Remove ALL HTML and garbage from text."""
+    if not text:
+        return ''
 
-    def __init__(self, webhook_url: Optional[str] = None, timezone: str = "America/New_York"):
+    # Remove HTML tags
+    clean = re.sub(r'<[^>]*>', '', text)
+    # Remove href/src attributes
+    clean = re.sub(r'href="[^"]*"', '', clean)
+    clean = re.sub(r'src="[^"]*"', '', clean)
+    # Remove base64 garbage
+    clean = re.sub(r'CBM[a-zA-Z0-9_/-]+', '', clean)
+    clean = re.sub(r'AU_[a-zA-Z0-9_/-]+', '', clean)
+    # Remove URLs
+    clean = re.sub(r'https?://\S+', '', clean)
+    # Remove rel, class, title attributes
+    clean = re.sub(r'rel="[^"]*"', '', clean)
+    clean = re.sub(r'class="[^"]*"', '', clean)
+    clean = re.sub(r'title="[^"]*"', '', clean)
+    # Remove any remaining HTML-like stuff
+    clean = re.sub(r'[<>]', '', clean)
+    # Remove dots and ellipsis at start
+    clean = re.sub(r'^[\s.…]+', '', clean)
+    # Clean whitespace
+    clean = re.sub(r'\s+', ' ', clean).strip()
+
+    return clean
+
+
+def truncate(text: str, max_len: int = 70) -> str:
+    """Truncate text to max length."""
+    if len(text) <= max_len:
+        return text
+    return text[:max_len-3].rsplit(' ', 1)[0] + '...'
+
+
+class SlackDelivery:
+    """Sends clean newsletter to Slack."""
+
+    def __init__(self, webhook_url: Optional[str] = None):
         self.webhook_url = webhook_url or os.environ.get('SLACK_WEBHOOK_URL')
         if not self.webhook_url:
             raise ValueError("SLACK_WEBHOOK_URL not set")
-
-        self.timezone = pytz.timezone(timezone)
-
-    def _get_timestamp(self) -> str:
-        """Get formatted timestamp in EST."""
-        now = datetime.now(self.timezone)
-        return now.strftime("%B %d, %Y • %I:%M %p %Z")
-
-    def _truncate_title(self, title: str, max_len: int = 60) -> str:
-        """Truncate title to max length."""
-        if len(title) <= max_len:
-            return title
-        return title[:max_len-3].rsplit(' ', 1)[0] + '...'
-
-    def _clean_bullet(self, bullet: str) -> str:
-        """Clean HTML and garbage from bullet text."""
-        import re
-        if not bullet:
-            return ''
-        # Remove HTML tags completely
-        clean = re.sub(r'<[^>]*>', '', bullet)
-        # Remove any href or src content
-        clean = re.sub(r'href="[^"]*"', '', clean)
-        clean = re.sub(r'src="[^"]*"', '', clean)
-        # Remove URLs
-        clean = re.sub(r'https?://\S+', '', clean)
-        # Remove base64-looking strings
-        clean = re.sub(r'CBM[a-zA-Z0-9_-]+', '', clean)
-        clean = re.sub(r'AU_[a-zA-Z0-9_-]+', '', clean)
-        # Remove extra whitespace
-        clean = re.sub(r'\s+', ' ', clean).strip()
-        # Skip if too short or still has garbage
-        if len(clean) < 15:
-            return ''
-        if any(x in clean for x in ['<', '>', 'href', 'src=', 'class=']):
-            return ''
-        return clean
+        self.tz = pytz.timezone("America/New_York")
 
     def _format_article(self, article: Dict, index: int) -> str:
-        """Format a single article for Slack."""
-        title = self._truncate_title(article.get('title', 'Untitled'))
+        """Format single article - CLEAN."""
+        title = clean_text(article.get('title', 'Untitled'))
+        title = truncate(title, 70)
+
         url = article.get('url', '')
-        source = article.get('source', 'Unknown')
+        source = clean_text(article.get('source', ''))
+
+        # Get clean bullets
         bullets = article.get('ai_summary', [])
+        bullet_lines = []
+        for b in bullets:
+            clean_b = clean_text(b)
+            if clean_b and len(clean_b) > 15:
+                bullet_lines.append(f"  - {clean_b[:120]}")
 
-        # Format bullets - only include clean, valid ones
-        bullet_text = ""
-        for bullet in bullets:
-            clean = self._clean_bullet(bullet)
-            if clean:
-                bullet_text += f"    • {clean}\n"
+        # Build article block
+        lines = [f"*{index}. {title}*"]
 
-        # If no valid bullets, skip bullet section
-        if not bullet_text:
-            return f"*{index}. {title}*\n    <{url}|Read more> · _{source}_\n\n"
+        if bullet_lines:
+            lines.extend(bullet_lines)
 
-        return f"*{index}. {title}*\n{bullet_text}    <{url}|Read more> · _{source}_\n\n"
+        lines.append(f"  <{url}|Read> | _{source}_")
+        lines.append("")  # Empty line between articles
 
-    def _build_message(self, neurotech: List[Dict], productivity: List[Dict]) -> Dict:
-        """Build the full Slack message payload."""
-        timestamp = self._get_timestamp()
+        return "\n".join(lines)
 
-        # Header
-        header = f"""━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-:brain: *NEUROTECH & PRODUCTIVITY INTEL*
-{timestamp}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"""
-
-        # Neurotech section
-        neurotech_section = "\n:zap: *NEUROTECH* ({} items)\n\n".format(len(neurotech))
-        for i, article in enumerate(neurotech, 1):
-            neurotech_section += self._format_article(article, i)
-
-        # Divider
-        divider = "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-
-        # Productivity section
-        productivity_section = ":iphone: *PRODUCTIVITY SOFTWARE* ({} items)\n\n".format(len(productivity))
-        for i, article in enumerate(productivity, 1):
-            productivity_section += self._format_article(article, i)
-
-        # Footer
-        footer = """━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-_Automated newsletter • Next update in 12 hours_"""
-
-        # Combine all sections
-        full_text = header + neurotech_section + divider + productivity_section + footer
-
-        # Slack message payload
-        return {
-            "blocks": [
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": header
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": neurotech_section
-                    }
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": productivity_section
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": footer
-                    }
-                }
-            ],
-            "text": f"Neurotech & Productivity Intel - {timestamp}"  # Fallback
-        }
-
-    def _build_simple_message(self, neurotech: List[Dict], productivity: List[Dict]) -> Dict:
-        """Build a simpler text-based message (fallback for long content)."""
-        timestamp = self._get_timestamp()
+    def _build_message(self, neurotech: List[Dict], productivity: List[Dict]) -> str:
+        """Build full message text."""
+        now = datetime.now(self.tz)
+        timestamp = now.strftime("%b %d, %Y %I:%M %p %Z")
 
         lines = [
-            f"*NEUROTECH INTEL* | {timestamp}",
+            f"*APEX INTEL* | {timestamp}",
             "",
-            f"*— HARDWARE & BCI ({len(neurotech)}) —*",
+            f"*HARDWARE & NEUROTECH ({len(neurotech)})*",
             ""
         ]
 
         for i, article in enumerate(neurotech, 1):
             lines.append(self._format_article(article, i))
 
-        lines.extend([
-            f"*— PRODUCTIVITY APPS ({len(productivity)}) —*",
-            ""
-        ])
+        if productivity:
+            lines.extend([
+                f"*PRODUCTIVITY APPS ({len(productivity)})*",
+                ""
+            ])
 
-        for i, article in enumerate(productivity, 1):
-            lines.append(self._format_article(article, i))
+            for i, article in enumerate(productivity, 1):
+                lines.append(self._format_article(article, i))
 
-        lines.extend([
-            "---",
-            "_Next update in 12 hours_"
-        ])
+        lines.append("---")
+        lines.append("_Next update in 12 hours_")
 
-        return {"text": "\n".join(lines)}
+        return "\n".join(lines)
 
     def send(self, neurotech: List[Dict], productivity: List[Dict]) -> bool:
-        """Send the newsletter to Slack."""
-        print(f"Sending newsletter: {len(neurotech)} neurotech, {len(productivity)} productivity")
+        """Send to Slack."""
+        print(f"Sending: {len(neurotech)} neurotech, {len(productivity)} productivity")
 
-        # Use simple message format for reliability
-        payload = self._build_simple_message(neurotech, productivity)
+        message = self._build_message(neurotech, productivity)
 
         try:
             response = requests.post(
                 self.webhook_url,
-                json=payload,
+                json={"text": message},
                 timeout=30
             )
             response.raise_for_status()
-            print("Newsletter sent successfully!")
+            print("Sent successfully!")
             return True
-
-        except requests.exceptions.RequestException as e:
-            print(f"Failed to send to Slack: {e}")
-            return False
-
-    def send_error_notification(self, error_message: str) -> bool:
-        """Send an error notification to Slack."""
-        payload = {
-            "text": f":warning: *Newsletter Bot Error*\n\n{error_message}"
-        }
-
-        try:
-            response = requests.post(
-                self.webhook_url,
-                json=payload,
-                timeout=30
-            )
-            return response.status_code == 200
-        except:
+        except Exception as e:
+            print(f"Send failed: {e}")
             return False
 
 
 def send_newsletter(neurotech: List[Dict], productivity: List[Dict],
                    webhook_url: Optional[str] = None) -> bool:
-    """Main function to send newsletter."""
+    """Main send function."""
     delivery = SlackDelivery(webhook_url)
     return delivery.send(neurotech, productivity)
