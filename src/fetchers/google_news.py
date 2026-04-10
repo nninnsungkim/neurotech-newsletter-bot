@@ -1,23 +1,51 @@
 """
-Tiered company news search.
+Tiered company news search - Using Bing News RSS (parallel).
 Tier 1: Wearable Consumer/Medical + specific tech_tags (no limit)
-Tier 2: Other neurotech companies (fill to 15 by views)
+Tier 2: Other neurotech companies (fill to 15)
 """
 
 import feedparser
 import requests
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import quote
 from typing import List, Dict, Tuple
-import time
-import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 # Tier 1 filter criteria
 TIER1_TYPES = ["Wearable Consumer", "Wearable Medical Device"]
 TIER1_TECH_TAGS = ["wearable", "eeg", "neurofeedback", "tdcs", "tacs", "neurostimulation", "fnirs"]
+
+# Keywords to filter relevant articles
+RELEVANCE_KEYWORDS = [
+    'neuro', 'brain', 'eeg', 'bci', 'neural', 'cognit', 'mental', 'sleep',
+    'headband', 'headset', 'wearable', 'implant', 'stimulat', 'therapy',
+    'device', 'fda', 'clinical', 'trial', 'patient', 'health', 'medical',
+    'research', 'study', 'treatment', 'diagnos', 'monitor', 'sensor',
+    'alzheimer', 'parkinson', 'epilep', 'depress', 'anxiety', 'adhd',
+    'funding', 'series', 'raised', 'investment', 'launch', 'release',
+]
+
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+
+
+def is_relevant_article(title: str, company_name: str) -> bool:
+    """Check if article is relevant to neurotech."""
+    title_lower = title.lower()
+    company_lower = company_name.lower()
+
+    # Must mention the company name
+    if company_lower not in title_lower and company_lower.split()[0] not in title_lower:
+        return False
+
+    # Check for relevance keywords
+    for keyword in RELEVANCE_KEYWORDS:
+        if keyword in title_lower:
+            return True
+
+    return False
 
 
 def load_companies() -> List[Dict]:
@@ -29,12 +57,10 @@ def load_companies() -> List[Dict]:
 
 def is_tier1_company(company: Dict) -> bool:
     """Check if company matches Tier 1 criteria."""
-    # Check type
     company_type = company.get('type', '').strip()
     if company_type in TIER1_TYPES:
         return True
 
-    # Check tech_tags
     tech_tags = company.get('tech_tags', '').lower()
     for tag in TIER1_TECH_TAGS:
         if tag in tech_tags:
@@ -58,152 +84,122 @@ def split_companies() -> Tuple[List[Dict], List[Dict]]:
     return tier1, tier2
 
 
-class CompanyNewsSearch:
-    """Search for company news using Google News RSS."""
-
-    BASE_URL = "https://news.google.com/rss/search"
-
-    def __init__(self, hours: int = 12):
-        self.hours = hours
-        self.seen_companies = set()  # Track companies we've found news for
-
-    def _search_url(self, query: str) -> str:
-        encoded = quote(query)
-        return f"{self.BASE_URL}?q={encoded}+when:{self.hours}h&hl=en-US&gl=US&ceid=US:en"
-
-    def _get_real_url(self, google_url: str) -> str:
-        """Follow redirect to actual URL."""
-        if 'news.google.com' not in google_url:
-            return google_url
-        try:
-            resp = requests.get(
-                google_url,
-                allow_redirects=True,
-                timeout=10,
-                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0'}
-            )
-            if resp.url and 'google.com' not in resp.url:
-                return resp.url
-        except:
-            pass
-        return google_url
-
-    def _parse_entry(self, entry, company_name: str) -> Dict:
-        title = entry.get('title', '')
-        if ' - ' in title:
-            parts = title.rsplit(' - ', 1)
-            title = parts[0]
-            source = parts[1] if len(parts) > 1 else 'Unknown'
-        else:
-            source = 'Unknown'
-
-        google_url = entry.get('link', '')
-        actual_url = self._get_real_url(google_url)
-
-        try:
-            from dateutil import parser
-            pub_date = parser.parse(entry.get('published', '')).isoformat()
-        except:
-            pub_date = datetime.utcnow().isoformat()
-
-        return {
-            'title': title.strip(),
-            'url': actual_url,
-            'source': source.strip(),
-            'published': pub_date,
-            'company': company_name,
-            'fetcher': 'google_company'
-        }
-
-    def search_company(self, company: Dict) -> Dict:
-        """Search for a single company. Returns 1 article or None."""
-        name = company.get('name', '')
-        if not name:
-            return None
-
-        # Skip if we already have news for this company
-        if name in self.seen_companies:
-            return None
-
-        # Search with quoted company name + neurotech
-        query = f'"{name}" neurotech'
-        url = self._search_url(query)
-
-        try:
-            feed = feedparser.parse(url)
-            if feed.entries:
-                # Take only the first (best) result
-                entry = feed.entries[0]
-                article = self._parse_entry(entry, name)
-                if article['title']:
-                    self.seen_companies.add(name)
-                    return article
-            time.sleep(0.2)  # Rate limiting
-        except:
-            pass
-
+def _search_single_company(company: Dict, hours: int) -> Dict:
+    """Search for a single company using Bing News RSS."""
+    name = company.get('name', '')
+    if not name:
         return None
 
-    def search_tier1(self, companies: List[Dict]) -> List[Dict]:
-        """Search all Tier 1 companies. No limit on results."""
-        print(f"\n[TIER 1] Searching {len(companies)} priority companies...")
-        articles = []
+    # Search just company name (already filtered to neurotech companies)
+    query = name
+    url = f'https://www.bing.com/news/search?q={quote(query)}&format=rss'
 
-        for i, company in enumerate(companies):
-            article = self.search_company(company)
-            if article:
-                print(f"  + {company['name']}: found")
-                articles.append(article)
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=10)
+        if resp.status_code != 200:
+            return None
 
-            # Progress indicator every 20 companies
-            if (i + 1) % 20 == 0:
-                print(f"  ... searched {i + 1}/{len(companies)}")
+        feed = feedparser.parse(resp.text)
+        if not feed.entries:
+            return None
 
-        print(f"Tier 1 results: {len(articles)} articles")
-        return articles
+        # Check if article is within time window
+        cutoff = datetime.utcnow() - timedelta(hours=hours)
 
-    def search_tier2(self, companies: List[Dict], needed: int) -> List[Dict]:
-        """Search Tier 2 companies until we have enough articles."""
-        if needed <= 0:
-            print("\n[TIER 2] Skipped (Tier 1 sufficient)")
-            return []
+        for entry in feed.entries[:3]:  # Check first 3 entries
+            title = entry.get('title', '')
+            if not title.strip():
+                continue
 
-        print(f"\n[TIER 2] Searching for {needed} more articles from {len(companies)} companies...")
-        articles = []
+            # Parse publish date
+            pub_date = None
+            try:
+                from dateutil import parser
+                pub_date = parser.parse(entry.get('published', ''))
+                if pub_date.tzinfo:
+                    pub_date = pub_date.replace(tzinfo=None)
+            except:
+                pub_date = datetime.utcnow()
 
-        for i, company in enumerate(companies):
-            if len(articles) >= needed:
-                break
+            # Skip if too old
+            if pub_date < cutoff:
+                continue
 
-            article = self.search_company(company)
-            if article:
-                print(f"  + {company['name']}: found")
-                articles.append(article)
+            # Extract source from title (usually "Title - Source")
+            source = 'Unknown'
+            if ' - ' in title:
+                parts = title.rsplit(' - ', 1)
+                title = parts[0]
+                source = parts[1] if len(parts) > 1 else 'Unknown'
 
-            # Progress indicator every 50 companies
-            if (i + 1) % 50 == 0:
-                print(f"  ... searched {i + 1}/{len(companies)}, found {len(articles)}/{needed}")
+            # Check relevance
+            if not is_relevant_article(title, name):
+                continue
 
-        print(f"Tier 2 results: {len(articles)} articles")
-        return articles
+            return {
+                'title': title.strip(),
+                'url': entry.get('link', ''),
+                'source': source.strip(),
+                'published': pub_date.isoformat(),
+                'company': name,
+                'fetcher': 'bing_news'
+            }
+
+    except Exception as e:
+        pass
+
+    return None
+
+
+def search_companies_parallel(companies: List[Dict], hours: int, max_workers: int = 10) -> List[Dict]:
+    """Search multiple companies in parallel."""
+    articles = []
+    seen_titles = set()  # Avoid duplicates
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_company = {
+            executor.submit(_search_single_company, company, hours): company
+            for company in companies
+        }
+
+        for future in as_completed(future_to_company):
+            company = future_to_company[future]
+            try:
+                result = future.result()
+                if result:
+                    # Skip duplicate titles
+                    title_key = result['title'].lower()[:50]
+                    if title_key not in seen_titles:
+                        seen_titles.add(title_key)
+                        print(f"  + {company['name']}")
+                        articles.append(result)
+            except:
+                pass
+
+    return articles
 
 
 def fetch_tiered_news(hours: int = 12, min_total: int = 15) -> Tuple[List[Dict], List[Dict]]:
-    """
-    Fetch news using tiered approach.
-    Returns (tier1_articles, tier2_articles)
-    """
+    """Fetch news using tiered approach with parallel processing."""
     tier1_companies, tier2_companies = split_companies()
     print(f"Companies: {len(tier1_companies)} Tier 1, {len(tier2_companies)} Tier 2")
 
-    searcher = CompanyNewsSearch(hours)
+    # Tier 1: Search all in parallel
+    print(f"\n[TIER 1] Searching {len(tier1_companies)} priority companies...")
+    tier1_articles = search_companies_parallel(tier1_companies, hours, max_workers=15)
+    print(f"Tier 1 results: {len(tier1_articles)} articles")
 
-    # Always search all Tier 1
-    tier1_articles = searcher.search_tier1(tier1_companies)
-
-    # Search Tier 2 only if needed
+    # Tier 2: Only if needed
     needed = min_total - len(tier1_articles)
-    tier2_articles = searcher.search_tier2(tier2_companies, needed)
+    tier2_articles = []
+
+    if needed > 0:
+        print(f"\n[TIER 2] Searching {len(tier2_companies)} companies for {needed} more...")
+        tier2_articles = search_companies_parallel(tier2_companies, hours, max_workers=15)
+        tier2_articles = tier2_articles[:needed]
+        print(f"Tier 2 results: {len(tier2_articles)} articles")
+    else:
+        print("\n[TIER 2] Skipped (Tier 1 sufficient)")
 
     return tier1_articles, tier2_articles
 
