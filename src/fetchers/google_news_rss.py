@@ -242,19 +242,40 @@ def search_companies_parallel(
 
 
 def search_neurotech_topics(hours: int = 24) -> List[Dict]:
-    """Search for APEX-relevant topics."""
+    """Search for APEX-relevant topics - broad industry coverage."""
     queries = [
         # Core cognitive performance
-        'EEG focus tracking wearable',
-        'fNIRS brain imaging device',
-        'neurofeedback focus',
-        'cognitive performance wearable',
+        'EEG headband',
+        'EEG wearable',
+        'brain sensing wearable',
+        'focus tracking device',
+        'neurofeedback device',
+        'cognitive performance technology',
+        # fNIRS
+        'fNIRS',
+        'brain imaging wearable',
         # Neurostimulation
-        'tDCS brain stimulation',
-        'tACS cognitive enhancement',
+        'tDCS',
+        'tACS',
+        'brain stimulation device',
+        'transcranial stimulation',
+        # HRV/Recovery
+        'HRV wearable',
+        'recovery wearable',
+        'stress tracking wearable',
         # Market signals
-        'neurotech startup funding',
-        'brain wearable launch',
+        'neurotech startup',
+        'neurotech funding',
+        'brain computer interface',
+        'BCI startup',
+        # Productivity/Focus
+        'focus app launch',
+        'productivity wearable',
+        'attention tracking',
+        # Sleep/Cognitive
+        'sleep tracking EEG',
+        'cognitive enhancement',
+        'brain training app',
     ]
 
     articles = []
@@ -306,29 +327,28 @@ def search_neurotech_topics(hours: int = 24) -> List[Dict]:
 
 def fetch_tiered_news(hours: int = 72, min_total: int = 5) -> Tuple[List[Dict], List[Dict]]:
     """
-    Fetch news with batch rotation.
-    - Tier 1: 201 companies / 3 batches = ~67/day
-    - 3-day lookback covers all news
+    Fetch news for APEX.
+    - All 55 Tier 1 companies (no rotation needed)
+    - Broad keyword searches for industry news
     """
-    tier1_companies, tier2_companies = split_companies()
-    print(f"Total: {len(tier1_companies)} Tier 1, {len(tier2_companies)} Tier 2")
+    tier1_companies = load_apex_tier1()
+    print(f"APEX Tier 1: {len(tier1_companies)} companies")
 
-    # Get today's Tier 1 batch
-    todays_batch, batch_idx = get_todays_batch(tier1_companies)
-    print(f"\n[BATCH {batch_idx + 1}/{NUM_BATCHES}] {len(todays_batch)} Tier 1 companies")
-    print(f"Lookback: {LOOKBACK_HOURS}h")
+    # Search ALL Tier 1 companies (only 55, no need to batch)
+    print(f"\n[COMPANY SEARCH] {len(tier1_companies)} companies")
+    print(f"Lookback: {hours}h")
 
-    tier1_articles = search_companies_parallel(todays_batch, LOOKBACK_HOURS, max_workers=15)
-    print(f"Tier 1: {len(tier1_articles)} articles")
+    company_articles = search_companies_parallel(tier1_companies, hours, max_workers=15)
+    print(f"Company articles: {len(company_articles)}")
 
-    # Get today's Tier 2 batch too
-    tier2_batch, _ = get_todays_batch(tier2_companies)
-    print(f"\n[BATCH {batch_idx + 1}/{NUM_BATCHES}] {len(tier2_batch)} Tier 2 companies")
+    # Broad keyword searches for industry news
+    print(f"\n[TOPIC SEARCH] Broad keywords")
+    topic_articles = search_neurotech_topics(hours)
+    print(f"Topic articles: {len(topic_articles)}")
 
-    tier2_articles = search_companies_parallel(tier2_batch, LOOKBACK_HOURS, max_workers=15)
-    print(f"Tier 2: {len(tier2_articles)} articles")
-
-    return tier1_articles, tier2_articles
+    # Combine (company articles first, then topics)
+    all_articles = company_articles + topic_articles
+    return all_articles, []
 
 
 def fetch_all_news(hours: int = 12) -> List[Dict]:
