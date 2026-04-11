@@ -171,11 +171,16 @@ def keyword_filter_articles(articles: List[Dict], max_select: int = 15) -> List[
         'price target', 'decreased by', 'increased by', 'equity incentive',
         'add stock', 'portfolio', 'strong share', '% decline', '% drop',
         'right time to', 'too late to', 'consider buying', 'consider adding',
-        'class a common stock', 'ny:', 'nasdaq:', 'one-year', 'fallen too far',
+        'class a common stock', 'ny:', 'nasdaq:', 'nyse:', 'asx:', 'one-year', 'fallen too far',
         'shareholders', 'deadline soon', 'class action', 'lawsuit', 'settlement',
+        'dilution', 'options and performance', 'performance rights',
+        'if you invested', 'should you buy', 'is it time to buy',
+        'stock surge', 'surge sparks', 'sparks fresh', 'stock alert', 'all ordinaries',
         # SEC filings
         'form 3', 'form 4', 'form 8-k', 'form 10-', 'sec filing',
         'beneficial ownership', 'insider', 'initial statement',
+        # Medical procedures (not cognitive tech)
+        'surgical tool', 'surgical device', 'surgery',
         # Generic tech (false positives)
         'semiconductor', 'chip', 'linux', 'kernel', 'tuxedo',
         # Sports/entertainment

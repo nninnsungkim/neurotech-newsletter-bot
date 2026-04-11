@@ -39,13 +39,22 @@ SKIP_URL_PATTERNS = [
 
 # Titles to SKIP
 SKIP_TITLE_PATTERNS = [
+    # SEC filings
     'form 3', 'form 4', 'form 8-k', 'form 10-',
     'sec filing', 'beneficial ownership',
-    'stock price', 'share price', 'stock moves',
+    # Stock/finance
+    'stock price', 'share price', 'stock moves', 'stock surge',
     'buy rating', 'sell rating', 'hold rating',
     'price target', 'analyst', 'zacks rank',
     'earnings call', 'quarterly results',
     'dividend', 'shareholders',
+    # Investment noise
+    'dilution', 'options and performance', 'performance rights',
+    'all ordinaries', 'asx:', 'nasdaq:', 'nyse:',
+    'if you invested', 'should you buy', 'is it time to buy',
+    'sparks fresh', 'surge sparks', 'stock alert',
+    # Medical procedures (not cognitive tech)
+    'surgical tool', 'surgical device', 'surgery',
 ]
 
 HEADERS = {
