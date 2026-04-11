@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from fetchers.google_news_rss import fetch_tiered_news
 from processors.deduplicator import deduplicate_and_rank, ArticleDeduplicator
-from processors.ai_filter import ai_filter_articles, qa_filter_articles, generate_summary
+from processors.ai_filter import ai_filter_articles, generate_summary
 from delivery.slack import send_newsletter
 
 
@@ -46,17 +46,10 @@ def process_articles(tier1: list, tier2: list, sent_path: str = None) -> list:
     if not unique:
         return []
 
-    # 1st pass: AI relevance filter
-    print("\n[FILTER 1] AI relevance scoring...")
-    filtered = ai_filter_articles(unique, max_select=20)
-    print(f"Pass 1: {len(filtered)} relevant")
-
-    # 2nd pass: QA filter to remove false positives
-    if filtered:
-        print("\n[FILTER 2] QA validation...")
-        validated = qa_filter_articles(filtered)
-        print(f"Pass 2: {len(validated)} validated")
-        return validated
+    # AI relevance filter - keep all relevant articles
+    print("\n[FILTER] AI relevance scoring...")
+    filtered = ai_filter_articles(unique, max_select=50)
+    print(f"Relevant: {len(filtered)} articles")
 
     return filtered
 

@@ -12,29 +12,27 @@ from anthropic import Anthropic
 class AIArticleFilter:
     """Uses Claude to filter and rank articles for relevance."""
 
-    SYSTEM_PROMPT = """You are a neurotech industry analyst filtering news for a competitive intelligence newsletter.
+    SYSTEM_PROMPT = """You are a neurotech competitive intelligence analyst. Your company builds brain-sensing wearables.
 
-Your job: Evaluate each article's relevance to the NEUROTECH and BRAIN-COMPUTER INTERFACE industry.
+PRIORITY (score 8-10):
+- Product launches, new features, SDK/API updates
+- Clinical trial results, FDA approvals
+- Funding rounds, acquisitions
+- Major partnerships
 
-RELEVANT topics include:
-- EEG headbands, neurofeedback devices, brain sensing wearables
-- BCI (brain-computer interfaces), neural implants
-- tDCS/TMS brain stimulation devices
-- Sleep tracking headbands, meditation devices
-- Consumer neurotech products (Muse, Neurosity, EMOTIV, etc.)
-- Neurotech company funding, partnerships, product launches
-- Digital therapeutics for mental health, cognitive health
-- Screen time/digital wellness apps that compete with hardware solutions
+RELEVANT (score 5-7):
+- Company expansions, new hires
+- Research publications with product implications
+- Conference demos, trade show announcements
 
-NOT RELEVANT:
-- General semiconductor/chip news (even if "neural" is in the name)
-- Stock price movements without substantive company news
-- General AI/ML news (unless specifically about neural interfaces)
-- Pharmaceutical/drug trials (unless for neurotech devices)
-- Hospital/clinic general news
-- Unrelated companies that happen to have similar names
+EXCLUDE (score 0):
+- Stock prices, share disclosures, "buy/sell" ratings
+- Generic product comparisons without news
+- Neurodiversity tips, mental health advice
+- Unrelated companies (Nike shoes, Temple University)
+- Old event recaps, opinion pieces
 
-Return a JSON response with your evaluation."""
+Be STRICT. Only real company news matters."""
 
     def __init__(self, api_key: str = None):
         self.api_key = api_key or os.environ.get('ANTHROPIC_API_KEY')
@@ -62,17 +60,9 @@ Return a JSON response with your evaluation."""
         # Sort by score descending
         all_scored.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
 
-        # Limit to 1 article per company for diversity
-        company_counts = {}
-        final = []
-        for article in all_scored:
-            company = article.get('company', 'Unknown')
-            if company_counts.get(company, 0) < 1:
-                final.append(article)
-                company_counts[company] = company_counts.get(company, 0) + 1
-
-        print(f"AI Filter: {len(articles)} -> {len(final)} relevant (1 per company)")
-        return final[:max_select]
+        # Keep all relevant articles (no per-company limit)
+        print(f"AI Filter: {len(articles)} -> {len(all_scored)} relevant")
+        return all_scored[:max_select]
 
     def _evaluate_single_batch(self, articles: List[Dict], id_offset: int = 0) -> List[Dict]:
         """Evaluate a single batch of articles."""

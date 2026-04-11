@@ -2968,14 +2968,6 @@
     "category": "neurotech"
   },
   {
-    "name": "Nike",
-    "url": "https://www.nike.com",
-    "linkedin": "https://www.linkedin.com/company/nike",
-    "type": "Wearable Consumer",
-    "tech_tags": "Consumer Wearable / Sports Tech",
-    "category": "neurotech"
-  },
-  {
     "name": "NIL Technology (NILT)",
     "url": "https://www.nilt.com",
     "linkedin": "https://www.linkedin.com/company/nil-technology",
@@ -4136,14 +4128,6 @@
     "category": "neurotech"
   },
   {
-    "name": "Temple",
-    "url": "https://www.temple.com/",
-    "linkedin": "https://www.linkedin.com/company/weartemple",
-    "type": "Wearable Consumer",
-    "tech_tags": "fNIRS / CBF Monitoring",
-    "category": "neurotech"
-  },
-  {
     "name": "Terumo Neuro",
     "url": "https://www.terumoneuro.com",
     "linkedin": "https://www.linkedin.com/company/terumo-neurovascular",
@@ -4560,35 +4544,11 @@
     "category": "neurotech"
   },
   {
-    "name": "Opal",
-    "url": "https://www.opal.so",
-    "linkedin": "",
-    "type": "Productivity App",
-    "tech_tags": "Screen time, Focus",
-    "category": "productivity"
-  },
-  {
-    "name": "Freedom",
-    "url": "https://freedom.to",
-    "linkedin": "",
-    "type": "Productivity App",
-    "tech_tags": "App blocker, Focus",
-    "category": "productivity"
-  },
-  {
     "name": "Cold Turkey",
     "url": "https://getcoldturkey.com",
     "linkedin": "",
     "type": "Productivity App",
     "tech_tags": "Website blocker",
-    "category": "productivity"
-  },
-  {
-    "name": "Forest",
-    "url": "https://www.forestapp.cc",
-    "linkedin": "",
-    "type": "Productivity App",
-    "tech_tags": "Focus timer, Gamification",
     "category": "productivity"
   },
   {
@@ -4624,19 +4584,17 @@
     "category": "productivity"
   },
   {
-    "name": "Brick",
-    "url": "https://www.gobrick.app",
-    "linkedin": "",
-    "type": "Productivity App",
-    "tech_tags": "Physical blocker, Focus",
-    "category": "productivity"
-  },
-  {
     "name": "Unpluq",
     "url": "https://www.unpluq.com",
     "linkedin": "",
     "type": "Productivity App",
     "tech_tags": "Physical key, Phone addiction",
     "category": "productivity"
+  },
+  {
+    "name": "Temple",
+    "type": "Wearable Consumer",
+    "url": "https://www.temple.com/",
+    "tech_tags": "wearable"
   }
 ]
