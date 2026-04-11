@@ -1,5 +1,5 @@
 """
-Clean Slack delivery - Neurotech only.
+Slack delivery - AI summary + links.
 """
 
 import os
@@ -11,67 +11,60 @@ import pytz
 
 
 def clean_title(title: str) -> str:
-    """Remove all HTML and truncate."""
-    # Remove HTML completely
+    """Remove HTML and clean up."""
     clean = re.sub(r'<[^>]*>', '', title)
-    # Remove any leftover attributes
-    clean = re.sub(r'href=|src=|class=|rel=', '', clean)
-    # Remove quotes and weird chars
     clean = re.sub(r'["""\'<>]', '', clean)
-    # Clean whitespace
     clean = re.sub(r'\s+', ' ', clean).strip()
-    # Truncate
-    if len(clean) > 80:
-        clean = clean[:77] + '...'
-    return clean
+    return clean[:80] if len(clean) > 80 else clean
 
 
 class SlackDelivery:
-    """Clean Slack delivery."""
+    """Slack delivery with AI summary."""
 
     def __init__(self, webhook_url: str = None):
         self.webhook_url = webhook_url or os.environ.get('SLACK_WEBHOOK_URL')
         if not self.webhook_url:
             raise ValueError("SLACK_WEBHOOK_URL not set")
 
-    def _format_article(self, article: Dict, index: int) -> str:
-        """Format: number. title | Read more"""
-        title = clean_title(article.get('title', 'Untitled'))
-        url = article.get('url', '')
-
-        # Just title + link, nothing else
-        return f"{index}. {title} | <{url}|Read more>"
-
-    def _build_message(self, articles: List[Dict]) -> str:
-        """Build message."""
+    def _build_summary_message(self, summary: str) -> str:
+        """Build main summary message."""
         now = datetime.now(pytz.timezone("America/New_York"))
-        timestamp = now.strftime("%b %d, %I:%M %p %Z")
+        timestamp = now.strftime("%b %d")
 
-        lines = [
-            f"*APEX COMPETITIVE INTEL* | {timestamp}",
-            "",
-            f"*NEUROTECH ({len(articles)})*"
-        ]
+        return f"*APEX Neurotech Intel* | {timestamp}\n\n{summary}"
 
-        for i, article in enumerate(articles, 1):
-            lines.append(self._format_article(article, i))
-
-        lines.append("")
-        lines.append("_Next update in 12h_")
-
+    def _build_links_message(self, articles: List[Dict]) -> str:
+        """Build links message."""
+        lines = ["*Sources:*"]
+        for a in articles:
+            title = clean_title(a.get('title', ''))[:60]
+            url = a.get('url', '')
+            lines.append(f"• <{url}|{title}>")
         return "\n".join(lines)
 
-    def send(self, articles: List[Dict]) -> bool:
-        """Send to Slack."""
-        message = self._build_message(articles)
+    def send(self, articles: List[Dict], summary: str = None) -> bool:
+        """Send summary + links to Slack."""
+        if not summary:
+            summary = "_No significant updates today._"
 
         try:
-            response = requests.post(
+            # Message 1: Summary
+            resp1 = requests.post(
                 self.webhook_url,
-                json={"text": message},
+                json={"text": self._build_summary_message(summary)},
                 timeout=30
             )
-            response.raise_for_status()
+            resp1.raise_for_status()
+
+            # Message 2: Links (only if we have articles)
+            if articles:
+                resp2 = requests.post(
+                    self.webhook_url,
+                    json={"text": self._build_links_message(articles)},
+                    timeout=30
+                )
+                resp2.raise_for_status()
+
             print("Sent to Slack")
             return True
         except Exception as e:
@@ -79,7 +72,7 @@ class SlackDelivery:
             return False
 
 
-def send_newsletter(articles: List[Dict], webhook_url: str = None) -> bool:
-    """Send newsletter."""
+def send_newsletter(articles: List[Dict], summary: str = None, webhook_url: str = None) -> bool:
+    """Send newsletter with summary."""
     delivery = SlackDelivery(webhook_url)
-    return delivery.send(articles)
+    return delivery.send(articles, summary)

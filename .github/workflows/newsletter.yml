@@ -1,10 +1,11 @@
 name: Neurotech Newsletter
 
 on:
-  # Run at 12:00 AM and 12:00 PM EST (5:00 and 17:00 UTC)
+  # Run daily at 6:00 AM EST (11:00 UTC)
+  # Batch rotation: 201 Tier 1 companies / 3 batches = ~67/day
+  # 3-day lookback ensures full coverage
   schedule:
-    - cron: '0 5 * * *'   # 12:00 AM EST / 5:00 AM UTC
-    - cron: '0 17 * * *'  # 12:00 PM EST / 5:00 PM UTC
+    - cron: '0 11 * * *'  # 6:00 AM EST / 11:00 UTC
 
   # Allow manual trigger
   workflow_dispatch:
@@ -18,9 +19,9 @@ on:
           - 'false'
           - 'true'
       hours:
-        description: 'Hours of news to fetch'
+        description: 'Hours of news to fetch (default 72 for 3-day lookback)'
         required: false
-        default: '12'
+        default: '72'
 
 jobs:
   send-newsletter:
@@ -63,12 +64,14 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GOOGLE_CSE_API_KEY: ${{ secrets.GOOGLE_CSE_API_KEY }}
+          GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
         run: |
           cd ${{ github.workspace }}
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            python src/main.py --dry-run --hours ${{ github.event.inputs.hours || '12' }}
+            python src/main.py --dry-run --hours ${{ github.event.inputs.hours || '72' }}
           else
-            python src/main.py --hours ${{ github.event.inputs.hours || '12' }}
+            python src/main.py --hours ${{ github.event.inputs.hours || '72' }}
           fi
 
       - name: Upload sent articles cache
