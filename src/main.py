@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dry-run', action='store_true')
-    parser.add_argument('--hours', type=int, default=72)
+    parser.add_argument('--hours', type=int, default=24)
 
     args = parser.parse_args()
     success = run_newsletter(dry_run=args.dry_run, hours=args.hours)

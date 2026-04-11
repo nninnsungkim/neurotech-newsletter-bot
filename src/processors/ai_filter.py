@@ -375,8 +375,8 @@ Guidelines:
 - Skip irrelevant articles entirely
 - If only minor news, say so honestly
 - Tone: direct, executive-level, actionable
-- NO intro - start with the content
-- Use **bold** for company names"""
+- NO intro like "Here is a brief" - start directly with the content
+- Use CAPS for company names (e.g., WHOOP, MUSE) - do NOT use ** or markdown"""
 
     try:
         client = Anthropic(api_key=api_key)

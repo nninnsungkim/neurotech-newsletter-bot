@@ -18,9 +18,9 @@ on:
           - 'false'
           - 'true'
       hours:
-        description: 'Hours of news to fetch (default 72 for 3-day lookback)'
+        description: 'Hours of news to fetch (default 24 for daily)'
         required: false
-        default: '72'
+        default: '24'
 
 jobs:
   send-newsletter:
@@ -68,9 +68,9 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            python src/main.py --dry-run --hours ${{ github.event.inputs.hours || '72' }}
+            python src/main.py --dry-run --hours ${{ github.event.inputs.hours || '24' }}
           else
-            python src/main.py --hours ${{ github.event.inputs.hours || '72' }}
+            python src/main.py --hours ${{ github.event.inputs.hours || '24' }}
           fi
 
       - name: Upload sent articles cache
