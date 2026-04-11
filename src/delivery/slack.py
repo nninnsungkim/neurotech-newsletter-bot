@@ -76,3 +76,66 @@ def send_newsletter(articles: List[Dict], summary: str = None, webhook_url: str 
     """Send newsletter with summary."""
     delivery = SlackDelivery(webhook_url)
     return delivery.send(articles, summary)
+
+
+def send_opportunities(vc_fellowships: List[Dict], pitch_competitions: List[Dict],
+                       summary: str = None, webhook_url: str = None) -> bool:
+    """Send opportunities digest to Slack."""
+    webhook = webhook_url or os.environ.get('SLACK_WEBHOOK_URL_OPPORTUNITIES')
+    if not webhook:
+        print("SLACK_WEBHOOK_URL_OPPORTUNITIES not set")
+        return False
+
+    now = datetime.now(pytz.timezone("America/New_York"))
+    timestamp = now.strftime("%b %d")
+
+    try:
+        # Message 1: Summary
+        header = f"*APEX Opportunity Tracker* | {timestamp}\n\n"
+        summary_text = summary if summary else "_No new opportunities found today._"
+
+        resp1 = requests.post(
+            webhook,
+            json={"text": header + summary_text},
+            timeout=30
+        )
+        resp1.raise_for_status()
+
+        # Message 2: VC Fellowship links
+        if vc_fellowships:
+            lines = ["*VC Fellowships & Accelerators:*"]
+            for opp in vc_fellowships[:15]:
+                title = clean_title(opp.get('title', ''))[:60]
+                url = opp.get('url', '')
+                score = opp.get('relevance_score', '')
+                score_str = f" [{score}/10]" if score else ""
+                lines.append(f"• <{url}|{title}>{score_str}")
+
+            resp2 = requests.post(
+                webhook,
+                json={"text": "\n".join(lines)},
+                timeout=30
+            )
+            resp2.raise_for_status()
+
+        # Message 3: Pitch competition links
+        if pitch_competitions:
+            lines = ["*Pitch Competitions (Purdue/Indiana):*"]
+            for opp in pitch_competitions[:10]:
+                title = clean_title(opp.get('title', ''))[:60]
+                url = opp.get('url', '')
+                lines.append(f"• <{url}|{title}>")
+
+            resp3 = requests.post(
+                webhook,
+                json={"text": "\n".join(lines)},
+                timeout=30
+            )
+            resp3.raise_for_status()
+
+        print("Sent to Slack #development-business")
+        return True
+
+    except Exception as e:
+        print(f"Failed: {e}")
+        return False

@@ -1,0 +1,72 @@
+name: Opportunity Tracker
+
+on:
+  # Run daily at 6:00 AM ET (10:00 UTC during EDT)
+  schedule:
+    - cron: '0 10 * * *'  # 6:00 AM EDT / 10:00 UTC
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no Slack delivery)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      hours:
+        description: 'Hours to look back (default 168 = 1 week)'
+        required: false
+        default: '168'
+
+jobs:
+  track-opportunities:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytz python-dateutil
+
+      - name: Download sent opportunities cache
+        uses: actions/cache@v4
+        with:
+          path: data/sent_opportunities.json
+          key: sent-opportunities-${{ github.run_id }}
+          restore-keys: |
+            sent-opportunities-
+
+      - name: Run opportunity tracker
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_URL_OPPORTUNITIES: ${{ secrets.SLACK_WEBHOOK_URL_OPPORTUNITIES }}
+        run: |
+          cd ${{ github.workspace }}
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python src/opportunities_main.py --dry-run --hours ${{ github.event.inputs.hours || '168' }}
+          else
+            python src/opportunities_main.py --hours ${{ github.event.inputs.hours || '168' }}
+          fi
+
+      - name: Upload sent opportunities cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: data/sent_opportunities.json
+          key: sent-opportunities-${{ github.run_id }}
