@@ -240,43 +240,116 @@ def ai_filter_articles(articles: List[Dict], max_select: int = 15) -> List[Dict]
         return keyword_filter_articles(articles, max_select)
 
 
-def generate_summary(articles: List[Dict]) -> str:
-    """Generate a concise summary of the articles."""
+def qa_filter_articles(articles: List[Dict]) -> List[Dict]:
+    """Second-pass QA filter with Haiku to remove false positives."""
     if not articles:
-        return ""
+        return []
 
     api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
-        return ""
+        return articles
 
-    # Prepare article info
-    article_info = []
-    for a in articles:
-        article_info.append({
-            "title": a.get('title', '')[:100],
+    # Prepare for QA
+    article_data = []
+    for i, a in enumerate(articles):
+        article_data.append({
+            "id": i,
+            "title": a.get('title', '')[:150],
             "company": a.get('company', ''),
             "source": a.get('source', '')
         })
 
-    prompt = f"""Write a brief neurotech news digest (2-3 sentences per major story, max 3 stories).
+    prompt = f"""You are a strict QA filter for a neurotech competitive intelligence newsletter.
 
-ARTICLES:
-{json.dumps(article_info, indent=2)}
+ARTICLES TO REVIEW:
+{json.dumps(article_data, indent=2)}
 
-Rules:
-- ONLY include genuinely significant news: funding rounds, product launches, FDA approvals, major partnerships
-- Skip stock price updates, minor mentions, generic articles
-- Start directly with the news, no intro
-- Be very concise - each story is 1-2 sentences max
-- If nothing truly significant, respond with just: "No major neurotech news today."
-- Format: bullet points with company name bold
-- NEVER start with "Here is" or any intro phrase - start directly with the first bullet"""
+REJECT articles that are:
+- Stock price updates, market analysis, "should you buy" articles
+- Generic company mentions without actual news
+- Unrelated products (Nike shoes, Temple University, etc.)
+- Neurodiversity/ADHD tips, mental health advice articles
+- Old news or event announcements
+- Duplicate stories about the same event
+
+KEEP only articles about:
+- Actual product launches, updates, or announcements
+- Funding rounds, acquisitions, partnerships
+- FDA approvals, clinical trial results
+- New research or technology breakthroughs
+- Executive hires, company expansions
+
+Return JSON with IDs to KEEP:
+{{"keep": [0, 2, 5]}}
+
+Be VERY strict. When in doubt, reject."""
 
     try:
         client = Anthropic(api_key=api_key)
         response = client.messages.create(
             model="claude-3-haiku-20240307",
-            max_tokens=500,
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result_text = response.content[0].text
+        start = result_text.find('{')
+        end = result_text.rfind('}') + 1
+        if start >= 0 and end > start:
+            result = json.loads(result_text[start:end])
+            keep_ids = result.get('keep', [])
+            filtered = [articles[i] for i in keep_ids if i < len(articles)]
+            print(f"QA Filter: {len(articles)} -> {len(filtered)} kept")
+            return filtered
+    except Exception as e:
+        print(f"QA filter error: {e}")
+
+    return articles
+
+
+def generate_summary(articles: List[Dict]) -> str:
+    """Generate competitive intelligence summary."""
+    if not articles:
+        return "_No significant neurotech updates in the last 3 days._"
+
+    api_key = os.environ.get('ANTHROPIC_API_KEY')
+    if not api_key:
+        return ""
+
+    article_info = []
+    for a in articles:
+        article_info.append({
+            "title": a.get('title', '')[:150],
+            "company": a.get('company', ''),
+            "source": a.get('source', ''),
+            "ai_reason": a.get('ai_reason', '')
+        })
+
+    prompt = f"""You are writing a competitive intelligence brief for a neurotech company's leadership team.
+
+ARTICLES FROM LAST 3 DAYS:
+{json.dumps(article_info, indent=2)}
+
+Write a brief (3-5 paragraphs) covering:
+
+1. **Key Moves** - What competitors did: product launches, funding, partnerships, FDA news
+2. **Market Signals** - Trends or patterns across multiple companies
+3. **Watch List** - Anything that could impact our market position
+
+Guidelines:
+- Be specific: "Company X raised $Y" not "a company raised funds"
+- Be analytical: explain WHY this matters competitively
+- Skip irrelevant articles entirely
+- If only minor news, say so honestly
+- Tone: professional, direct, executive-level briefing
+- NO intro like "Here's your brief" - start with the content
+- Use **bold** for company names"""
+
+    try:
+        client = Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-3-haiku-20240307",
+            max_tokens=1000,
             messages=[{"role": "user", "content": prompt}]
         )
         return response.content[0].text.strip()

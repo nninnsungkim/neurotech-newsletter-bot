@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from fetchers.google_news_rss import fetch_tiered_news
 from processors.deduplicator import deduplicate_and_rank, ArticleDeduplicator
-from processors.ai_filter import ai_filter_articles, generate_summary
+from processors.ai_filter import ai_filter_articles, qa_filter_articles, generate_summary
 from delivery.slack import send_newsletter
 
 
@@ -32,26 +32,33 @@ def fetch_news(hours: int = 72) -> tuple:
 
 
 def process_articles(tier1: list, tier2: list, sent_path: str = None) -> list:
-    """Dedupe, AI filter, and combine articles."""
+    """Dedupe, AI filter, QA filter articles."""
     print("\n" + "=" * 50)
     print("PROCESSING")
     print("=" * 50)
 
-    # Combine: Tier 1 first, then Tier 2
     all_articles = tier1 + tier2
 
-    # Deduplicate first
+    # Deduplicate
     unique = deduplicate_and_rank(all_articles, sent_path)
     print(f"After dedup: {len(unique)} articles")
 
-    # AI filter for relevance and importance
-    if unique:
-        print("\n[AI FILTER] Evaluating articles...")
-        filtered = ai_filter_articles(unique, max_select=15)
-        print(f"AI selected: {len(filtered)} top articles")
-        return filtered
+    if not unique:
+        return []
 
-    return unique
+    # 1st pass: AI relevance filter
+    print("\n[FILTER 1] AI relevance scoring...")
+    filtered = ai_filter_articles(unique, max_select=20)
+    print(f"Pass 1: {len(filtered)} relevant")
+
+    # 2nd pass: QA filter to remove false positives
+    if filtered:
+        print("\n[FILTER 2] QA validation...")
+        validated = qa_filter_articles(filtered)
+        print(f"Pass 2: {len(validated)} validated")
+        return validated
+
+    return filtered
 
 
 def run_newsletter(dry_run: bool = False, hours: int = 72):
