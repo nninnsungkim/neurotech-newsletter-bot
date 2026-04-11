@@ -5,6 +5,7 @@ Tracks:
 - VC Fellowships (US + Korea major) - Spring builder programs, pre-seed/idea stage
 - Pitch Competitions (Purdue/Indiana only)
 
+Uses Google Custom Search API to find actual program pages and applications.
 Delivers to Slack #development-business daily
 """
 
@@ -136,7 +137,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--dry-run', action='store_true')
     parser.add_argument('--hours', type=int, default=168,
-                        help='Lookback hours (default 168 = 1 week)')
+                        help='Lookback hours for news (default 168 = 1 week)')
 
     args = parser.parse_args()
     success = run_opportunity_tracker(dry_run=args.dry_run, hours=args.hours)

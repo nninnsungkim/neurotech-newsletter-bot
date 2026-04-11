@@ -17,7 +17,7 @@ on:
           - 'false'
           - 'true'
       hours:
-        description: 'Hours to look back (default 168 = 1 week)'
+        description: 'Hours to look back for news (default 168 = 1 week)'
         required: false
         default: '168'
 
@@ -56,6 +56,8 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_WEBHOOK_URL_OPPORTUNITIES: ${{ secrets.SLACK_WEBHOOK_URL_OPPORTUNITIES }}
+          GOOGLE_CSE_API_KEY: ${{ secrets.GOOGLE_CSE_API_KEY }}
+          GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
         run: |
           cd ${{ github.workspace }}
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
