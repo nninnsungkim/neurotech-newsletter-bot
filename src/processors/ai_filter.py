@@ -12,27 +12,40 @@ from anthropic import Anthropic
 class AIArticleFilter:
     """Uses Claude to filter and rank articles for relevance."""
 
-    SYSTEM_PROMPT = """You are a neurotech competitive intelligence analyst. Your company builds brain-sensing wearables.
+    SYSTEM_PROMPT = """You are a competitive intelligence analyst for APEX, a cognitive performance company.
+
+APEX builds a multimodal platform (EEG + fNIRS + PPG + EDA + behavioral data) to help knowledge workers:
+- Measure and improve FOCUS
+- Support CREATIVE THINKING
+- Enable FASTER LEARNING
+- Future: NEUROSTIMULATION (tDCS/tACS)
 
 PRIORITY (score 8-10):
-- Product launches, new features, SDK/API updates
-- Clinical trial results, FDA approvals
-- Funding rounds, acquisitions
-- Major partnerships
+- Product launches from: EEG wearables, fNIRS devices, neurostimulation (tDCS/tACS), focus tracking, HRV/recovery wearables
+- Funding rounds, acquisitions in cognitive performance space
+- FDA approvals, clinical results for focus/cognition devices
+- New features: focus tracking, cognitive assessment, neurofeedback
+- Partnerships with productivity/learning platforms
 
 RELEVANT (score 5-7):
-- Company expansions, new hires
-- Research publications with product implications
-- Conference demos, trade show announcements
+- Research on: attention measurement, cognitive enhancement, neurostimulation for focus/learning
+- Company expansions, executive hires at direct competitors
+- Conference demos of relevant tech (CES, neuroscience conferences)
+- Sleep/recovery tech with cognitive performance angle
+
+LOWER PRIORITY (score 3-4):
+- General wellness/meditation apps without tech differentiation
+- Pure fitness wearables without cognitive angle
+- Medical implants (DBS, cochlear) - different market
 
 EXCLUDE (score 0):
-- Stock prices, share disclosures, "buy/sell" ratings
-- Generic product comparisons without news
-- Neurodiversity tips, mental health advice
-- Unrelated companies (Nike shoes, Temple University)
+- Stock prices, SEC filings, "buy/sell" ratings, beneficial ownership
+- Generic product reviews without news
+- Unrelated companies (Nike, Temple University, crypto)
+- Neurodiversity tips, mental health advice articles
 - Old event recaps, opinion pieces
 
-Be STRICT. Only real company news matters."""
+Be STRICT. Focus on cognitive performance market."""
 
     def __init__(self, api_key: str = None):
         self.api_key = api_key or os.environ.get('ANTHROPIC_API_KEY')
@@ -131,32 +144,49 @@ Be STRICT. Only neurotech companies or products."""
 
 def keyword_filter_articles(articles: List[Dict], max_select: int = 15) -> List[Dict]:
     """Fallback keyword-based filter when AI is unavailable."""
+    # APEX-aligned keywords - cognitive performance focus
     NEUROTECH_KEYWORDS = [
-        'neuro', 'brain', 'eeg', 'bci', 'neural', 'cognitive',
-        'headband', 'headset', 'wearable', 'implant', 'stimulat', 'therapy',
-        'fda', 'clinical', 'medical', 'device', 'patient',
+        # Core tech
+        'eeg', 'fnirs', 'fNIRS', 'ppg', 'hrv', 'eda',
+        'neurofeedback', 'biofeedback', 'brain-sensing',
+        # Neurostimulation
+        'tdcs', 'tacs', 'neurostimulation', 'transcranial',
+        # Cognitive performance
+        'focus', 'attention', 'cognitive', 'concentration',
+        'learning', 'memory', 'creativity',
+        # Wearables
+        'headband', 'wearable', 'headset', 'earbuds',
+        # Business signals
         'funding', 'series a', 'series b', 'raised', 'million',
-        'sleep track', 'meditation', 'neurofeedback', 'biofeedback',
-        'dbs', 'tms', 'tdcs', 'deep brain', 'vagus nerve'
+        'launch', 'announces', 'partnership', 'fda',
+        # Recovery/stress (supporting)
+        'recovery', 'stress', 'sleep track', 'meditation'
     ]
 
     EXCLUDE_KEYWORDS = [
-        'semiconductor', 'chip', 'linux', 'kernel', 'tuxedo',
-        'stock price', 'earnings', 'moves higher', 'rises', 'falls',
+        # Stock/financial noise
+        'stock price', 'share price', 'earnings', 'moves higher', 'rises', 'falls',
         'book value', 'per share', 'stock dividend', 'preferred stock',
         'buy rating', 'sell rating', 'zacks', 'still a buy', '12-month high',
         'price target', 'decreased by', 'increased by', 'equity incentive',
         'add stock', 'portfolio', 'strong share', '% decline', '% drop',
         'right time to', 'too late to', 'consider buying', 'consider adding',
-        'after its', 'decline --', 'rise --', 'a look at', 'is it time',
         'class a common stock', 'ny:', 'nasdaq:', 'one-year', 'fallen too far',
         'shareholders', 'deadline soon', 'class action', 'lawsuit', 'settlement',
+        # SEC filings
+        'form 3', 'form 4', 'form 8-k', 'form 10-', 'sec filing',
+        'beneficial ownership', 'insider', 'initial statement',
+        # Generic tech (false positives)
+        'semiconductor', 'chip', 'linux', 'kernel', 'tuxedo',
+        # Sports/entertainment
         'fantasy', 'football', 'basketball', 'nba', 'nfl', 'playoff',
         'nike shoes', 'sneaker', 'world cup', 'kit', 'jersey',
+        'coachella', 'sabrina carpenter', 'concert', 'tour',
+        'verstappen', 'chess',
+        # Unrelated
         'temple university', 'temple mount', 'coinbase', 'crypto',
         'restaurant', 'recipe', 'real estate', 'bitcoin',
-        'mindset', 'positive mindset', 'verstappen', 'chess',
-        'coachella', 'sabrina carpenter', 'concert', 'tour',
+        'mindset', 'positive mindset',
         'public health', 'teaching', 'textbook', 'edit book',
         'infosys', 'optimum healthcare it', 'weather', 'cloud stratus',
         'neurodiverse', 'neurodivergent', 'adhd tips', 'autism awareness'
@@ -315,24 +345,32 @@ def generate_summary(articles: List[Dict]) -> str:
             "ai_reason": a.get('ai_reason', '')
         })
 
-    prompt = f"""You are writing a competitive intelligence brief for a neurotech company's leadership team.
+    prompt = f"""You are writing a competitive intelligence brief for APEX leadership.
+
+APEX CONTEXT:
+- Multimodal cognitive performance platform (EEG + fNIRS + PPG + EDA + behavioral)
+- Core focus: FOCUS measurement, CREATIVE THINKING support, FASTER LEARNING
+- Future roadmap: NEUROSTIMULATION (tDCS/tACS)
+- Target: knowledge workers, students, founders - people who need peak cognition
 
 ARTICLES FROM LAST 3 DAYS:
 {json.dumps(article_info, indent=2)}
 
-Write a brief (3-5 paragraphs) covering:
+Write a brief (3-5 paragraphs) organized by APEX relevance:
 
-1. **Key Moves** - What competitors did: product launches, funding, partnerships, FDA news
-2. **Market Signals** - Trends or patterns across multiple companies
-3. **Watch List** - Anything that could impact our market position
+1. **Direct Competition** - EEG/fNIRS wearables, focus tracking devices, neurofeedback
+2. **Adjacent Moves** - HRV/recovery wearables (Whoop, Oura), neurostimulation, focus software
+3. **Market Signals** - Funding trends, partnerships, new tech that could impact cognitive performance space
+4. **Strategic Watch** - Anything that could affect APEX's positioning or roadmap
 
 Guidelines:
-- Be specific: "Company X raised $Y" not "a company raised funds"
-- Be analytical: explain WHY this matters competitively
+- Be specific: "Neurosity launched X feature" not "a company released something"
+- Frame through APEX lens: HOW does this affect our market position?
+- Highlight: multimodal sensing advances, focus measurement tech, neurostim developments
 - Skip irrelevant articles entirely
 - If only minor news, say so honestly
-- Tone: professional, direct, executive-level briefing
-- NO intro like "Here's your brief" - start with the content
+- Tone: direct, executive-level, actionable
+- NO intro - start with the content
 - Use **bold** for company names"""
 
     try:

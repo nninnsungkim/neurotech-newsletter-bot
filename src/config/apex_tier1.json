@@ -1,0 +1,416 @@
+{
+  "_comment": "APEX Tier 1: Companies directly relevant to cognitive performance platform",
+  "_rotation": "60 companies / 3 batches = 20/day with 72h lookback",
+
+  "tier1_direct_competitors": [
+    {
+      "name": "Neurosity",
+      "url": "https://neurosity.co",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - Crown EEG for focus tracking, knowledge workers",
+      "tech_tags": "eeg, focus, productivity, bci"
+    },
+    {
+      "name": "Muse",
+      "url": "https://choosemuse.com",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - EEG headband for meditation/focus",
+      "tech_tags": "eeg, meditation, focus, neurofeedback"
+    },
+    {
+      "name": "Emotiv",
+      "url": "https://emotiv.com",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - EEG headsets, cognitive performance",
+      "tech_tags": "eeg, bci, cognitive, neurofeedback"
+    },
+    {
+      "name": "Neurable",
+      "url": "https://neurable.com",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - EEG in everyday headphones for focus",
+      "tech_tags": "eeg, focus, headphones, productivity"
+    },
+    {
+      "name": "FocusCalm",
+      "url": "https://focuscalm.com",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - EEG focus training headband",
+      "tech_tags": "eeg, focus, neurofeedback, training"
+    },
+    {
+      "name": "BrainCo",
+      "url": "https://brainco.tech",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - Focus training for students",
+      "tech_tags": "eeg, focus, education, neurofeedback"
+    },
+    {
+      "name": "Sens.ai",
+      "url": "https://sens.ai",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - Neurofeedback headset",
+      "tech_tags": "eeg, neurofeedback, focus, performance"
+    },
+    {
+      "name": "Neeuro",
+      "url": "https://neeuro.com",
+      "type": "EEG Wearable",
+      "relevance": "Direct competitor - SenzeBand EEG for focus/cognitive",
+      "tech_tags": "eeg, focus, cognitive training, education"
+    }
+  ],
+
+  "tier1_fnirs_players": [
+    {
+      "name": "Kernel",
+      "url": "https://kernel.com",
+      "type": "fNIRS Device",
+      "relevance": "Key technology - Flow fNIRS neuroimaging",
+      "tech_tags": "fnirs, neuroimaging, cognitive"
+    },
+    {
+      "name": "NIRx",
+      "url": "https://nirx.net",
+      "type": "fNIRS Device",
+      "relevance": "fNIRS technology leader - research systems",
+      "tech_tags": "fnirs, research, neuroimaging"
+    },
+    {
+      "name": "Artinis Medical Systems",
+      "url": "https://artinis.com",
+      "type": "fNIRS Device",
+      "relevance": "fNIRS wearables and research systems",
+      "tech_tags": "fnirs, wearable, research"
+    },
+    {
+      "name": "Brite",
+      "url": "https://briteoptix.com",
+      "type": "fNIRS Device",
+      "relevance": "Wearable fNIRS - spin-off from Artinis",
+      "tech_tags": "fnirs, wearable, cognitive"
+    }
+  ],
+
+  "tier1_neurostimulation": [
+    {
+      "name": "Flow Neuroscience",
+      "url": "https://flowneuroscience.com",
+      "type": "tDCS Device",
+      "relevance": "Future roadmap - Consumer tDCS",
+      "tech_tags": "tdcs, neurostimulation, depression"
+    },
+    {
+      "name": "Neuroelectrics",
+      "url": "https://neuroelectrics.com",
+      "type": "tCS/EEG Combo",
+      "relevance": "Future roadmap - Combined EEG + stimulation",
+      "tech_tags": "tdcs, tacs, eeg, neurostimulation"
+    },
+    {
+      "name": "Soterix Medical",
+      "url": "https://soterixmedical.com",
+      "type": "tDCS Device",
+      "relevance": "tDCS research leader",
+      "tech_tags": "tdcs, tacs, neurostimulation, research"
+    },
+    {
+      "name": "Halo Sport",
+      "url": "https://haloneuro.com",
+      "type": "tDCS Device",
+      "relevance": "Consumer tDCS for performance (acquired)",
+      "tech_tags": "tdcs, neurostimulation, performance"
+    },
+    {
+      "name": "PlatoScience",
+      "url": "https://platoscience.com",
+      "type": "tACS Device",
+      "relevance": "tACS for focus and creativity",
+      "tech_tags": "tacs, neurostimulation, focus, creativity"
+    },
+    {
+      "name": "Humm",
+      "url": "https://thinkhumm.com",
+      "type": "tACS Device",
+      "relevance": "tACS patch for learning/memory",
+      "tech_tags": "tacs, neurostimulation, learning, memory"
+    },
+    {
+      "name": "Neurowyzr",
+      "url": "https://neurowyzr.com",
+      "type": "Cognitive Assessment",
+      "relevance": "Digital cognitive assessment platform",
+      "tech_tags": "cognitive, assessment, digital"
+    },
+    {
+      "name": "Ybrain",
+      "url": "https://ybrain.com",
+      "type": "tDCS Device",
+      "relevance": "Consumer tDCS headband",
+      "tech_tags": "tdcs, neurostimulation, wearable"
+    }
+  ],
+
+  "tier1_hrv_recovery": [
+    {
+      "name": "Whoop",
+      "url": "https://whoop.com",
+      "type": "HRV Wearable",
+      "relevance": "Recovery/strain tracking - PPG reference",
+      "tech_tags": "ppg, hrv, recovery, strain"
+    },
+    {
+      "name": "Oura",
+      "url": "https://ouraring.com",
+      "type": "HRV Wearable",
+      "relevance": "Sleep/readiness tracking - PPG reference",
+      "tech_tags": "ppg, hrv, sleep, readiness"
+    },
+    {
+      "name": "Apollo Neuro",
+      "url": "https://apolloneuro.com",
+      "type": "Stress Device",
+      "relevance": "Vibration for stress/focus regulation",
+      "tech_tags": "stress, recovery, focus, haptic"
+    },
+    {
+      "name": "Garmin",
+      "url": "https://garmin.com",
+      "type": "HRV Wearable",
+      "relevance": "Body Battery, stress tracking",
+      "tech_tags": "ppg, hrv, stress, recovery"
+    },
+    {
+      "name": "Polar",
+      "url": "https://polar.com",
+      "type": "HRV Wearable",
+      "relevance": "HRV analysis, recovery",
+      "tech_tags": "ppg, hrv, recovery"
+    },
+    {
+      "name": "Biostrap",
+      "url": "https://biostrap.com",
+      "type": "HRV Wearable",
+      "relevance": "Clinical-grade PPG wearable",
+      "tech_tags": "ppg, hrv, sleep, clinical"
+    },
+    {
+      "name": "Coros",
+      "url": "https://coros.com",
+      "type": "HRV Wearable",
+      "relevance": "HRV, training load, recovery",
+      "tech_tags": "ppg, hrv, recovery, training"
+    }
+  ],
+
+  "tier1_focus_productivity": [
+    {
+      "name": "Brain.fm",
+      "url": "https://brain.fm",
+      "type": "Focus Software",
+      "relevance": "AI audio for focus - potential integration",
+      "tech_tags": "focus, audio, productivity"
+    },
+    {
+      "name": "Endel",
+      "url": "https://endel.io",
+      "type": "Focus Software",
+      "relevance": "Adaptive soundscapes for focus",
+      "tech_tags": "focus, audio, productivity, adaptive"
+    },
+    {
+      "name": "Centered",
+      "url": "https://centered.app",
+      "type": "Focus Software",
+      "relevance": "Focus coaching software",
+      "tech_tags": "focus, productivity, coaching"
+    },
+    {
+      "name": "Rize",
+      "url": "https://rize.io",
+      "type": "Focus Software",
+      "relevance": "Focus time tracking",
+      "tech_tags": "focus, productivity, tracking"
+    },
+    {
+      "name": "Reclaim.ai",
+      "url": "https://reclaim.ai",
+      "type": "Focus Software",
+      "relevance": "AI calendar for focus time",
+      "tech_tags": "focus, productivity, calendar"
+    }
+  ],
+
+  "tier1_sleep_cognitive": [
+    {
+      "name": "Dreem",
+      "url": "https://dreem.com",
+      "type": "Sleep EEG",
+      "relevance": "EEG sleep tracking headband",
+      "tech_tags": "eeg, sleep, neurofeedback"
+    },
+    {
+      "name": "Elemind",
+      "url": "https://elemindtech.com",
+      "type": "Sleep Stim",
+      "relevance": "Acoustic stimulation for sleep",
+      "tech_tags": "sleep, neurostimulation, acoustic"
+    },
+    {
+      "name": "Philips Sleep",
+      "url": "https://philips.com/sleep",
+      "type": "Sleep Tech",
+      "relevance": "SmartSleep deep sleep headband",
+      "tech_tags": "sleep, eeg, neurostimulation"
+    },
+    {
+      "name": "Kokoon",
+      "url": "https://kokoon.io",
+      "type": "Sleep EEG",
+      "relevance": "EEG sleep headphones",
+      "tech_tags": "eeg, sleep, headphones"
+    },
+    {
+      "name": "URGOnight",
+      "url": "https://urgonight.com",
+      "type": "Sleep EEG",
+      "relevance": "EEG neurofeedback for sleep",
+      "tech_tags": "eeg, sleep, neurofeedback"
+    }
+  ],
+
+  "tier1_cognitive_enhancement": [
+    {
+      "name": "Cambridge Cognition",
+      "url": "https://cambridgecognition.com",
+      "type": "Cognitive Assessment",
+      "relevance": "CANTAB cognitive tests",
+      "tech_tags": "cognitive, assessment, research"
+    },
+    {
+      "name": "Cogstate",
+      "url": "https://cogstate.com",
+      "type": "Cognitive Assessment",
+      "relevance": "Digital cognitive testing",
+      "tech_tags": "cognitive, assessment, clinical"
+    },
+    {
+      "name": "Lumosity",
+      "url": "https://lumosity.com",
+      "type": "Cognitive Training",
+      "relevance": "Brain training platform",
+      "tech_tags": "cognitive, training, games"
+    },
+    {
+      "name": "Elevate",
+      "url": "https://elevateapp.com",
+      "type": "Cognitive Training",
+      "relevance": "Brain training for productivity",
+      "tech_tags": "cognitive, training, productivity"
+    },
+    {
+      "name": "Peak",
+      "url": "https://peak.net",
+      "type": "Cognitive Training",
+      "relevance": "Brain training games",
+      "tech_tags": "cognitive, training, games"
+    },
+    {
+      "name": "Neurotrack",
+      "url": "https://neurotrack.com",
+      "type": "Cognitive Assessment",
+      "relevance": "Eye-tracking cognitive assessment",
+      "tech_tags": "cognitive, assessment, eye-tracking"
+    }
+  ],
+
+  "tier1_multimodal_research": [
+    {
+      "name": "OpenBCI",
+      "url": "https://openbci.com",
+      "type": "Open Hardware",
+      "relevance": "Open-source EEG/biosensing platform",
+      "tech_tags": "eeg, open-source, research, multimodal"
+    },
+    {
+      "name": "Mentalab",
+      "url": "https://mentalab.com",
+      "type": "EEG Research",
+      "relevance": "Mobile EEG research systems",
+      "tech_tags": "eeg, research, mobile"
+    },
+    {
+      "name": "mBrainTrain",
+      "url": "https://mbraintrain.com",
+      "type": "EEG Research",
+      "relevance": "Mobile EEG + multimodal",
+      "tech_tags": "eeg, research, mobile, multimodal"
+    },
+    {
+      "name": "Bitbrain",
+      "url": "https://bitbrain.com",
+      "type": "EEG/Multimodal",
+      "relevance": "Dry EEG + cognitive research",
+      "tech_tags": "eeg, cognitive, research, dry-electrode"
+    },
+    {
+      "name": "IDUN Technologies",
+      "url": "https://iduntechnologies.com",
+      "type": "EEG Wearable",
+      "relevance": "In-ear EEG sensors",
+      "tech_tags": "eeg, wearable, in-ear"
+    },
+    {
+      "name": "Cognionics",
+      "url": "https://cognionics.com",
+      "type": "EEG Research",
+      "relevance": "Dry EEG systems",
+      "tech_tags": "eeg, dry-electrode, research"
+    },
+    {
+      "name": "CGX",
+      "url": "https://cgxsystems.com",
+      "type": "EEG Research",
+      "relevance": "Mobile dry EEG",
+      "tech_tags": "eeg, dry-electrode, mobile"
+    },
+    {
+      "name": "Wearable Sensing",
+      "url": "https://wearablesensing.com",
+      "type": "EEG Research",
+      "relevance": "Dry EEG headsets",
+      "tech_tags": "eeg, dry-electrode, research"
+    }
+  ],
+
+  "tier1_meditation_regulation": [
+    {
+      "name": "Calm",
+      "url": "https://calm.com",
+      "type": "Meditation App",
+      "relevance": "Market leader - meditation/stress",
+      "tech_tags": "meditation, stress, sleep"
+    },
+    {
+      "name": "Headspace",
+      "url": "https://headspace.com",
+      "type": "Meditation App",
+      "relevance": "Market leader - meditation/focus",
+      "tech_tags": "meditation, focus, stress"
+    },
+    {
+      "name": "Lief Therapeutics",
+      "url": "https://getlief.com",
+      "type": "HRV Wearable",
+      "relevance": "HRV biofeedback for stress",
+      "tech_tags": "hrv, biofeedback, stress, eda"
+    },
+    {
+      "name": "Prana",
+      "url": "https://pranawear.com",
+      "type": "Breathing Wearable",
+      "relevance": "Breathing/posture for focus",
+      "tech_tags": "breathing, posture, focus"
+    }
+  ]
+}

@@ -1,7 +1,17 @@
 """
-APEX Competitive Intelligence - Tiered company research.
-Tier 1: Wearable Consumer/Medical + EEG/neurofeedback/tDCS/etc (no limit)
-Tier 2: Other neurotech companies (fill to 15)
+APEX Competitive Intelligence - Cognitive Performance Market
+
+Tier 1 (APEX-curated ~60 companies):
+  - Direct competitors: EEG wearables (Neurosity, Muse, Emotiv, Neurable)
+  - fNIRS players: Kernel, NIRx, Artinis
+  - Neurostimulation: Flow, Neuroelectrics, tDCS/tACS devices
+  - HRV/Recovery: Whoop, Oura, Apollo Neuro
+  - Focus software: Brain.fm, Endel, Centered
+  - Sleep/cognitive: Dreem, Elemind, cognitive training
+
+Tier 2: General neurotech companies (broader market context)
+
+3 rotating batches with 72h lookback = full coverage
 """
 
 import os

@@ -1,6 +1,6 @@
 """
 Google News RSS fetcher with batch rotation.
-- 201 Tier 1 companies split into 3 batches (~67 each)
+- APEX-aligned Tier 1: ~60 companies in cognitive performance space
 - Each batch searched daily with 3-day lookback
 - Free, no API key required
 """
@@ -15,53 +15,92 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import quote
 import re
 
-# Tier 1 filter criteria
-TIER1_TYPES = ["Wearable Consumer", "Wearable Medical Device"]
-TIER1_TECH_TAGS = ["wearable", "eeg", "neurofeedback", "tdcs", "tacs", "neurostimulation", "fnirs"]
-
 # Rotation config
 NUM_BATCHES = 3
 LOOKBACK_HOURS = 72  # 3 days
+
+# URLs to SKIP (stock filings, SEC, investor noise)
+SKIP_URL_PATTERNS = [
+    'stocktitan.net',
+    'sec-filings',
+    'sec.gov',
+    'benzinga.com/sec',
+    'marketwatch.com/investing',
+    'nasdaq.com/market-activity',
+    'finance.yahoo.com/quote',
+    'seekingalpha.com/symbol',
+    'zacks.com/stock',
+    'fool.com/quote',
+    'tipranks.com',
+    'gurufocus.com',
+    'simplywall.st',
+    'tradingview.com/symbols',
+]
+
+# Titles to SKIP
+SKIP_TITLE_PATTERNS = [
+    'form 3', 'form 4', 'form 8-k', 'form 10-',
+    'sec filing', 'beneficial ownership',
+    'stock price', 'share price', 'stock moves',
+    'buy rating', 'sell rating', 'hold rating',
+    'price target', 'analyst', 'zacks rank',
+    'earnings call', 'quarterly results',
+    'dividend', 'shareholders',
+]
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 }
 
 
-def load_companies() -> List[Dict]:
-    """Load companies from config."""
+def load_apex_tier1() -> List[Dict]:
+    """Load APEX-curated Tier 1 companies."""
+    config_path = Path(__file__).parent.parent / 'config' / 'apex_tier1.json'
+    with open(config_path, 'r') as f:
+        data = json.load(f)
+
+    # Flatten all tier1 categories into one list
+    tier1 = []
+    for key, companies in data.items():
+        if key.startswith('tier1_') and isinstance(companies, list):
+            tier1.extend(companies)
+
+    return tier1
+
+
+def load_all_companies() -> List[Dict]:
+    """Load all companies from main config (for Tier 2)."""
     config_path = Path(__file__).parent.parent / 'config' / 'companies.json'
     with open(config_path, 'r') as f:
         return json.load(f)
 
 
-def is_tier1_company(company: Dict) -> bool:
-    """Check if company matches Tier 1 criteria."""
-    company_type = company.get('type', '').strip()
-    if company_type in TIER1_TYPES:
-        return True
+def split_companies() -> Tuple[List[Dict], List[Dict]]:
+    """Split into APEX Tier 1 (curated) and Tier 2 (general neurotech)."""
+    tier1 = load_apex_tier1()
+    tier1_names = {c['name'].lower() for c in tier1}
 
-    tech_tags = company.get('tech_tags', '').lower()
-    for tag in TIER1_TECH_TAGS:
-        if tag in tech_tags:
+    # Tier 2: other neurotech companies not in Tier 1
+    all_companies = load_all_companies()
+    tier2 = [c for c in all_companies if c['name'].lower() not in tier1_names]
+
+    return tier1, tier2
+
+
+def should_skip_article(url: str, title: str) -> bool:
+    """Check if article should be skipped (stock/SEC noise)."""
+    url_lower = url.lower()
+    title_lower = title.lower()
+
+    for pattern in SKIP_URL_PATTERNS:
+        if pattern in url_lower:
+            return True
+
+    for pattern in SKIP_TITLE_PATTERNS:
+        if pattern in title_lower:
             return True
 
     return False
-
-
-def split_companies() -> Tuple[List[Dict], List[Dict]]:
-    """Split companies into Tier 1 and Tier 2."""
-    companies = load_companies()
-    tier1 = []
-    tier2 = []
-
-    for company in companies:
-        if is_tier1_company(company):
-            tier1.append(company)
-        else:
-            tier2.append(company)
-
-    return tier1, tier2
 
 
 def get_todays_batch(companies: List[Dict]) -> Tuple[List[Dict], int]:
@@ -138,6 +177,10 @@ def search_company(company: Dict, hours: int = 24) -> List[Dict]:
             # Get the actual URL (Google News uses redirects)
             link = entry.get('link', '')
 
+            # Skip stock/SEC noise
+            if should_skip_article(link, clean_title):
+                continue
+
             articles.append({
                 'title': clean_title,
                 'url': link,
@@ -190,12 +233,19 @@ def search_companies_parallel(
 
 
 def search_neurotech_topics(hours: int = 24) -> List[Dict]:
-    """Search for broad neurotech topics."""
+    """Search for APEX-relevant topics."""
     queries = [
+        # Core cognitive performance
+        'EEG focus tracking wearable',
+        'fNIRS brain imaging device',
+        'neurofeedback focus',
+        'cognitive performance wearable',
+        # Neurostimulation
+        'tDCS brain stimulation',
+        'tACS cognitive enhancement',
+        # Market signals
         'neurotech startup funding',
-        'brain computer interface launch',
-        'EEG headband new',
-        'neurofeedback device',
+        'brain wearable launch',
     ]
 
     articles = []
@@ -219,12 +269,17 @@ def search_neurotech_topics(hours: int = 24) -> List[Dict]:
                 if pub_date < cutoff:
                     continue
 
+                clean_title, source = extract_source(title)
+                link = entry.get('link', '')
+
+                # Skip stock/SEC noise
+                if should_skip_article(link, clean_title):
+                    continue
+
                 title_key = title.lower()[:50]
                 if title_key in seen_titles:
                     continue
                 seen_titles.add(title_key)
-
-                clean_title, source = extract_source(title)
 
                 articles.append({
                     'title': clean_title,
