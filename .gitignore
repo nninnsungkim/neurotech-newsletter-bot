@@ -30,3 +30,6 @@ data/*.json
 
 # Logs
 *.log
+
+# Claude Code
+.claude/
