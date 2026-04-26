@@ -6,7 +6,7 @@ Automated newsletter bot that delivers competitive intelligence on neurotech har
 
 - **Automated Delivery**: Sends at 12:00 AM and 12:00 PM EST
 - **Multi-Source Aggregation**: Google News, RSS feeds, Reddit
-- **AI Summaries**: 3-bullet summaries using Claude Haiku
+- **AI Summaries**: Anthropic-powered summaries with model fallback
 - **Smart Deduplication**: Fuzzy matching prevents repeat content
 - **Cost Efficient**: ~$0.04/day for AI summaries
 
@@ -43,6 +43,7 @@ cp .env.example .env
 Edit `.env` with your keys:
 ```
 ANTHROPIC_API_KEY=sk-ant-xxxxx
+ANTHROPIC_MODEL=claude-sonnet-4-0
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/xxxxx
 ```
 
@@ -176,7 +177,8 @@ schedule:
 ### Summaries not working
 - Verify `ANTHROPIC_API_KEY` is set correctly
 - Check API credit balance
-- Bot will use fallback summarizer if API fails
+- If Anthropic retires a model, set `ANTHROPIC_MODEL` to a current supported model
+- Bot will use a local fallback summary if the API fails
 
 ## License
 

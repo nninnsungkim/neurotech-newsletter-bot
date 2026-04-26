@@ -18,6 +18,19 @@ def clean_title(title: str) -> str:
     return clean[:80] if len(clean) > 80 else clean
 
 
+def clean_description(text: str, limit: int = 180) -> str:
+    """Clean article snippets for Slack source context."""
+    if not text:
+        return ""
+
+    clean = re.sub(r'<[^>]*>', ' ', text)
+    clean = re.sub(r'["<>]', '', clean)
+    clean = re.sub(r'\s+', ' ', clean).strip()
+    if len(clean) > limit:
+        return clean[:limit - 3].rstrip() + "..."
+    return clean
+
+
 class SlackDelivery:
     """Slack delivery with AI summary."""
 
@@ -39,7 +52,13 @@ class SlackDelivery:
         for a in articles:
             title = clean_title(a.get('title', ''))[:60]
             url = a.get('url', '')
-            lines.append(f"• <{url}|{title}>")
+            link = f"<{url}|{title}>" if url else title
+            description = clean_description(
+                a.get('summary', '') or a.get('description', '') or a.get('ai_reason', '')
+            )
+            lines.append(f"- {link}")
+            if description:
+                lines.append(f"  {description}")
         return "\n".join(lines)
 
     def send(self, articles: List[Dict], summary: str = None) -> bool:

@@ -25,8 +25,28 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from fetchers.google_news_rss import fetch_tiered_news
 from processors.deduplicator import deduplicate_and_rank, ArticleDeduplicator
-from processors.ai_filter import ai_filter_articles, generate_summary
+from processors.ai_filter import ai_filter_articles, qa_filter_articles, generate_summary
 from delivery.slack import send_newsletter
+
+
+NO_SIGNIFICANT_SUMMARY_PATTERNS = [
+    "no significant neurotech updates",
+    "no significant updates",
+    "no major neurotech updates",
+    "no clear neurotech updates",
+]
+
+
+def _is_no_significant_summary(summary: str) -> bool:
+    """Detect empty-day summaries so we do not publish noisy source lists."""
+    normalized = (summary or "").lower()
+    return any(pattern in normalized for pattern in NO_SIGNIFICANT_SUMMARY_PATTERNS)
+
+
+def _safe_console_text(text: str) -> str:
+    """Avoid dry-run crashes on Windows consoles that cannot encode article text."""
+    encoding = sys.stdout.encoding or "utf-8"
+    return str(text).encode(encoding, errors="replace").decode(encoding, errors="replace")
 
 
 def fetch_news(hours: int = 72) -> tuple:
@@ -61,7 +81,11 @@ def process_articles(tier1: list, tier2: list, sent_path: str = None) -> list:
     filtered = ai_filter_articles(unique, max_select=50)
     print(f"Relevant: {len(filtered)} articles")
 
-    return filtered
+    print("\n[FILTER] QA false-positive pass...")
+    qa_filtered = qa_filter_articles(filtered)
+    print(f"After QA: {len(qa_filtered)} articles")
+
+    return qa_filtered
 
 
 def run_newsletter(dry_run: bool = False, hours: int = 72):
@@ -92,8 +116,13 @@ def run_newsletter(dry_run: bool = False, hours: int = 72):
     articles = process_articles(tier1, tier2, sent_path)
 
     if not articles:
-        print("\nNo unique articles after dedup.")
-        return False
+        print("\nNo significant articles after filtering.")
+        summary = "_No significant neurotech updates today._"
+        if dry_run:
+            print(f"\n[DRY RUN] Summary:\n{_safe_console_text(summary)}\n")
+            print("Sources (0):")
+            return True
+        return send_newsletter([], summary)
 
     # Generate AI summary
     print("\n" + "=" * 50)
@@ -106,23 +135,29 @@ def run_newsletter(dry_run: bool = False, hours: int = 72):
     else:
         summary = "_No significant neurotech updates today._"
 
+    delivery_articles = [] if _is_no_significant_summary(summary) else articles
+
     # Deliver
     print("\n" + "=" * 50)
     print("DELIVERY")
     print("=" * 50)
 
     if dry_run:
-        print(f"\n[DRY RUN] Summary:\n{summary}\n")
-        print(f"Sources ({len(articles)}):")
-        for a in articles:
-            print(f"  - {a['title'][:60]}")
+        print(f"\n[DRY RUN] Summary:\n{_safe_console_text(summary)}\n")
+        print(f"Sources ({len(delivery_articles)}):")
+        for a in delivery_articles:
+            description = a.get('summary', '') or a.get('description', '') or a.get('ai_reason', '')
+            print(f"  - {_safe_console_text(a['title'][:60])}")
+            if description:
+                print(f"    {_safe_console_text(description[:120])}")
         return True
 
-    success = send_newsletter(articles, summary)
+    success = send_newsletter(delivery_articles, summary)
 
     if success:
-        deduplicator = ArticleDeduplicator(sent_path)
-        deduplicator.mark_as_sent(articles)
+        if delivery_articles:
+            deduplicator = ArticleDeduplicator(sent_path)
+            deduplicator.mark_as_sent(delivery_articles)
         print("Newsletter sent!")
 
     return success

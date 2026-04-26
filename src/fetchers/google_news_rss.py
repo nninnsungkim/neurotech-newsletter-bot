@@ -62,6 +62,17 @@ HEADERS = {
 }
 
 
+def clean_html_text(text: str) -> str:
+    """Strip simple HTML from RSS summary fields."""
+    if not text:
+        return ""
+
+    clean = re.sub(r'<[^>]+>', ' ', text)
+    clean = clean.replace('&nbsp;', ' ')
+    clean = re.sub(r'\s+', ' ', clean).strip()
+    return clean
+
+
 def load_apex_tier1() -> List[Dict]:
     """Load APEX-curated Tier 1 companies."""
     config_path = Path(__file__).parent.parent / 'config' / 'apex_tier1.json'
@@ -194,8 +205,12 @@ def search_company(company: Dict, hours: int = 24) -> List[Dict]:
                 'title': clean_title,
                 'url': link,
                 'source': source,
+                'summary': clean_html_text(entry.get('summary', entry.get('description', ''))),
                 'published': pub_date.isoformat(),
                 'company': name,
+                'company_type': company.get('type', ''),
+                'tech_tags': company.get('tech_tags', ''),
+                'relevance': company.get('relevance', ''),
                 'fetcher': 'google_news_rss'
             })
 
@@ -315,6 +330,7 @@ def search_neurotech_topics(hours: int = 24) -> List[Dict]:
                     'title': clean_title,
                     'url': entry.get('link', ''),
                     'source': source,
+                    'summary': clean_html_text(entry.get('summary', entry.get('description', ''))),
                     'published': pub_date.isoformat(),
                     'company': 'Industry',
                     'fetcher': 'google_news_rss_topic'

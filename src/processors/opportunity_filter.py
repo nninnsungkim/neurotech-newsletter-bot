@@ -7,6 +7,7 @@ import os
 import json
 from typing import List, Dict
 from anthropic import Anthropic
+from .anthropic_utils import create_message_with_fallback, get_model_candidates, parse_json_response
 
 
 class OpportunityFilter:
@@ -56,7 +57,10 @@ Be strict but don't miss genuine opportunities."""
         if not self.api_key:
             raise ValueError("ANTHROPIC_API_KEY not set")
         self.client = Anthropic(api_key=self.api_key)
-        self.model = "claude-3-haiku-20240307"
+        self.model_candidates = get_model_candidates(
+            "ANTHROPIC_MODEL_OPPORTUNITIES",
+            "ANTHROPIC_MODEL_FILTER"
+        )
 
     def filter_opportunities(self, opportunities: List[Dict], category: str) -> List[Dict]:
         """Filter opportunities by relevance."""
@@ -96,39 +100,35 @@ OPPORTUNITIES:
 {json.dumps(items, indent=2)}
 
 For each, determine:
-1. Is it a genuine {category_context.lower()} opportunity for an early-stage founder? (true/false)
+1. Is it a genuine {category_context.lower()} opportunity for an early-stage founder?
 2. Relevance score 1-10 (10=perfect match, open applications; 7=relevant; 4=maybe; 0=irrelevant)
 3. Brief reason (5 words max)
 
-Return JSON only:
-{{"evaluations": [{{"id": 0, "relevant": true, "score": 8, "reason": "spring cohort open"}}]}}
+Return JSON only with RELEVANT items and omit everything else:
+{{"selected": [{{"id": 0, "score": 8, "reason": "spring cohort open"}}]}}
+If nothing is relevant, return {{"selected": []}}
 
 Be strict. Only genuine opportunities for founders."""
 
         try:
-            response = self.client.messages.create(
-                model=self.model,
+            response, _ = create_message_with_fallback(
+                self.client,
+                self.model_candidates,
                 max_tokens=1500,
                 system=self.SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": prompt}]
             )
 
             result_text = response.content[0].text
-            start = result_text.find('{')
-            end = result_text.rfind('}') + 1
+            result = parse_json_response(result_text)
 
-            if start >= 0 and end > start:
-                result = json.loads(result_text[start:end])
-            else:
-                return []
-
-            evaluations = result.get('evaluations', [])
+            evaluations = result.get('selected', result.get('evaluations', []))
             filtered = []
 
             for eval_item in evaluations:
                 idx = eval_item.get('id')
                 if idx is not None and idx < len(opportunities):
-                    if eval_item.get('relevant', False) and eval_item.get('score', 0) >= 5:
+                    if eval_item.get('score', 0) >= 5:
                         opp = opportunities[idx].copy()
                         opp['relevance_score'] = eval_item.get('score', 0)
                         opp['relevance_reason'] = eval_item.get('reason', '')
@@ -145,7 +145,7 @@ def generate_opportunity_summary(vc_fellowships: List[Dict], pitch_competitions:
     """Generate summary of opportunities."""
     api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
-        return ""
+        return _generate_opportunity_fallback_summary(vc_fellowships, pitch_competitions)
 
     # Prepare data
     vc_data = [{"title": o['title'][:100], "source": o.get('source', ''), "reason": o.get('relevance_reason', '')}
@@ -177,15 +177,17 @@ Guidelines:
 
     try:
         client = Anthropic(api_key=api_key)
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
+        response, _ = create_message_with_fallback(
+            client,
+            get_model_candidates("ANTHROPIC_MODEL_OPPORTUNITIES", "ANTHROPIC_MODEL_SUMMARY"),
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}]
         )
-        return response.content[0].text.strip()
+        summary = response.content[0].text.strip()
+        return summary if summary else _generate_opportunity_fallback_summary(vc_fellowships, pitch_competitions)
     except Exception as e:
         print(f"Summary error: {e}")
-        return ""
+        return _generate_opportunity_fallback_summary(vc_fellowships, pitch_competitions)
 
 
 def filter_opportunities(opportunities: List[Dict], category: str) -> List[Dict]:
@@ -197,3 +199,40 @@ def filter_opportunities(opportunities: List[Dict], category: str) -> List[Dict]
         print(f"Filter unavailable: {e}")
         # Fallback: return all with priority flag
         return [o for o in opportunities if o.get('priority', False)]
+
+
+def _generate_opportunity_fallback_summary(vc_fellowships: List[Dict], pitch_competitions: List[Dict]) -> str:
+    """Fallback digest when Anthropic is unavailable."""
+    vc_titles = [opp.get('title', '').strip() for opp in vc_fellowships[:3] if opp.get('title')]
+    pitch_titles = [opp.get('title', '').strip() for opp in pitch_competitions[:3] if opp.get('title')]
+
+    paragraphs = []
+
+    if vc_titles:
+        paragraphs.append(
+            f"VC fellowships and accelerators worth a closer look: {'; '.join(vc_titles)}."
+        )
+    else:
+        paragraphs.append(
+            "VC fellowship flow looks light right now, with no especially strong founder-program signals in this batch."
+        )
+
+    if pitch_titles:
+        paragraphs.append(
+            f"Purdue and Indiana pitch competition watchlist: {'; '.join(pitch_titles)}."
+        )
+    else:
+        paragraphs.append(
+            "No clear Purdue or Indiana pitch competition items stood out in this batch."
+        )
+
+    if vc_titles or pitch_titles:
+        paragraphs.append(
+            "Action item: prioritize anything with an active application window or a near-term deadline, then verify eligibility directly on the program page."
+        )
+    else:
+        paragraphs.append(
+            "Action item: keep monitoring for newly opened applications rather than forcing low-signal programs into the funnel."
+        )
+
+    return "\n\n".join(paragraphs)

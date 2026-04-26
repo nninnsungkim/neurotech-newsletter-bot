@@ -8,6 +8,7 @@ from typing import List, Dict, Optional
 from anthropic import Anthropic
 from tenacity import retry, stop_after_attempt, wait_exponential
 import time
+from .anthropic_utils import create_message_with_fallback, get_model_candidates
 
 
 class ArticleSummarizer:
@@ -35,7 +36,7 @@ Format your response as exactly 3 lines starting with "• "
             raise ValueError("ANTHROPIC_API_KEY not set")
 
         self.client = Anthropic(api_key=self.api_key)
-        self.model = "claude-3-haiku-20240307"  # Claude 3 Haiku - fast and cheap
+        self.model_candidates = get_model_candidates("ANTHROPIC_MODEL_SUMMARY")
 
     def _clean_html(self, text: str) -> str:
         """Remove HTML tags and clean text."""
@@ -60,8 +61,9 @@ Article Content/Summary: {clean_content[:1500]}
 
 Summarize this in exactly 3 bullet points:"""
 
-        response = self.client.messages.create(
-            model=self.model,
+        response, _ = create_message_with_fallback(
+            self.client,
+            self.model_candidates,
             max_tokens=200,
             system=self.SYSTEM_PROMPT,
             messages=[
